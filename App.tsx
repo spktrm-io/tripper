@@ -36,8 +36,7 @@ const LeftHeaderIcon = ({
       style={{
         borderRadius: rounded ? 100 : 10,
         backgroundColor: "#e8e8e8",
-        marginLeft: 15,
-        marginRight: 15,
+        marginHorizontal: 15,
         padding: 15,
       }}
       onPress={() =>
@@ -59,8 +58,8 @@ function App() {
       <Stack.Navigator
         screenOptions={{
           headerTitle: "",
+          headerTransparent: true,
           headerStyle: {
-            backgroundColor: "transparent",
             height: 130,
           },
           headerLeft: () => (
@@ -72,6 +71,9 @@ function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen
           options={{
+            headerStyle: {
+              height: 130,
+            },
             headerLeft: () => null,
             headerRight: () => (
               <LeftHeaderIcon iconName="bars" navigate="Login" />

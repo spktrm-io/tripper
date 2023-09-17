@@ -8,7 +8,7 @@ import {
   StyleSheet,
   Text,
 } from "react-native";
-import { Button, ButtonText } from "../ui/Button";
+import Button from "../ui/Button";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
@@ -52,15 +52,15 @@ const Login = () => {
             onChangeText={(text) => setPassword(text)}
             value={password}
           />
-          <Button disabled={isNullFields()} onPress={handleLogin}>
-            <ButtonText>Login</ButtonText>
-          </Button>
+          <Button
+            disabled={isNullFields()}
+            onPress={handleLogin}
+            text="Entrar"
+          />
         </View>
         <View style={styles.signupContainer}>
           <Text style={styles.signupText}>Ainda não tem uma conta?</Text>
-          <Button onPress={handleSignup}>
-            <ButtonText>Sign-in</ButtonText>
-          </Button>
+          <Button text="Cadastrar" onPress={handleSignup} />
         </View>
         <StatusBar barStyle="dark-content" />
       </View>

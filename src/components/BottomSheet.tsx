@@ -23,7 +23,7 @@ export type BottomSheetRefProps = {
   isActive: () => boolean;
 };
 
-const SearchBar = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
+const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
   ({ children }, ref) => {
     const translateY = useSharedValue(0);
     const active = useSharedValue(false);
@@ -105,4 +105,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SearchBar;
+export default BottomSheet;

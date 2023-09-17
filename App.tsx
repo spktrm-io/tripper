@@ -10,6 +10,7 @@ import {
 } from "@react-navigation/stack";
 import { Text, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import "react-native-reanimated";
 
 import LoginScreen from "./src/screens/Login";
 import HomeScreen from "./src/screens/Home";

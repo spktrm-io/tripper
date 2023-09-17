@@ -1,61 +1,16 @@
 import React, { useState } from "react";
-import { Keyboard, TouchableWithoutFeedback, StatusBar } from "react-native";
+import {
+  Keyboard,
+  TouchableWithoutFeedback,
+  StatusBar,
+  View,
+  TextInput,
+  StyleSheet,
+  Text,
+} from "react-native";
 import { Button, ButtonText } from "../ui/Button";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import styled from "styled-components/native"; // Importe styled-components/native
-
-const Container = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
-const FormContainer = styled.View`
-  flex: 3;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  gap: 10px;
-`;
-
-const TextContainer = styled.View`
-  width: 90%;
-  text-align: left;
-`;
-
-const Title = styled.Text`
-  font-size: 40px;
-  font-weight: 900;
-  margin-bottom: 10px;
-`;
-
-const FormText = styled.Text`
-  font-size: 25px;
-  font-weight: 300;
-  margin-bottom: 30px;
-`;
-
-const Input = styled.TextInput`
-  width: 90%;
-  height: 40px;
-  border-color: rgb(193, 193, 193);
-  border-width: 1px;
-  border-radius: 5px;
-  padding: 8px;
-`;
-
-const SignupContainer = styled.View`
-  flex: 1;
-  align-items: center;
-  width: 100%;
-`;
-
-const SignupText = styled.Text`
-  font-size: 18px;
-  font-weight: 300;
-  margin-bottom: 10px;
-`;
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -78,18 +33,20 @@ const Login = () => {
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <Container>
-        <FormContainer>
-          <TextContainer>
-            <Title>Bem vindo!</Title>
-            <FormText>Faça seu login</FormText>
-          </TextContainer>
-          <Input
+      <View style={styles.container}>
+        <View style={styles.formContainer}>
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>Bem vindo!</Text>
+            <Text style={styles.formText}>Faça seu login</Text>
+          </View>
+          <TextInput
+            style={styles.input}
             placeholder="Username"
             onChangeText={(text) => setUsername(text)}
             value={username}
           />
-          <Input
+          <TextInput
+            style={styles.input}
             placeholder="Senha"
             secureTextEntry={true}
             onChangeText={(text) => setPassword(text)}
@@ -98,17 +55,65 @@ const Login = () => {
           <Button disabled={isNullFields()} onPress={handleLogin}>
             <ButtonText>Login</ButtonText>
           </Button>
-        </FormContainer>
-        <SignupContainer>
-          <SignupText>Ainda não tem uma conta?</SignupText>
+        </View>
+        <View style={styles.signupContainer}>
+          <Text style={styles.signupText}>Ainda não tem uma conta?</Text>
           <Button onPress={handleSignup}>
             <ButtonText>Sign-in</ButtonText>
           </Button>
-        </SignupContainer>
+        </View>
         <StatusBar barStyle="dark-content" />
-      </Container>
+      </View>
     </TouchableWithoutFeedback>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  formContainer: {
+    flex: 3,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    marginBottom: 10,
+    gap: 10,
+  },
+  textContainer: {
+    width: "90%",
+    textAlign: "left",
+  },
+  title: {
+    fontSize: 40,
+    fontWeight: "900",
+    marginBottom: 10,
+  },
+  formText: {
+    fontSize: 25,
+    fontWeight: "300",
+    marginBottom: 30,
+  },
+  input: {
+    width: "90%",
+    height: 40,
+    borderColor: "rgb(193, 193, 193)",
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 8,
+  },
+  signupContainer: {
+    flex: 1,
+    alignItems: "center",
+    width: "100%",
+  },
+  signupText: {
+    fontSize: 18,
+    fontWeight: "300",
+    marginBottom: 10,
+  },
+});
 
 export default Login;

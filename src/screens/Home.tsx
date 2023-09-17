@@ -1,6 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Keyboard, StatusBar, TouchableWithoutFeedback } from "react-native";
-import styled from "styled-components/native";
+import {
+  Keyboard,
+  StatusBar,
+  TouchableWithoutFeedback,
+  View,
+  Text,
+  Image,
+  StyleSheet,
+} from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import {
   LocationAccuracy,
@@ -8,21 +15,29 @@ import {
   requestForegroundPermissionsAsync,
   watchPositionAsync,
 } from "expo-location";
-import { Image, Dimensions } from "react-native"; // Importe Image e Dimensions
-import CustomMarkerImage from "../../assets/Marker.png";
+import { Dimensions } from "react-native";
 import SearchBar from "../components/SearchBar";
 
-const Container = styled.View`
-  flex: 1;
-`;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  mapView: {
+    flex: 1,
+    width: "100%",
+  },
+  markerImage: {
+    width: Dimensions.get("window").width * 0.1,
+    height: Dimensions.get("window").width * 0.1,
+  },
+});
 
 const customMapStyle = [
   {
     featureType: "poi",
     elementType: "labels",
-    stylers: [{ visibility: "off" }], // Oculta os rótulos de pontos de interesse
+    stylers: [{ visibility: "off" }],
   },
-  // Outras personalizações
 ];
 
 const Home = () => {
@@ -75,11 +90,11 @@ const Home = () => {
   };
 
   return (
-    <Container>
+    <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <MapView
         ref={mapViewRef}
-        style={{ flex: 1, width: "100%" }}
+        style={styles.mapView}
         initialRegion={{
           latitude: location?.latitude || 0,
           longitude: location?.longitude || 0,
@@ -98,18 +113,15 @@ const Home = () => {
             title="Sua Localização"
           >
             <Image
-              source={CustomMarkerImage}
-              style={{
-                width: Dimensions.get("window").width * 0.1, // Defina o tamanho desejado
-                height: Dimensions.get("window").width * 0.1, // Defina o tamanho desejado
-              }}
+              source={require("../../assets/Marker.png")}
+              style={styles.markerImage}
             />
           </Marker>
         )}
       </MapView>
 
-      {/* <SearchBar /> */}
-    </Container>
+      <SearchBar />
+    </View>
   );
 };
 

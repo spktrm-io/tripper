@@ -5,7 +5,9 @@ import {
   Image,
   StyleSheet,
   Dimensions,
-  TouchableOpacity,
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import {
@@ -17,29 +19,11 @@ import {
 } from "expo-location";
 import BottomSheet, { BottomSheetRefProps } from "../components/BottomSheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Button from "../ui/Button";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  mapView: {
-    flex: 1,
-    width: "100%",
-  },
-  markerImage: {
-    width: Dimensions.get("window").width * 0.1,
-    height: Dimensions.get("window").width * 0.1,
-  },
-  button: {
-    height: 50,
-    borderRadius: 25,
-    aspectRatio: 1,
-    backgroundColor: "red",
-    opacity: 0.6,
-  },
-});
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 const customMapStyle = [
   {
@@ -51,7 +35,10 @@ const customMapStyle = [
 
 const Home: React.FC = () => {
   const [location, setLocation] = useState<LocationObjectCoords | null>(null);
+  const [search, setSearch] = useState<string>("");
+
   const mapViewRef = useRef<MapView>(null);
+  const ref = useRef<BottomSheetRefProps>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -106,24 +93,23 @@ const Home: React.FC = () => {
     }
   };
 
-  const ref = useRef<BottomSheetRefProps>(null);
-
   const onPress = useCallback(() => {
+    ref?.current?.scrollTo(-SCREEN_HEIGHT + 170);
+  }, []);
+
+  const onPressExit = useCallback(() => {
+    Keyboard.dismiss();
     const isActive = ref?.current?.isActive();
-    if (isActive) {
-      ref?.current?.scrollTo(0);
-    } else {
-      ref?.current?.scrollTo(-200);
-    }
+    if (isActive) ref?.current?.scrollTo(0);
   }, []);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <View style={styles.container}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <StatusBar barStyle="dark-content" />
-        {/* <MapView
+        <MapView
           ref={mapViewRef}
-          style={styles.mapView}
+          style={{ flex: 1, width: "100%" }}
           initialRegion={{
             latitude: location?.latitude || 0,
             longitude: location?.longitude || 0,
@@ -143,14 +129,50 @@ const Home: React.FC = () => {
             >
               <Image
                 source={require("../../assets/Marker.png")}
-                style={styles.markerImage}
+                style={{
+                  width: SCREEN_WIDTH * 0.1,
+                  height: SCREEN_WIDTH * 0.1,
+                }}
               />
             </Marker>
           )}
-        </MapView> */}
-        <TouchableOpacity style={styles.button} onPress={onPress} />
+        </MapView>
         <BottomSheet ref={ref}>
-          <View style={{ flex: 1, backgroundColor: "orange" }}></View>
+          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  height: 100,
+                  width: "100%",
+                  alignItems: "flex-start",
+                  justifyContent: "center",
+                  gap: 10,
+                }}
+              >
+                <Button
+                  height={50}
+                  width={50}
+                  icon={"chevron-left"}
+                  secondary
+                  onPress={onPressExit}
+                />
+                <TextInput
+                  style={{
+                    width: "80%",
+                    height: 50,
+                    borderRadius: 100,
+                    padding: 15,
+                    backgroundColor: "rgb(232, 232, 232)",
+                  }}
+                  placeholder="Pra onde deseja viajar?"
+                  onTouchStart={onPress}
+                  onChangeText={(text) => setSearch(text)}
+                  value={search}
+                />
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
         </BottomSheet>
       </View>
     </GestureHandlerRootView>

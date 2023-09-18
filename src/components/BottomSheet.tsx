@@ -1,6 +1,10 @@
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Keyboard, StyleSheet, Text, View } from "react-native";
 import React, { useCallback, useEffect, useImperativeHandle } from "react";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import {
+  Gesture,
+  GestureDetector,
+  TouchableWithoutFeedback,
+} from "react-native-gesture-handler";
 import Animated, {
   Extrapolate,
   interpolate,
@@ -12,7 +16,7 @@ import Animated, {
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
-const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 50;
+const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 170;
 
 type BottomSheetProps = {
   children?: React.ReactNode;
@@ -56,7 +60,9 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
       .onEnd(() => {
         if (translateY.value > -SCREEN_HEIGHT / 3) {
           scrollTo(0);
-        } else if (translateY.value < -SCREEN_HEIGHT / 1.5) {
+        } else if (translateY.value > -SCREEN_HEIGHT / 2) {
+          scrollTo(MAX_TRANSLATE_Y / 2);
+        } else if (translateY.value > -SCREEN_HEIGHT) {
           scrollTo(MAX_TRANSLATE_Y);
         }
       });
@@ -78,7 +84,16 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
     return (
       <GestureDetector gesture={gesture}>
         <Animated.View style={[styles.bottomSheetContainer, rBottomSheetStyle]}>
-          <View style={styles.line} />
+          <TouchableWithoutFeedback
+            onPress={() => {
+              if (isActive()) {
+                Keyboard.dismiss();
+                return scrollTo(0);
+              } else return scrollTo(-SCREEN_HEIGHT / 2);
+            }}
+          >
+            <View style={styles.line} />
+          </TouchableWithoutFeedback>
           {children}
         </Animated.View>
       </GestureDetector>
@@ -88,12 +103,13 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
 
 const styles = StyleSheet.create({
   bottomSheetContainer: {
-    height: SCREEN_HEIGHT,
+    height: SCREEN_HEIGHT + 120,
     width: "100%",
     backgroundColor: "white",
     position: "absolute",
-    top: SCREEN_HEIGHT,
+    top: SCREEN_HEIGHT - 120,
     borderRadius: 25,
+    zIndex: 2,
   },
   line: {
     width: 75,

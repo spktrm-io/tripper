@@ -6,10 +6,11 @@ import {
 } from "@react-navigation/native";
 import {
   CardStyleInterpolators,
+  StackCardInterpolationProps,
   StackNavigationProp,
   createStackNavigator,
 } from "@react-navigation/stack";
-import { Text, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import "react-native-reanimated";
 
@@ -67,7 +68,11 @@ const screenAnimations = {
   fadeIn: CardStyleInterpolators.forFadeFromBottomAndroid,
 
   // Tela desliza da esquerda para a direita
-  slideFromLeft: ({ current, inverted, layouts }) => {
+  slideFromLeft: ({
+    current,
+    inverted,
+    layouts,
+  }: StackCardInterpolationProps) => {
     const progress = inverted
       ? current.progress.interpolate({
           inputRange: [0, 1],

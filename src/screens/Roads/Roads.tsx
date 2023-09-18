@@ -3,11 +3,7 @@ import React from "react";
 import { roadsStyles } from "./styles";
 
 const Roads = () => {
-  return (
-    <View style={roadsStyles.container}>
-      <Text>Roads</Text>
-    </View>
-  );
+  return <View style={roadsStyles.container}></View>;
 };
 
 export default Roads;

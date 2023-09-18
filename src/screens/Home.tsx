@@ -8,6 +8,7 @@ import {
   TextInput,
   Keyboard,
   TouchableWithoutFeedback,
+  Text,
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import {
@@ -18,10 +19,12 @@ import {
   LocationObject,
 } from "expo-location";
 import BottomSheet, { BottomSheetRefProps } from "../components/BottomSheet";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { FlatList, GestureHandlerRootView } from "react-native-gesture-handler";
 import Button from "../ui/Button";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import ItemSearch from "../components/ItemSearch";
+import Header from "../components/Header";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -30,6 +33,34 @@ const customMapStyle = [
     featureType: "poi",
     elementType: "labels",
     stylers: [{ visibility: "off" }],
+  },
+];
+
+const data = [
+  {
+    id: "1",
+    name: "Restaurante Italiano",
+    address: "123 Rua da Itália, Cidade, País",
+  },
+  {
+    id: "2",
+    name: "Café aconchegante",
+    address: "456 Rua do Café, Cidade, País",
+  },
+  {
+    id: "3",
+    name: "Parque Central",
+    address: "789 Avenida do Parque, Cidade, País",
+  },
+  {
+    id: "4",
+    name: "Museu de Arte Moderna",
+    address: "101 Avenida da Arte, Cidade, País",
+  },
+  {
+    id: "5",
+    name: "Praia Ensolarada",
+    address: "500 Praia Avenue, Cidade, País",
   },
 ];
 
@@ -94,19 +125,30 @@ const Home: React.FC = () => {
   };
 
   const onPress = useCallback(() => {
+    ref?.current?.setIsSearched(true);
     ref?.current?.scrollTo(-SCREEN_HEIGHT + 170);
   }, []);
 
   const onPressExit = useCallback(() => {
     Keyboard.dismiss();
+
+    ref?.current?.setIsSearched(false);
     const isActive = ref?.current?.isActive();
     if (isActive) ref?.current?.scrollTo(0);
   }, []);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          position: "relative",
+        }}
+      >
         <StatusBar barStyle="dark-content" />
+        <Header />
         <MapView
           ref={mapViewRef}
           style={{ flex: 1, width: "100%" }}
@@ -143,7 +185,7 @@ const Home: React.FC = () => {
               <View
                 style={{
                   flexDirection: "row",
-                  height: 100,
+                  height: 90,
                   width: "100%",
                   alignItems: "flex-start",
                   justifyContent: "center",
@@ -155,6 +197,7 @@ const Home: React.FC = () => {
                   width={50}
                   icon={"chevron-left"}
                   secondary
+                  rounded
                   onPress={onPressExit}
                 />
                 <TextInput
@@ -166,10 +209,19 @@ const Home: React.FC = () => {
                     backgroundColor: "rgb(232, 232, 232)",
                   }}
                   placeholder="Pra onde deseja viajar?"
-                  onTouchStart={onPress}
+                  onFocus={onPress}
                   onChangeText={(text) => setSearch(text)}
                   value={search}
                 />
+              </View>
+              <View>
+                {data?.map((item) => (
+                  <ItemSearch
+                    key={item.id}
+                    name={item.name}
+                    address={item.address}
+                  />
+                ))}
               </View>
             </View>
           </TouchableWithoutFeedback>

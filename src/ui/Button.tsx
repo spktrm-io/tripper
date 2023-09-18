@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   buttonIcon: {
-    borderRadius: 100,
     aspectRatio: 1,
   },
   buttonText: {

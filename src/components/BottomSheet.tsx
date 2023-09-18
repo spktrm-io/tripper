@@ -25,12 +25,15 @@ type BottomSheetProps = {
 export type BottomSheetRefProps = {
   scrollTo: (destination: number) => void;
   isActive: () => boolean;
+  isSearched: () => boolean;
+  setIsSearched: (bool: boolean) => void;
 };
 
 const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
   ({ children }, ref) => {
     const translateY = useSharedValue(0);
     const active = useSharedValue(false);
+    const searched = useSharedValue(false);
 
     const scrollTo = useCallback((destination: number) => {
       "worklet";
@@ -39,23 +42,36 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
       translateY.value = withSpring(destination, { damping: 50 });
     }, []);
 
+    const setIsSearched = useCallback((bool: boolean) => {
+      "worklet";
+      searched.value = bool;
+    }, []);
+
     const isActive = useCallback(() => {
       return active.value;
     }, []);
 
-    useImperativeHandle(ref, () => ({ scrollTo, isActive }), [
-      scrollTo,
-      isActive,
-    ]);
+    const isSearched = useCallback(() => {
+      return searched.value;
+    }, []);
 
+    useImperativeHandle(
+      ref,
+      () => ({ scrollTo, isActive, isSearched, setIsSearched }),
+      [scrollTo, isActive, isSearched, setIsSearched]
+    );
+
+    Keyboard.isVisible();
     const context = useSharedValue({ y: 0 });
     const gesture = Gesture.Pan()
       .onStart(() => {
         context.value = { y: translateY.value };
       })
       .onUpdate((event) => {
-        translateY.value = event.translationY + context.value.y;
-        translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
+        if (!searched.value) {
+          translateY.value = event.translationY + context.value.y;
+          translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
+        }
       })
       .onEnd(() => {
         if (translateY.value > -SCREEN_HEIGHT / 3) {
@@ -88,8 +104,9 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
             onPress={() => {
               if (isActive()) {
                 Keyboard.dismiss();
-                return scrollTo(0);
-              } else return scrollTo(-SCREEN_HEIGHT / 2);
+                setIsSearched(false);
+                scrollTo(0);
+              } else scrollTo(-SCREEN_HEIGHT / 2);
             }}
           >
             <View style={styles.line} />
@@ -109,7 +126,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: SCREEN_HEIGHT - 120,
     borderRadius: 25,
-    zIndex: 2,
+    zIndex: 3,
   },
   line: {
     width: 75,

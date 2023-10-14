@@ -1,27 +1,51 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text, Dimensions } from "react-native";
 import Button from "../ui/Button";
-import { ParamListBase, useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
 
-const Header = () => {
-  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+interface IButtonProps {
+  icon?: string;
+  text?: string;
+  navigation: () => void;
+}
+
+interface IHeaderProps {
+  rightButtonProps?: IButtonProps;
+  leftButtonProps?: IButtonProps;
+  centerButtonProps?: IButtonProps;
+}
+
+const Header = ({
+  rightButtonProps,
+  leftButtonProps,
+  centerButtonProps,
+}: IHeaderProps) => {
   return (
     <View style={styles.header}>
-      <Button
-        icon="road"
-        secondary
-        height={50}
-        width={50}
-        onPress={() => navigation.navigate("Roads")}
-      />
-      <Button
-        icon="bars"
-        secondary
-        height={50}
-        width={50}
-        onPress={() => navigation.navigate("Login")}
-      />
+      {leftButtonProps && (
+        <Button
+          icon={leftButtonProps.icon}
+          text={leftButtonProps.text}
+          secondary
+          height={50}
+          width={50}
+          onPress={leftButtonProps.navigation}
+          style={styles.leftButton}
+        />
+      )}
+      {centerButtonProps && (
+        <Text style={styles.text}>{centerButtonProps.text}</Text>
+      )}
+      {rightButtonProps && (
+        <Button
+          icon={rightButtonProps.icon}
+          text={rightButtonProps.text}
+          secondary
+          height={50}
+          width={50}
+          onPress={rightButtonProps.navigation}
+          style={styles.rightButton}
+        />
+      )}
     </View>
   );
 };
@@ -29,19 +53,35 @@ const Header = () => {
 const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
-    alignItems: "flex-end",
+    alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "transparent",
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 8,
-    position: "absolute", // Posicionamento absoluto
-    top: 0, // Coloca o cabeçalho no topo
-    left: 0, // Alinha à esquerda
-    right: 0, // Alinha à direita
-    height: 130,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 60,
     width: "100%",
     zIndex: 1,
+    flex: 1,
+  },
+  leftButton: {
+    position: "absolute",
+    top: "100%", // Ajuste a coordenada top conforme necessário
+    left: "5%", // Ajuste a coordenada left conforme necessário
+  },
+  rightButton: {
+    position: "absolute",
+    top: "100%", // Ajuste a coordenada top conforme necessário
+    right: "5%", // Ajuste a coordenada right conforme necessário
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: "900",
+    color: "rgb(29, 29, 29)",
+    position: "absolute",
+    top: "120%", // Centraliza verticalmente
+    left: Dimensions.get("window").width / 2 - 25,
   },
 });
 

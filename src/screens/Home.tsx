@@ -2,13 +2,10 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import {
   StatusBar,
   View,
-  Image,
-  StyleSheet,
   Dimensions,
   TextInput,
   Keyboard,
   TouchableWithoutFeedback,
-  Text,
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import {
@@ -25,6 +22,7 @@ import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import ItemSearch from "../components/ItemSearch";
 import Header from "../components/Header";
+import { Image } from "expo-image";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -131,11 +129,14 @@ const Home: React.FC = () => {
 
   const onPressExit = useCallback(() => {
     Keyboard.dismiss();
+    setSearch("");
 
     ref?.current?.setIsSearched(false);
     const isActive = ref?.current?.isActive();
     if (isActive) ref?.current?.scrollTo(0);
   }, []);
+
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -148,7 +149,16 @@ const Home: React.FC = () => {
         }}
       >
         <StatusBar barStyle="dark-content" />
-        <Header />
+        <Header
+          leftButtonProps={{
+            icon: "road",
+            navigation: () => navigation.navigate("Roads"),
+          }}
+          rightButtonProps={{
+            icon: "bars",
+            navigation: () => navigation.navigate("Login"),
+          }}
+        />
         <MapView
           ref={mapViewRef}
           style={{ flex: 1, width: "100%" }}
@@ -214,15 +224,12 @@ const Home: React.FC = () => {
                   value={search}
                 />
               </View>
-              <View>
-                {data?.map((item) => (
-                  <ItemSearch
-                    key={item.id}
-                    name={item.name}
-                    address={item.address}
-                  />
-                ))}
-              </View>
+
+              <FlatList
+                data={data}
+                renderItem={ItemSearch}
+                keyExtractor={(item) => item.id}
+              />
             </View>
           </TouchableWithoutFeedback>
         </BottomSheet>

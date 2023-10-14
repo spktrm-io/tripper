@@ -1,5 +1,5 @@
-import { Dimensions, Keyboard, StyleSheet, Text, View } from "react-native";
-import React, { useCallback, useEffect, useImperativeHandle } from "react";
+import { Dimensions, Keyboard, StyleSheet, View } from "react-native";
+import React, { useCallback, useImperativeHandle } from "react";
 import {
   Gesture,
   GestureDetector,
@@ -11,7 +11,6 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-  withTiming,
 } from "react-native-reanimated";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");

@@ -16,28 +16,8 @@ import LoginScreen from "./src/screens/Login";
 import HomeScreen from "./src/screens/Home";
 import SplashScreen from "./src/screens/SplashScreen";
 import Roads from "./src/screens/Roads/Roads";
-import Button from "./src/ui/Button";
 
 const Stack = createStackNavigator();
-
-interface IHeaderProps {
-  iconName: string;
-}
-
-const ButtonGoBack = ({ iconName }: IHeaderProps) => {
-  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-
-  return (
-    <Button
-      mx={16}
-      icon={iconName}
-      secondary
-      height={50}
-      width={50}
-      onPress={() => navigation.goBack()}
-    />
-  );
-};
 
 const screenAnimations = {
   // Tela desliza da direita para a esquerda (padrão)
@@ -109,7 +89,6 @@ function App() {
         <Stack.Screen
           name="Login"
           options={{
-            headerLeft: () => <ButtonGoBack iconName="chevron-left" />,
             cardStyleInterpolator: screenAnimations.slideFromRight,
           }}
           component={LoginScreen}
@@ -117,7 +96,6 @@ function App() {
         <Stack.Screen
           name="Roads"
           options={{
-            headerRight: () => <ButtonGoBack iconName="chevron-right" />,
             gestureDirection: "horizontal-inverted",
             cardStyleInterpolator: screenAnimations.slideFromRight,
           }}

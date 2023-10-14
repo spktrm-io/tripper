@@ -23,12 +23,12 @@ const itemSearchStyles = StyleSheet.create({
   subtitle: { fontSize: 17, fontWeight: "300" },
 });
 
-const ItemSearch = ({ name, address }: IItemSearchProps) => {
+const ItemSearch = ({ item }: { item: IItemSearchProps }) => {
   return (
     <TouchableOpacity>
       <View style={itemSearchStyles.card}>
-        <Text style={itemSearchStyles.title}>{name}</Text>
-        <Text style={itemSearchStyles.subtitle}>{address}</Text>
+        <Text style={itemSearchStyles.title}>{item.name}</Text>
+        <Text style={itemSearchStyles.subtitle}>{item.address}</Text>
       </View>
     </TouchableOpacity>
   );

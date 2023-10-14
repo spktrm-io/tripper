@@ -11,6 +11,7 @@ import {
 import Button from "../ui/Button";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import Header from "../components/Header";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -31,9 +32,17 @@ const Login = () => {
 
   const handleSignup = () => {};
 
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
+        <Header
+          leftButtonProps={{
+            icon: "chevron-left",
+            navigation: () => navigation.goBack(),
+          }}
+        />
         <View style={styles.formContainer}>
           <View style={styles.textContainer}>
             <Text style={styles.title}>Bem vindo!</Text>

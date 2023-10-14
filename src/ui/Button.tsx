@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import {
   DimensionValue,
+  StyleSheetProperties,
   Text,
   TouchableOpacity,
   TouchableOpacityProps,
@@ -59,6 +60,7 @@ interface IButtonProps extends TouchableOpacityProps {
   mr?: DimensionValue | undefined;
   ml?: DimensionValue | undefined;
   children?: ReactNode;
+  style?: object;
 }
 
 const Button = ({
@@ -77,6 +79,7 @@ const Button = ({
   mr,
   ml,
   children,
+  style,
   ...rest
 }: IButtonProps) => {
   return (
@@ -90,7 +93,6 @@ const Button = ({
         !!icon?.length && styles.buttonIcon,
         width !== undefined && { width },
         height !== undefined && { height },
-
         m !== undefined && { margin: m },
         mx !== undefined && { marginHorizontal: mx },
         my !== undefined && { marginVertical: my },
@@ -98,6 +100,7 @@ const Button = ({
         mb !== undefined && { marginBottom: mb },
         mr !== undefined && { marginRight: mr },
         ml !== undefined && { marginLeft: ml },
+        style !== undefined && style,
       ]}
       {...rest}
     >

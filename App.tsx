@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  NavigationContainer,
-  ParamListBase,
-  useNavigation,
-} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import {
   CardStyleInterpolators,
-  StackCardInterpolationProps,
-  StackNavigationProp,
   createStackNavigator,
 } from "@react-navigation/stack";
 import "react-native-reanimated";
@@ -16,8 +10,11 @@ import LoginScreen from "./src/screens/Login";
 import HomeScreen from "./src/screens/Home";
 import SplashScreen from "./src/screens/SplashScreen";
 import Roads from "./src/screens/Roads/Roads";
-
-const Stack = createStackNavigator();
+import SignUpStart from "./src/screens/SignUp/SignUpStart";
+import EmailSignUp from "./src/screens/SignUp/EmailSignUp";
+import NumberSignUp from "./src/screens/SignUp/NumberSignUp";
+import UsernameSignUp from "./src/screens/SignUp/UsernameSignUp";
+import PasswordSignUp from "./src/screens/SignUp/PasswordSignUp";
 
 const screenAnimations = {
   // Tela desliza da direita para a esquerda (padrão)
@@ -31,32 +28,28 @@ const screenAnimations = {
 
   // Tela aparece com um efeito de fade-in
   fadeIn: CardStyleInterpolators.forFadeFromBottomAndroid,
-
-  // Tela desliza da esquerda para a direita
-  slideFromLeft: ({
-    current,
-    inverted,
-    layouts,
-  }: StackCardInterpolationProps) => {
-    const progress = inverted
-      ? current.progress.interpolate({
-          inputRange: [0, 1],
-          outputRange: [0, 1],
-        })
-      : current.progress;
-
-    const translateX = progress.interpolate({
-      inputRange: [0, 1],
-      outputRange: [layouts.screen.width, 0],
-    });
-
-    return {
-      cardStyle: {
-        transform: [{ translateX }],
-      },
-    };
-  },
 };
+
+export type RootStackParamList = {
+  UsernameSignUp: {
+    email?: string;
+    number?: string;
+  };
+  PasswordSignUp: {
+    email?: string;
+    number?: string;
+    username: string;
+  };
+  Splash: undefined;
+  Home: undefined;
+  Login: undefined;
+  Roads: undefined;
+  SignUpStart: undefined;
+  EmailSignUp: undefined;
+  NumberSignUp: undefined;
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 function App() {
   return (
@@ -100,6 +93,41 @@ function App() {
             cardStyleInterpolator: screenAnimations.slideFromRight,
           }}
           component={Roads}
+        />
+        <Stack.Screen
+          name="SignUpStart"
+          options={{
+            cardStyleInterpolator: screenAnimations.slideFromRight,
+          }}
+          component={SignUpStart}
+        />
+        <Stack.Screen
+          name="EmailSignUp"
+          options={{
+            cardStyleInterpolator: screenAnimations.slideFromRight,
+          }}
+          component={EmailSignUp}
+        />
+        <Stack.Screen
+          name="NumberSignUp"
+          options={{
+            cardStyleInterpolator: screenAnimations.slideFromRight,
+          }}
+          component={NumberSignUp}
+        />
+        <Stack.Screen
+          name="UsernameSignUp"
+          options={{
+            cardStyleInterpolator: screenAnimations.slideFromRight,
+          }}
+          component={UsernameSignUp}
+        />
+        <Stack.Screen
+          name="PasswordSignUp"
+          options={{
+            cardStyleInterpolator: screenAnimations.slideFromRight,
+          }}
+          component={PasswordSignUp}
         />
       </Stack.Navigator>
     </NavigationContainer>

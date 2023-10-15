@@ -25,6 +25,7 @@ const RoadCardSearch = ({ item }: IRoadCardSearch) => {
             borderRadius: 10,
             marginBottom: 10,
           }}
+          priority="high"
         />
         <Text style={itemSearchStyles.title}>{item.name}</Text>
         <Text style={itemSearchStyles.subtitle}>{item.address}</Text>

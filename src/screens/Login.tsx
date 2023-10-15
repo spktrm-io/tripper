@@ -17,7 +17,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>();
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   const isNullFields = () => {
     if (!username) return true;
@@ -27,12 +27,12 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    navigate("Home");
+    navigation.navigate("Home");
   };
 
-  const handleSignup = () => {};
-
-  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+  const handleSignup = () => {
+    navigation.navigate("SignUpStart");
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -71,7 +71,6 @@ const Login = () => {
           <Text style={styles.signupText}>Ainda não tem uma conta?</Text>
           <Button text="Cadastrar" onPress={handleSignup} />
         </View>
-        <StatusBar barStyle="dark-content" />
       </View>
     </TouchableWithoutFeedback>
   );

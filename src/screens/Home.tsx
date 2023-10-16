@@ -23,6 +23,8 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import ItemSearch from "../components/ItemSearch";
 import Header from "../components/Header";
 import { Image } from "expo-image";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useAuth } from "../utils/AuthProvider";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -65,6 +67,7 @@ const data = [
 const Home: React.FC = () => {
   const [location, setLocation] = useState<LocationObjectCoords | null>(null);
   const [search, setSearch] = useState<string>("");
+  const [credentials, setCredentials] = useState(null);
 
   const mapViewRef = useRef<MapView>(null);
   const ref = useRef<BottomSheetRefProps>(null);
@@ -100,6 +103,15 @@ const Home: React.FC = () => {
     return () => {
       isMounted = false;
     };
+  }, []);
+
+  useEffect(() => {
+    const setCrendentialsAsync = async () =>
+      setCredentials(await getData("credentials"));
+
+    console.log(credentials);
+
+    setCrendentialsAsync();
   }, []);
 
   const getLocationPermission = async (): Promise<boolean> => {
@@ -138,6 +150,17 @@ const Home: React.FC = () => {
 
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
+  const getData = async (item: string) => {
+    try {
+      const jsonValue = await AsyncStorage.getItem(item);
+      return jsonValue != null ? JSON.parse(jsonValue) : null;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const { isLogged, login, logout } = useAuth();
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View
@@ -156,7 +179,11 @@ const Home: React.FC = () => {
           }}
           rightButtonProps={{
             icon: "bars",
-            navigation: () => navigation.navigate("Login"),
+            navigation: async () => {
+              isLogged
+                ? navigation.navigate("Profile")
+                : navigation.navigate("Login");
+            },
           }}
         />
         <MapView

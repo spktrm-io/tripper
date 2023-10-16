@@ -11,7 +11,8 @@ import { ParamListBase, RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import Header from "../../components/Header";
 import Button from "../../ui/Button";
-import { RootStackParamList } from "../../../App";
+import { RootStackParamList } from "../../../Routes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface IPasswordSignUp {
   route: RouteProp<RootStackParamList, "PasswordSignUp">;
@@ -23,19 +24,26 @@ const PasswordSignUp = ({ navigation, route }: IPasswordSignUp) => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const verifyFields = () => {
-    if (!password) return true;
-    if (!confirmPassword) return true;
+    if (!password || !confirmPassword || password.length <= 6) return true;
     if (password === confirmPassword) return false;
 
     return true;
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     const email = route.params?.email;
     const number = route.params?.number;
     const username = route.params?.username;
 
-    navigation.navigate("Home");
+    const credentials = JSON.stringify({ email, number, username, password });
+
+    try {
+      await AsyncStorage.setItem("credentials", credentials);
+    } catch (e) {
+      console.error(e);
+    }
+
+    navigation.navigate("Profile");
   };
 
   return (

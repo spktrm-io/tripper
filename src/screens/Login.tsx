@@ -12,6 +12,7 @@ import Button from "../ui/Button";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import Header from "../components/Header";
+import { useAuth } from "../utils/AuthProvider";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -27,12 +28,15 @@ const Login = () => {
   };
 
   const handleLogin = () => {
+    login();
     navigation.navigate("Home");
   };
 
   const handleSignup = () => {
     navigation.navigate("SignUpStart");
   };
+
+  const { isLogged, login, logout } = useAuth();
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

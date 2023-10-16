@@ -7,15 +7,17 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { ParamListBase } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import Header from "../../components/Header";
 import Button from "../../ui/Button";
 
-const EmailSignUp = () => {
-  const [email, setEmail] = useState("");
+interface IEmailSignUp {
+  navigation: StackNavigationProp<ParamListBase>;
+}
 
-  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+const EmailSignUp = ({ navigation }: IEmailSignUp) => {
+  const [email, setEmail] = useState("");
 
   const isNullField = () => {
     if (!email) return true;

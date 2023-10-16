@@ -7,18 +7,21 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { ParamListBase } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import Header from "../../components/Header";
 import Button from "../../ui/Button";
+import MaskInput, { Masks } from "react-native-mask-input";
 
-const NumberSignUp = () => {
+interface INumberSignUp {
+  navigation: StackNavigationProp<ParamListBase>;
+}
+
+const NumberSignUp = ({ navigation }: INumberSignUp) => {
   const [number, setNumber] = useState("");
 
-  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-
   const verifyField = () => {
-    if (!number) return true;
+    if (!number || number.length < 15) return true;
 
     return false;
   };
@@ -40,13 +43,15 @@ const NumberSignUp = () => {
           <View style={styles.textContainer}>
             <Text style={styles.title}>Número</Text>
           </View>
-          <TextInput
+          <MaskInput
             focusable
             style={styles.input}
             placeholder="Número"
             inputMode="tel"
-            onChangeText={(text) => setNumber(text)}
             value={number}
+            maxLength={15}
+            onChangeText={(unmasked: string) => setNumber(unmasked)}
+            mask={Masks.BRL_PHONE}
           />
           <Button
             disabled={verifyField()}

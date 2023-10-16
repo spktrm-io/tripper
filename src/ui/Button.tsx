@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   buttonSecondary: {
     backgroundColor: "rgb(232, 232, 232)",
   },
+
   buttonContained: {
     width: "100%",
   },

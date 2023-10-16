@@ -1,17 +1,26 @@
 import React from "react";
-import { View, StyleSheet, Text, Dimensions } from "react-native";
-import Button from "../ui/Button";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Dimensions,
+  StyleProp,
+  ViewStyle,
+} from "react-native";
+import Button, { IButtonProps } from "../ui/Button";
 
-interface IButtonProps {
+interface IHeaderButtonProps {
   icon?: string;
   text?: string;
   navigation: () => void;
+  style?: StyleProp<ViewStyle>;
+  buttonProps?: IButtonProps;
 }
 
 interface IHeaderProps {
-  rightButtonProps?: IButtonProps;
-  leftButtonProps?: IButtonProps;
-  centerButtonProps?: IButtonProps;
+  rightButtonProps?: IHeaderButtonProps;
+  leftButtonProps?: IHeaderButtonProps;
+  centerButtonProps?: IHeaderButtonProps;
 }
 
 const Header = ({
@@ -19,6 +28,7 @@ const Header = ({
   leftButtonProps,
   centerButtonProps,
 }: IHeaderProps) => {
+  console.log(rightButtonProps?.buttonProps);
   return (
     <View style={styles.header}>
       {leftButtonProps && (
@@ -29,7 +39,8 @@ const Header = ({
           height={50}
           width={50}
           onPress={leftButtonProps.navigation}
-          style={styles.leftButton}
+          style={[styles.leftButton, leftButtonProps?.style]}
+          {...leftButtonProps?.buttonProps}
         />
       )}
       {centerButtonProps && (
@@ -43,7 +54,8 @@ const Header = ({
           height={50}
           width={50}
           onPress={rightButtonProps.navigation}
-          style={styles.rightButton}
+          style={[styles.rightButton, rightButtonProps?.style]}
+          {...rightButtonProps?.buttonProps}
         />
       )}
     </View>

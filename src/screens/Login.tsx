@@ -29,7 +29,7 @@ const Login = () => {
 
   const handleLogin = () => {
     login();
-    navigation.navigate("Home");
+    navigation.navigate("Profile");
   };
 
   const handleSignup = () => {

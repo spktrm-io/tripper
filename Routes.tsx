@@ -16,6 +16,11 @@ import NumberSignUp from "./src/screens/SignUp/NumberSignUp";
 import UsernameSignUp from "./src/screens/SignUp/UsernameSignUp";
 import PasswordSignUp from "./src/screens/SignUp/PasswordSignUp";
 import Profile from "./src/screens/Profile/Profile";
+import EmailEdit from "./src/screens/Profile/Edit/EmailEdit";
+import NumberEdit from "./src/screens/Profile/Edit/NumberEdit";
+import UsernameEdit from "./src/screens/Profile/Edit/UsernameEdit";
+import PasswordEdit from "./src/screens/Profile/Edit/PasswordEdit";
+import RoadDetails from "./src/screens/Roads/RoadDetails/RoadDetails";
 
 const screenAnimations = {
   // Tela desliza da direita para a esquerda (padrão)
@@ -49,6 +54,17 @@ export type RootStackParamList = {
   EmailSignUp: undefined;
   NumberSignUp: undefined;
   Profile: undefined;
+  EmailEdit: undefined;
+  NumberEdit: undefined;
+  UsernameEdit: undefined;
+  PasswordEdit: undefined;
+  RoadDetails: {
+    id: string;
+    name: string;
+    address: string;
+    source: any;
+    description: string;
+  };
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -137,6 +153,42 @@ function Routes() {
             cardStyleInterpolator: screenAnimations.slideFromRight,
           }}
           component={Profile}
+        />
+        <Stack.Screen
+          name="EmailEdit"
+          options={{
+            cardStyleInterpolator: screenAnimations.slideFromRight,
+          }}
+          component={EmailEdit}
+        />
+        <Stack.Screen
+          name="NumberEdit"
+          options={{
+            cardStyleInterpolator: screenAnimations.slideFromRight,
+          }}
+          component={NumberEdit}
+        />
+        <Stack.Screen
+          name="UsernameEdit"
+          options={{
+            cardStyleInterpolator: screenAnimations.slideFromRight,
+          }}
+          component={UsernameEdit}
+        />
+        <Stack.Screen
+          name="PasswordEdit"
+          options={{
+            cardStyleInterpolator: screenAnimations.slideFromRight,
+          }}
+          component={PasswordEdit}
+        />
+        <Stack.Screen
+          name="RoadDetails"
+          options={{
+            gestureDirection: "horizontal-inverted",
+            cardStyleInterpolator: screenAnimations.slideFromRight,
+          }}
+          component={RoadDetails}
         />
       </Stack.Navigator>
     </NavigationContainer>

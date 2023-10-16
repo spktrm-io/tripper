@@ -15,6 +15,7 @@ import { ParamListBase } from "@react-navigation/native";
 import Button from "../../ui/Button";
 import { ScrollView } from "react-native-gesture-handler";
 import { useAuth } from "../../utils/AuthProvider";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 interface ICredentials {
   email?: string;
@@ -79,29 +80,54 @@ export default function Profile({ navigation }: IProfile) {
           />
 
           <Button
-            style={{ alignItems: "flex-start" }}
+            style={{
+              flexDirection: "row",
+              alignItems: "flex-start",
+              justifyContent: "space-between",
+            }}
             secondary
-            onPress={() => null}
+            onPress={() => navigation.navigate("EmailEdit")}
             text="Email"
-          />
+          >
+            <Icon name="chevron-right" />
+          </Button>
           <Button
-            style={{ alignItems: "flex-start" }}
+            style={{
+              flexDirection: "row",
+              alignItems: "flex-start",
+              justifyContent: "space-between",
+            }}
             secondary
-            onPress={() => null}
+            onPress={() => navigation.navigate("UsernameEdit")}
             text="Username"
-          />
+          >
+            <Icon name="chevron-right" />
+          </Button>
           <Button
-            style={{ alignItems: "flex-start" }}
+            style={{
+              flexDirection: "row",
+              alignItems: "flex-start",
+              justifyContent: "space-between",
+            }}
             secondary
-            onPress={() => null}
+            onPress={() => navigation.navigate("NumberEdit")}
             text="Número"
-          />
+          >
+            <Icon name="chevron-right" />
+          </Button>
           <Button
-            style={{ alignItems: "flex-start" }}
+            style={{
+              flexDirection: "row",
+              alignItems: "flex-start",
+              justifyContent: "space-between",
+            }}
             secondary
-            onPress={() => null}
+            onPress={() => navigation.navigate("PasswordEdit")}
             text="Senha"
-          />
+          >
+            <Icon name="chevron-right" />
+          </Button>
+
           <Button
             style={{ marginTop: 100 }}
             secondary

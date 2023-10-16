@@ -1,6 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Image } from "expo-image";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 interface IItemSearchProps {
   id: string;
@@ -11,11 +13,21 @@ interface IItemSearchProps {
 
 interface IRoadCardSearch {
   item: IItemSearchProps;
+  navigation: StackNavigationProp<ParamListBase>;
 }
 
-const RoadCardSearch = ({ item }: IRoadCardSearch) => {
+const RoadCardSearch = ({ item, navigation }: IRoadCardSearch) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate("RoadDetails", {
+          id: item.id,
+          name: item.name,
+          address: item.address,
+          source: item.source,
+        })
+      }
+    >
       <View style={itemSearchStyles.card}>
         <Image
           source={item.source}

@@ -1,10 +1,12 @@
 import { ReactNode } from "react";
 import {
   DimensionValue,
+  StyleProp,
   StyleSheetProperties,
   Text,
   TouchableOpacity,
   TouchableOpacityProps,
+  ViewStyle,
 } from "react-native";
 import { StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -45,7 +47,7 @@ const styles = StyleSheet.create({
   },
 });
 
-interface IButtonProps extends TouchableOpacityProps {
+export interface IButtonProps extends TouchableOpacityProps {
   text?: string;
   secondary?: boolean;
   rounded?: boolean;
@@ -61,7 +63,7 @@ interface IButtonProps extends TouchableOpacityProps {
   mr?: DimensionValue | undefined;
   ml?: DimensionValue | undefined;
   children?: ReactNode;
-  style?: object;
+  style?: StyleProp<ViewStyle>;
 }
 
 const Button = ({
@@ -105,17 +107,15 @@ const Button = ({
       ]}
       {...rest}
     >
-      {!!text?.length ? (
+      {!!text?.length && (
         <Text
           style={[styles.buttonText, secondary && styles.buttonTextSecondary]}
         >
           {text}
         </Text>
-      ) : !!icon?.length ? (
-        <Icon name={icon} />
-      ) : (
-        children
       )}
+      {!!icon?.length && <Icon name={icon} />}
+      {children}
     </TouchableOpacity>
   );
 };

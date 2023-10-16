@@ -6,6 +6,7 @@ import {
   TextInput,
   Keyboard,
   TouchableWithoutFeedback,
+  Text,
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import {
@@ -25,6 +26,8 @@ import Header from "../components/Header";
 import { Image } from "expo-image";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAuth } from "../utils/AuthProvider";
+import DirectionArrow from "../components/DirectionArrow";
+import { Magnetometer } from "expo-sensors";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -67,7 +70,6 @@ const data = [
 const Home: React.FC = () => {
   const [location, setLocation] = useState<LocationObjectCoords | null>(null);
   const [search, setSearch] = useState<string>("");
-  const [credentials, setCredentials] = useState(null);
 
   const mapViewRef = useRef<MapView>(null);
   const ref = useRef<BottomSheetRefProps>(null);
@@ -105,15 +107,6 @@ const Home: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const setCrendentialsAsync = async () =>
-      setCredentials(await getData("credentials"));
-
-    console.log(credentials);
-
-    setCrendentialsAsync();
-  }, []);
-
   const getLocationPermission = async (): Promise<boolean> => {
     const { status } = await requestForegroundPermissionsAsync();
     return status === "granted";
@@ -149,15 +142,6 @@ const Home: React.FC = () => {
   }, []);
 
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-
-  const getData = async (item: string) => {
-    try {
-      const jsonValue = await AsyncStorage.getItem(item);
-      return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (e) {
-      console.error(e);
-    }
-  };
 
   const { isLogged, login, logout } = useAuth();
 
@@ -207,15 +191,17 @@ const Home: React.FC = () => {
               title="Sua Localização"
             >
               <Image
-                source={require("../../assets/Marker.png")}
+                source={require("../../assets/MarkerCircle.png")}
                 style={{
-                  width: SCREEN_WIDTH * 0.1,
-                  height: SCREEN_WIDTH * 0.1,
+                  width: SCREEN_WIDTH * 0.07,
+                  height: SCREEN_WIDTH * 0.07,
                 }}
               />
             </Marker>
           )}
         </MapView>
+
+        <DirectionArrow />
         <BottomSheet ref={ref}>
           <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={{ flex: 1, backgroundColor: "#ffffff" }}>

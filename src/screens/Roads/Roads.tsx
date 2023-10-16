@@ -18,6 +18,7 @@ interface IItemSearchProps {
   name: string;
   address: string;
   source: any;
+  description: string;
 }
 
 const data: IItemSearchProps[] = [
@@ -26,30 +27,40 @@ const data: IItemSearchProps[] = [
     name: "Restaurante Italiano",
     address: "123 Rua da Itália, Cidade, País",
     source: require("../../../assets/patagonia.jpg"),
+    description:
+      "Um restaurante italiano renomado que oferece uma ampla variedade de pratos autênticos, incluindo massas, pizzas e vinhos italianos. Desfrute de uma refeição deliciosa em um ambiente acolhedor e aconchegante.",
   },
   {
     id: "2",
     name: "Café aconchegante",
     address: "456 Rua do Café, Cidade, País",
     source: require("../../../assets/machu.jpg"),
+    description:
+      "Um café aconchegante onde você pode relaxar com uma xícara de café quente e uma seleção de bolos frescos. O ambiente é perfeito para ler um livro ou encontrar amigos.",
   },
   {
     id: "3",
     name: "Parque Central",
     address: "789 Avenida do Parque, Cidade, País",
     source: require("../../../assets/patagonia.jpg"),
+    description:
+      "O Parque Central é um local ideal para atividades ao ar livre, como piqueniques, caminhadas e jogos. Desfrute da natureza e relaxe em um ambiente verde no coração da cidade.",
   },
   {
     id: "4",
     name: "Museu de Arte Moderna",
     address: "101 Avenida da Arte, Cidade, País",
     source: require("../../../assets/machu.jpg"),
+    description:
+      "O Museu de Arte Moderna abriga uma coleção impressionante de obras de arte contemporânea de artistas renomados. Explore exposições fascinantes e mergulhe no mundo da arte moderna.",
   },
   {
     id: "5",
     name: "Praia Ensolarada",
     address: "500 Praia Avenue, Cidade, País",
     source: require("../../../assets/patagonia.jpg"),
+    description:
+      "Uma praia deslumbrante com areias douradas e águas cristalinas. A Praia Ensolarada é perfeita para tomar sol, nadar e praticar esportes aquáticos. Relaxe e desfrute do sol radiante.",
   },
 ];
 
@@ -110,7 +121,9 @@ const Roads = () => {
           </View>
           <FlatList
             data={data}
-            renderItem={RoadCardSearch}
+            renderItem={({ item }) => (
+              <RoadCardSearch item={item} navigation={navigation} />
+            )}
             keyExtractor={(item) => item.id}
           />
         </View>

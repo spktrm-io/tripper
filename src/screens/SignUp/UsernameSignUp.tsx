@@ -7,16 +7,13 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-import { ParamListBase, RouteProp } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+
 import Header from "../../components/molecules/Header/Header";
 import Button from "../../components/atoms/Button/Button";
-import { RootStackParamList } from "../../../App";
+import { INavigation } from "../../interfaces/Navigation/INavigation";
+import { IRoute } from "../../interfaces/Navigation/IRoute";
 
-interface IUsernameSignUp {
-  route: RouteProp<RootStackParamList, "UsernameSignUp">;
-  navigation: StackNavigationProp<ParamListBase>;
-}
+interface IUsernameSignUp extends INavigation, IRoute<"UsernameSignUp"> {}
 
 const UsernameSignUp = ({ route, navigation }: IUsernameSignUp) => {
   const [username, setUsername] = useState("");

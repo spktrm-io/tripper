@@ -2,30 +2,20 @@ import React, { useState } from "react";
 import {
   Keyboard,
   TouchableWithoutFeedback,
-  StatusBar,
   View,
   TextInput,
   StyleSheet,
   Text,
 } from "react-native";
 import Button from "../components/atoms/Button/Button";
-import { ParamListBase, useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
 import Header from "../components/molecules/Header/Header";
 import { useAuth } from "../utils/AuthProvider";
+import { isNullField } from "../utils/isNullFields";
+import { INavigation } from "../interfaces/Navigation/INavigation";
 
-const Login = () => {
+const Login = ({ navigation }: INavigation) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-
-  const isNullFields = () => {
-    if (!username) return true;
-    if (!password) return true;
-
-    return false;
-  };
 
   const handleLogin = () => {
     save("credentials", { username, password });
@@ -66,7 +56,7 @@ const Login = () => {
             value={password}
           />
           <Button
-            disabled={isNullFields()}
+            disabled={isNullField([username, password])}
             onPress={handleLogin}
             text="Entrar"
           />

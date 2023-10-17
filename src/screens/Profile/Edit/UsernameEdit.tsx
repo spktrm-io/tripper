@@ -11,6 +11,7 @@ import { ParamListBase, RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import Header from "../../../components/molecules/Header/Header";
 import Button from "../../../components/atoms/Button/Button";
+import { isNullField } from "../../../utils/isNullFields";
 
 interface IUsernameEdit {
   navigation: StackNavigationProp<ParamListBase>;
@@ -18,12 +19,6 @@ interface IUsernameEdit {
 
 const UsernameEdit = ({ navigation }: IUsernameEdit) => {
   const [username, setUsername] = useState("");
-
-  const isNullField = () => {
-    if (!username) return true;
-
-    return false;
-  };
 
   const handleNext = () => {};
 
@@ -47,7 +42,11 @@ const UsernameEdit = ({ navigation }: IUsernameEdit) => {
             onChangeText={(text) => setUsername(text)}
             value={username}
           />
-          <Button disabled={isNullField()} onPress={handleNext} text="Salvar" />
+          <Button
+            disabled={isNullField(username)}
+            onPress={handleNext}
+            text="Salvar"
+          />
         </View>
       </View>
     </TouchableWithoutFeedback>

@@ -1,12 +1,5 @@
-import {
-  Keyboard,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
-import React, { useEffect, useState } from "react";
+import { Text, View } from "react-native";
+import React from "react";
 import { Image } from "expo-image";
 import Header from "../../components/molecules/Header/Header";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -15,13 +8,34 @@ import Button from "../../components/atoms/Button/Button";
 import { ScrollView } from "react-native-gesture-handler";
 import { useAuth } from "../../utils/AuthProvider";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { INavigation } from "../../interfaces/Navigation/INavigation";
+import { styles } from "./Profile.style";
 
-interface IProfile {
-  navigation: StackNavigationProp<ParamListBase>;
-}
-
-export default function Profile({ navigation }: IProfile) {
+export default function Profile({ navigation }: INavigation) {
   const { reset } = useAuth();
+
+  const profileButtons = [
+    {
+      text: "Email",
+      route: "EmailEdit",
+      icon: "chevron-right",
+    },
+    {
+      text: "Username",
+      route: "UsernameEdit",
+      icon: "chevron-right",
+    },
+    {
+      text: "Número",
+      route: "NumberEdit",
+      icon: "chevron-right",
+    },
+    {
+      text: "Senha",
+      route: "PasswordEdit",
+      icon: "chevron-right",
+    },
+  ];
 
   return (
     <View style={styles.container}>
@@ -31,72 +45,18 @@ export default function Profile({ navigation }: IProfile) {
           navigation: () => navigation.navigate("Home"),
         }}
       />
-      <ScrollView style={{ width: "100%" }}>
+      <ScrollView style={styles.scrollView}>
         <View style={styles.formContainer}>
-          <View style={styles.textContainer}>
-            <Text style={styles.title}>Perfil</Text>
-          </View>
+          <Text style={styles.title}>Perfil</Text>
           <Image
             source={require("../../../assets/patagonia.jpg")}
-            style={{
-              height: 150,
-              width: 150,
-              borderRadius: 100,
-              marginVertical: 30,
-            }}
+            style={styles.profileImage}
           />
-
+          {profileButtons.map((button, index) =>
+            renderProfileButton(button, navigation, index)
+          )}
           <Button
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              justifyContent: "space-between",
-            }}
-            secondary
-            onPress={() => navigation.navigate("EmailEdit")}
-            text="Email"
-          >
-            <Icon name="chevron-right" />
-          </Button>
-          <Button
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              justifyContent: "space-between",
-            }}
-            secondary
-            onPress={() => navigation.navigate("UsernameEdit")}
-            text="Username"
-          >
-            <Icon name="chevron-right" />
-          </Button>
-          <Button
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              justifyContent: "space-between",
-            }}
-            secondary
-            onPress={() => navigation.navigate("NumberEdit")}
-            text="Número"
-          >
-            <Icon name="chevron-right" />
-          </Button>
-          <Button
-            style={{
-              flexDirection: "row",
-              alignItems: "flex-start",
-              justifyContent: "space-between",
-            }}
-            secondary
-            onPress={() => navigation.navigate("PasswordEdit")}
-            text="Senha"
-          >
-            <Icon name="chevron-right" />
-          </Button>
-
-          <Button
-            style={{ marginTop: 100 }}
+            style={styles.logoutButton}
             secondary
             onPress={async () => {
               reset("credentials");
@@ -109,40 +69,19 @@ export default function Profile({ navigation }: IProfile) {
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    paddingTop: "30%",
-  },
-  formContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    marginBottom: 10,
-    gap: 10,
-  },
-  textContainer: {
-    width: "90%",
-    textAlign: "left",
-  },
-  title: {
-    fontSize: 40,
-    fontWeight: "900",
-    marginBottom: 10,
-  },
-  formText: {
-    fontSize: 25,
-    fontWeight: "300",
-    marginBottom: 30,
-  },
-  input: {
-    width: "90%",
-    height: 40,
-    borderColor: "rgb(193, 193, 193)",
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 8,
-  },
-});
+
+const renderProfileButton = (
+  button: { text: any; route: any; icon: any },
+  navigation: StackNavigationProp<ParamListBase>,
+  index: React.Key | null | undefined
+) => (
+  <Button
+    key={index}
+    style={styles.profileButton}
+    secondary
+    onPress={() => navigation.navigate(button.route)}
+    text={button.text}
+  >
+    <Icon name={button.icon} />
+  </Button>
+);

@@ -1,9 +1,8 @@
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect } from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Animated, {
-  Easing,
   withSpring,
   useSharedValue,
   useAnimatedStyle,

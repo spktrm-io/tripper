@@ -13,13 +13,13 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import { SCREEN_HEIGHT } from "../../../constants/window";
-import { BottomSheetRefProps } from "../../../interfaces/BottomSheet/IBottomSheetRefProps";
-import { BottomSheetProps } from "../../../interfaces/BottomSheet/IBottomSheetProps";
+import { IBottomSheetRefProps } from "../../../interfaces/BottomSheet/IBottomSheetRefProps";
+import { IBottomSheetProps } from "../../../interfaces/BottomSheet/IBottomSheetProps";
 import { styles } from "./BottomSheet.style";
 
 const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 170;
 
-const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
+const BottomSheet = React.forwardRef<IBottomSheetRefProps, IBottomSheetProps>(
   ({ children }, ref) => {
     const translateY = useSharedValue(0);
     const active = useSharedValue(false);
@@ -87,17 +87,21 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
       };
     });
 
+    const handleOnPressTouchableWithoutFeedback = () => {
+      if (isActive()) {
+        Keyboard.dismiss();
+        setIsSearched(false);
+        scrollTo(0);
+      } else {
+        scrollTo(-SCREEN_HEIGHT / 2);
+      }
+    };
+
     return (
       <GestureDetector gesture={gesture}>
         <Animated.View style={[styles.bottomSheetContainer, rBottomSheetStyle]}>
           <TouchableWithoutFeedback
-            onPress={() => {
-              if (isActive()) {
-                Keyboard.dismiss();
-                setIsSearched(false);
-                scrollTo(0);
-              } else scrollTo(-SCREEN_HEIGHT / 2);
-            }}
+            onPress={handleOnPressTouchableWithoutFeedback}
           >
             <View style={styles.line} />
           </TouchableWithoutFeedback>

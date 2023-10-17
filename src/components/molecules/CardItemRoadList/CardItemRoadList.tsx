@@ -1,10 +1,10 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Image } from "expo-image";
-import { styles } from "./CardItemRoad.style";
-import { ICardItemRoadProps } from "../../../interfaces/Roads/CardItemRoad/ICardItemRoadProps";
+import { styles } from "./CardItemRoadList.style";
+import { ICardItemRoadListProps } from "../../../interfaces/Roads/CardItemRoad/ICardItemRoadListProps";
 
-const CardItemRoad = ({ item, navigation }: ICardItemRoadProps) => {
+const CardItemRoadList = ({ item, navigation }: ICardItemRoadListProps) => {
   const routeParams = {
     id: item.id,
     name: item.name,
@@ -26,4 +26,4 @@ const CardItemRoad = ({ item, navigation }: ICardItemRoadProps) => {
   );
 };
 
-export default CardItemRoad;
+export default CardItemRoadList;

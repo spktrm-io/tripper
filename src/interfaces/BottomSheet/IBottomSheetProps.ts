@@ -1,3 +1,3 @@
-export interface BottomSheetProps {
+export interface IBottomSheetProps {
   children?: React.ReactNode;
 }

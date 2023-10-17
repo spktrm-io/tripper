@@ -7,25 +7,15 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-import { ParamListBase } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
 import Header from "../../../components/molecules/Header/Header";
 import Button from "../../../components/atoms/Button/Button";
+import { INavigation } from "../../../interfaces/Navigation/INavigation";
+import { isNullField } from "../../../utils/isNullFields";
 
-interface IEmailEdit {
-  navigation: StackNavigationProp<ParamListBase>;
-}
-
-const EmailEdit = ({ navigation }: IEmailEdit) => {
+const EmailEdit = ({ navigation }: INavigation) => {
   const [email, setEmail] = useState("");
 
-  const isNullField = () => {
-    if (!email) return true;
-
-    return false;
-  };
-
-  const handleNext = () => {};
+  const handleSave = () => {};
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -48,7 +38,11 @@ const EmailEdit = ({ navigation }: IEmailEdit) => {
             inputMode="email"
             value={email}
           />
-          <Button disabled={isNullField()} onPress={handleNext} text="Salvar" />
+          <Button
+            disabled={isNullField(email)}
+            onPress={handleSave}
+            text="Salvar"
+          />
         </View>
       </View>
     </TouchableWithoutFeedback>

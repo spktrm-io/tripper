@@ -7,11 +7,11 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { roadsStyles } from "./styles";
-import Header from "../../components/Header";
+import Header from "../../components/molecules/Header/Header";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import RoadCardSearch from "../../components/RoadCardSearch";
-import Button from "../../ui/Button";
+import CardItemRoad from "../../components/molecules/CardItemRoad/CardItemRoad";
+import Button from "../../components/atoms/Button/Button";
 
 interface IItemSearchProps {
   id: string;
@@ -162,7 +162,7 @@ const Roads = () => {
           <FlatList
             data={data}
             renderItem={({ item }) => (
-              <RoadCardSearch item={item} navigation={navigation} />
+              <CardItemRoad item={item} navigation={navigation} />
             )}
             keyExtractor={(item) => item.id}
           />

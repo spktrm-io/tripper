@@ -6,7 +6,6 @@ import {
   TextInput,
   Keyboard,
   TouchableWithoutFeedback,
-  Text,
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import {
@@ -16,15 +15,16 @@ import {
   LocationObjectCoords,
   LocationObject,
 } from "expo-location";
-import BottomSheet, { BottomSheetRefProps } from "../components/BottomSheet";
+import BottomSheet from "../components/organims/BottomSheet/BottomSheet";
 import { FlatList, GestureHandlerRootView } from "react-native-gesture-handler";
-import Button from "../ui/Button";
+import Button from "../components/atoms/Button/Button";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import ItemSearch from "../components/ItemSearch";
-import Header from "../components/Header";
+import CardItemBottomSheet from "../components/organims/BottomSheet/CardItemBottomSheet";
+import Header from "../components/molecules/Header/Header";
 import { Image } from "expo-image";
 import { useAuth } from "../utils/AuthProvider";
+import { IBottomSheetRefProps } from "../interfaces/BottomSheet/IBottomSheetRefProps";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -69,7 +69,7 @@ const Home: React.FC = () => {
   const [search, setSearch] = useState<string>("");
 
   const mapViewRef = useRef<MapView>(null);
-  const ref = useRef<BottomSheetRefProps>(null);
+  const ref = useRef<IBottomSheetRefProps>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -236,7 +236,7 @@ const Home: React.FC = () => {
 
               <FlatList
                 data={data}
-                renderItem={ItemSearch}
+                renderItem={CardItemBottomSheet}
                 keyExtractor={(item) => item.id}
               />
             </View>

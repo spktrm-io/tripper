@@ -9,8 +9,8 @@ import {
 import React, { useState } from "react";
 import { ParamListBase, RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import Header from "../../../components/Header";
-import Button from "../../../ui/Button";
+import Header from "../../../components/molecules/Header/Header";
+import Button from "../../../components/atoms/Button/Button";
 
 interface IUsernameEdit {
   navigation: StackNavigationProp<ParamListBase>;

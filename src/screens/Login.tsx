@@ -8,10 +8,10 @@ import {
   StyleSheet,
   Text,
 } from "react-native";
-import Button from "../ui/Button";
+import Button from "../components/atoms/Button/Button";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import Header from "../components/Header";
+import Header from "../components/molecules/Header/Header";
 import { useAuth } from "../utils/AuthProvider";
 
 const Login = () => {

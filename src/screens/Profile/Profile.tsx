@@ -8,10 +8,10 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Image } from "expo-image";
-import Header from "../../components/Header";
+import Header from "../../components/molecules/Header/Header";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ParamListBase } from "@react-navigation/native";
-import Button from "../../ui/Button";
+import Button from "../../components/atoms/Button/Button";
 import { ScrollView } from "react-native-gesture-handler";
 import { useAuth } from "../../utils/AuthProvider";
 import Icon from "react-native-vector-icons/FontAwesome";

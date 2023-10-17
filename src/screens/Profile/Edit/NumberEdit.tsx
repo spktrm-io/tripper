@@ -9,8 +9,8 @@ import {
 import React, { useState } from "react";
 import { ParamListBase } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import Header from "../../../components/Header";
-import Button from "../../../ui/Button";
+import Header from "../../../components/molecules/Header/Header";
+import Button from "../../../components/atoms/Button/Button";
 import MaskInput, { Masks } from "react-native-mask-input";
 
 interface INumberEdit {

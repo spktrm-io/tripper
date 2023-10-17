@@ -28,7 +28,6 @@ const Header = ({
   leftButtonProps,
   centerButtonProps,
 }: IHeaderProps) => {
-  console.log(rightButtonProps?.buttonProps);
   return (
     <View style={styles.header}>
       {leftButtonProps && (

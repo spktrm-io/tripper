@@ -24,10 +24,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import ItemSearch from "../components/ItemSearch";
 import Header from "../components/Header";
 import { Image } from "expo-image";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAuth } from "../utils/AuthProvider";
-import DirectionArrow from "../components/DirectionArrow";
-import { Magnetometer } from "expo-sensors";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -143,7 +140,7 @@ const Home: React.FC = () => {
 
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
-  const { isLogged, login, logout } = useAuth();
+  const { isLogged } = useAuth();
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -201,7 +198,6 @@ const Home: React.FC = () => {
           )}
         </MapView>
 
-        <DirectionArrow />
         <BottomSheet ref={ref}>
           <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={{ flex: 1, backgroundColor: "#ffffff" }}>

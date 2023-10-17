@@ -12,7 +12,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import Header from "../../components/Header";
 import Button from "../../ui/Button";
 import { RootStackParamList } from "../../../Routes";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useAuth } from "../../utils/AuthProvider";
 
 interface IPasswordSignUp {
   route: RouteProp<RootStackParamList, "PasswordSignUp">;
@@ -29,16 +29,15 @@ const PasswordSignUp = ({ navigation, route }: IPasswordSignUp) => {
 
     return true;
   };
+  const { save } = useAuth();
 
   const handleNext = async () => {
     const email = route.params?.email;
     const number = route.params?.number;
     const username = route.params?.username;
 
-    const credentials = JSON.stringify({ email, number, username, password });
-
     try {
-      await AsyncStorage.setItem("credentials", credentials);
+      save("credentials", { username, email, password });
     } catch (e) {
       console.error(e);
     }

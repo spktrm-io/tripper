@@ -9,6 +9,7 @@ interface IItemSearchProps {
   name: string;
   address: string;
   source: any;
+  description: string;
 }
 
 interface IRoadCardSearch {
@@ -25,6 +26,7 @@ const RoadCardSearch = ({ item, navigation }: IRoadCardSearch) => {
           name: item.name,
           address: item.address,
           source: item.source,
+          description: item.description,
         })
       }
     >

@@ -62,6 +62,46 @@ const data: IItemSearchProps[] = [
     description:
       "Uma praia deslumbrante com areias douradas e águas cristalinas. A Praia Ensolarada é perfeita para tomar sol, nadar e praticar esportes aquáticos. Relaxe e desfrute do sol radiante.",
   },
+  {
+    id: "6",
+    name: "Trilha na Montanha",
+    address: "Mount Adventure, Cidade, País",
+    source: require("../../../assets/machu.jpg"),
+    description:
+      "Uma trilha desafiadora na montanha que oferece vistas espetaculares da paisagem. Caminhe até o pico e experimente a sensação de conquista com a vista panorâmica deslumbrante.",
+  },
+  {
+    id: "7",
+    name: "Zoológico da Cidade",
+    address: "123 Avenida dos Animais, Cidade, País",
+    source: require("../../../assets/patagonia.jpg"),
+    description:
+      "O zoológico da cidade abriga uma variedade de animais de todo o mundo. Passe o dia explorando habitats exóticos e aprendendo sobre a vida selvagem global.",
+  },
+  {
+    id: "8",
+    name: "Mercado de Artesanato",
+    address: "Rua das Artes, Cidade, País",
+    source: require("../../../assets/machu.jpg"),
+    description:
+      "Um mercado de artesanato colorido e vibrante, onde você pode encontrar artigos feitos à mão, como joias, roupas e obras de arte. Explore a cultura local e compre lembranças únicas.",
+  },
+  {
+    id: "9",
+    name: "Cinema da Cidade",
+    address: "789 Rua do Cinema, Cidade, País",
+    source: require("../../../assets/patagonia.jpg"),
+    description:
+      "Um cinema moderno com as últimas estreias de filmes. Desfrute de uma noite de diversão assistindo a filmes populares com amigos e familiares.",
+  },
+  {
+    id: "10",
+    name: "Passeio de Barco pelo Rio",
+    address: "Rio Sereno, Cidade, País",
+    source: require("../../../assets/machu.jpg"),
+    description:
+      "Um passeio de barco relaxante pelo rio sereno, onde você pode apreciar a paisagem tranquila e observar a vida selvagem. Uma ótima maneira de fugir do agito da cidade.",
+  },
 ];
 
 const Roads = () => {

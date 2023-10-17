@@ -28,7 +28,7 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    login();
+    save("credentials", { username, password });
     navigation.navigate("Profile");
   };
 
@@ -36,7 +36,7 @@ const Login = () => {
     navigation.navigate("SignUpStart");
   };
 
-  const { isLogged, login, logout } = useAuth();
+  const { save } = useAuth();
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

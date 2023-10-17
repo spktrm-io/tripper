@@ -7,7 +7,6 @@ import {
   View,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Image } from "expo-image";
 import Header from "../../components/Header";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -17,44 +16,12 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useAuth } from "../../utils/AuthProvider";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-interface ICredentials {
-  email?: string;
-  number?: string;
-  password: string;
-  username: string;
-}
-
 interface IProfile {
   navigation: StackNavigationProp<ParamListBase>;
 }
 
 export default function Profile({ navigation }: IProfile) {
-  const [credentials, setCredentials] = useState<ICredentials | null>(null);
-  const { isLogged, login, logout } = useAuth();
-
-  const getData = async (item: string) => {
-    try {
-      const jsonValue = await AsyncStorage.getItem(item);
-      return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  useEffect(() => {
-    const setCrendentialsAsync = async () =>
-      setCredentials(await getData("credentials"));
-
-    setCrendentialsAsync();
-  }, []);
-
-  const resetCredentials = async () => {
-    try {
-      await AsyncStorage.removeItem("credentials");
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  const { reset } = useAuth();
 
   return (
     <View style={styles.container}>
@@ -132,8 +99,7 @@ export default function Profile({ navigation }: IProfile) {
             style={{ marginTop: 100 }}
             secondary
             onPress={async () => {
-              await resetCredentials();
-              logout();
+              reset("credentials");
               navigation.navigate("Home");
             }}
             text="Sair"

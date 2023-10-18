@@ -4,13 +4,10 @@ export const styles = StyleSheet.create({
   bottomSheetContainer: {
     flex: 1,
     backgroundColor: "#ffffff",
-    gap: 45,
   },
   searchContainer: {
     flexDirection: "row",
-    height: 90,
-    width: "100%",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "center",
   },
   input: {
@@ -20,5 +17,10 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: 30,
     padding: 15,
     backgroundColor: "rgb(232, 232, 232)",
+  },
+  cancelButton: {
+    borderRadius: 0,
+    borderBottomRightRadius: 30,
+    borderTopRightRadius: 30,
   },
 });

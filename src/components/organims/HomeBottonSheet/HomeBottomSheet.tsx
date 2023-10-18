@@ -14,6 +14,7 @@ import CardItemBottomSheet from "../../molecules/CardItemBottomSheet/CardItemBot
 import { SCREEN_HEIGHT } from "../../../constants/window";
 import { IBottomSheetRefProps } from "../../../interfaces/BottomSheet/IBottomSheetRefProps";
 import { styles } from "./HomeBottomSheet.style";
+import SearchBar from "../../molecules/SearchBar/SearchBar";
 
 const HomeBottomSheet = () => {
   const ref = useRef<IBottomSheetRefProps>(null);
@@ -36,24 +37,12 @@ const HomeBottomSheet = () => {
     <BottomSheet ref={ref}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.bottomSheetContainer}>
-          <View style={styles.searchContainer}>
-            <Button
-              height={50}
-              width={50}
-              icon={"chevron-left"}
-              secondary
-              rounded
-              onPress={onPressExit}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Pra onde deseja viajar?"
-              onFocus={onPress}
-              onChangeText={(text) => setSearch(text)}
-              value={search}
-            />
-          </View>
-
+          <SearchBar
+            onPress={onPress}
+            onPressExit={onPressExit}
+            searchValue={search}
+            setSearchValue={setSearch}
+          />
           <FlatList
             data={placeList}
             renderItem={CardItemBottomSheet}

@@ -491,5 +491,3 @@ O Teste A/B pode ser aplicado para determinar a melhor interface de usuário (UI
 Através da análise dessas métricas, será possível identificar qual versão da interface proporciona uma melhor experiência ao usuário e contribui mais eficazmente para a criação de viagens personalizadas. A versão que apresentar melhores resultados em termos de taxa de conclusão, tempo médio de conclusão, e número de pontos de interesse adicionados será escolhida como a interface preferencial para o sistema. Feedback qualitativo também será crucial para entender nuances que as métricas quantitativas podem não capturar.
 
 ---
-
-Agora o texto está organizado com seções claras e estruturadas para facilitar a compreensão de todos os aspectos do sistema proposto.

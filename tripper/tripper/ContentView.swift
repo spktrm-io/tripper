@@ -44,8 +44,8 @@ struct MapRouteView: UIViewRepresentable {
         let mapView = MKMapView(frame: .zero)
         context.coordinator.mapView = mapView
         mapView.delegate = context.coordinator
-        mapView.isZoomEnabled = true
-        mapView.isScrollEnabled = true
+        mapView.isZoomEnabled = !isMapFocusedOnUser || showEntireRoute
+        mapView.isScrollEnabled = !isMapFocusedOnUser || showEntireRoute
         mapView.isPitchEnabled = true
         mapView.isRotateEnabled = true
         
@@ -71,7 +71,9 @@ struct MapRouteView: UIViewRepresentable {
             guard let route = response?.routes.first else { return }
             mapView.addOverlay(route.polyline)
             if self.showEntireRoute {
-                mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                // Define o padding maior para garantir que a rota tenha mais espaço ao redor
+                let edgePadding = UIEdgeInsets(top: 200, left: 200, bottom: 200, right: 200)
+                mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: edgePadding, animated: true)
             } else {
                 mapView.setRegion(self.region, animated: true)
             }
@@ -92,11 +94,16 @@ struct MapRouteView: UIViewRepresentable {
             let directions = MKDirections(request: request)
             directions.calculate { response, error in
                 guard let route = response?.routes.first else { return }
-                uiView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                let edgePadding = UIEdgeInsets(top: 200, left: 200, bottom: 200, right: 200)  // Padding maior
+                uiView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: edgePadding, animated: true)
             }
         } else if isMapFocusedOnUser {
             uiView.setRegion(region, animated: true)
         }
+
+        // Configura interações baseadas no estado
+        uiView.isZoomEnabled = !isMapFocusedOnUser || showEntireRoute
+        uiView.isScrollEnabled = !isMapFocusedOnUser || showEntireRoute
     }
 }
 
@@ -104,7 +111,7 @@ struct ContentView: View {
     @StateObject private var locationManager = LocationManager()
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
-        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
     @State private var isMapFocusedOnUser = true  // Estado para saber se o mapa está focado na localização
     @State private var showEntireRoute = false  // Estado para alternar entre rota completa e localização

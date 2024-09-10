@@ -5,11 +5,13 @@ struct MapRouteView: UIViewRepresentable {
     @Binding var region: MKCoordinateRegion
     var startCoordinate: CLLocationCoordinate2D
     var endCoordinate: CLLocationCoordinate2D
-    var isMapLocked: Bool
+    var isMapFocusedOnUser: Bool  // Define se o mapa está focado na localização do usuário
+    var showEntireRoute: Bool  // Define se o mapa deve mostrar a rota completa
 
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: MapRouteView
-        
+        var mapView: MKMapView?
+
         init(_ parent: MapRouteView) {
             self.parent = parent
         }
@@ -27,35 +29,36 @@ struct MapRouteView: UIViewRepresentable {
         
         // Atualiza a região quando o mapa é interativo e o travamento está desativado
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            if !parent.isMapLocked {
+            if !parent.isMapFocusedOnUser && !parent.showEntireRoute {
                 parent.region = mapView.region
             }
         }
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        let coordinator = Coordinator(self)
+        return coordinator
     }
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView(frame: .zero)
+        context.coordinator.mapView = mapView
         mapView.delegate = context.coordinator
-        mapView.isZoomEnabled = !isMapLocked
-        mapView.isScrollEnabled = !isMapLocked
+        mapView.isZoomEnabled = true
+        mapView.isScrollEnabled = true
         mapView.isPitchEnabled = true
-        mapView.isRotateEnabled = !isMapLocked  // Desativa rotação quando o mapa está travado
+        mapView.isRotateEnabled = true
         
         // Habilita a visualização da localização do usuário com a bolinha azul
         mapView.showsUserLocation = true
         
+        // Adiciona o destino (End) como anotação
         let endAnnotation = MKPointAnnotation()
         endAnnotation.coordinate = endCoordinate
         endAnnotation.title = "End"
-        
         mapView.addAnnotation(endAnnotation)
-        mapView.setRegion(region, animated: true)
         
-        // Traça a rota entre o ponto inicial (localização do usuário) e o destino
+        // Define a rota
         let request = MKDirections.Request()
         let startPlacemark = MKPlacemark(coordinate: startCoordinate)
         let endPlacemark = MKPlacemark(coordinate: endCoordinate)
@@ -67,29 +70,33 @@ struct MapRouteView: UIViewRepresentable {
         directions.calculate { response, error in
             guard let route = response?.routes.first else { return }
             mapView.addOverlay(route.polyline)
-            mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+            if self.showEntireRoute {
+                mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+            } else {
+                mapView.setRegion(self.region, animated: true)
+            }
         }
-
+        
         return mapView
     }
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        // Só atualiza a região se o mapa estiver travado na localização do usuário
-        if isMapLocked && !regionsAreEqual(uiView.region, region) {
+        if showEntireRoute {
+            let request = MKDirections.Request()
+            let startPlacemark = MKPlacemark(coordinate: startCoordinate)
+            let endPlacemark = MKPlacemark(coordinate: endCoordinate)
+            request.source = MKMapItem(placemark: startPlacemark)
+            request.destination = MKMapItem(placemark: endPlacemark)
+            request.transportType = .automobile
+            
+            let directions = MKDirections(request: request)
+            directions.calculate { response, error in
+                guard let route = response?.routes.first else { return }
+                uiView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+            }
+        } else if isMapFocusedOnUser {
             uiView.setRegion(region, animated: true)
         }
-        
-        // Desativa rotação, rolagem e zoom quando o mapa está travado
-        uiView.isZoomEnabled = !isMapLocked
-        uiView.isScrollEnabled = !isMapLocked
-        uiView.isRotateEnabled = !isMapLocked
-    }
-
-    func regionsAreEqual(_ lhs: MKCoordinateRegion, _ rhs: MKCoordinateRegion) -> Bool {
-        lhs.center.latitude == rhs.center.latitude &&
-        lhs.center.longitude == rhs.center.longitude &&
-        lhs.span.latitudeDelta == rhs.span.latitudeDelta &&
-        lhs.span.longitudeDelta == rhs.span.longitudeDelta
     }
 }
 
@@ -97,9 +104,10 @@ struct ContentView: View {
     @StateObject private var locationManager = LocationManager()
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
-        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
     )
-    @State private var isMapLocked = false  // Estado para travar/destravar o mapa
+    @State private var isMapFocusedOnUser = true  // Estado para saber se o mapa está focado na localização
+    @State private var showEntireRoute = false  // Estado para alternar entre rota completa e localização
     @State private var selectedDetent: PresentationDetent = .fraction(0.3)
     @State private var searchText = ""
 
@@ -112,28 +120,36 @@ struct ContentView: View {
                         region: $region,
                         startCoordinate: userLocation,
                         endCoordinate: CLLocationCoordinate2D(latitude: -22.035075649084703, longitude: -47.899701419181405),
-                        isMapLocked: isMapLocked
+                        isMapFocusedOnUser: isMapFocusedOnUser,
+                        showEntireRoute: showEntireRoute
                     )
                     .edgesIgnoringSafeArea(.all)
                 } else {
                     Text("Obtendo localização...")
                 }
 
-                // Botão para travar/destravar o mapa na localização do usuário
+                // Botão para alternar entre localização e rota completa
                 VStack {
                     Button(action: {
-                        // Ao pressionar, trava o mapa na localização do usuário
                         if let userLocation = locationManager.lastKnownLocation {
-                            region = MKCoordinateRegion(
-                                center: userLocation,
-                                span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)  // Aproxima o zoom
-                            )
-                            isMapLocked.toggle()  // Trava o mapa
+                            if isMapFocusedOnUser {
+                                // Alternar para mostrar a rota completa
+                                showEntireRoute = true
+                                isMapFocusedOnUser = false
+                            } else {
+                                // Alternar para focar na localização
+                                region = MKCoordinateRegion(
+                                    center: userLocation,
+                                    span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)  // Aproxima o zoom
+                                )
+                                isMapFocusedOnUser = true
+                                showEntireRoute = false
+                            }
                         }
                     }) {
                         HStack {
-                            Image(systemName: isMapLocked ? "lock.fill" : "lock.open.fill")
-                            Text(isMapLocked ? "Mapa Travado" : "Travar Mapa")
+                            Image(systemName: isMapFocusedOnUser ? "location.fill" : "map")
+                            Text(isMapFocusedOnUser ? "Exibir Rota Completa" : "Focar na Localização")
                         }
                         .padding(10)
                         .background(.thinMaterial)
@@ -156,7 +172,7 @@ struct ContentView: View {
                 locationManager.checkLocationAuthorization()
             }
             .onReceive(locationManager.$lastKnownLocation) { newLocation in
-                if let newLocation = newLocation, !isMapLocked {
+                if let newLocation = newLocation, isMapFocusedOnUser {
                     region.center = newLocation
                 }
             }

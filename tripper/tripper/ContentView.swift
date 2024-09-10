@@ -1,86 +1,108 @@
-//
-//  ContentView.swift
-//  tripper
-//
-//  Created by Erick Barcelos on 26/08/24.
-//
-
 import SwiftUI
-import CoreData
+import MapKit
+
+struct MapMarkerItem: Identifiable {
+    let id = UUID()
+    let coordinate: CLLocationCoordinate2D
+}
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @State private var navigationPath = NavigationPath()
+    @State private var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
+        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+    )
+    
+    // Estado para controlar a exibição do Bottom Sheet
+    @State private var showBottomSheet = false
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    let markers = [
+        MapMarkerItem(coordinate: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194))
+    ]
+    
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+        NavigationStack(path: $navigationPath) {
+            ZStack {
+                // Mapa de fundo
+                Map(coordinateRegion: $region, annotationItems: markers) { marker in
+                    MapAnnotation(coordinate: marker.coordinate) {
+                        Image(systemName: "pin.circle.fill")
+                            .foregroundColor(.blue)
+                            .font(.title)
                     }
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+                .edgesIgnoringSafeArea(.all)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                // Botões flutuantes no topo
+                VStack {
+                    HStack {
+                        // Botão do lado esquerdo
+                        Button(action: {
+                            // Ação do botão esquerdo
+                            print("Left button tapped")
+                        }) {
+                            Image(systemName: "car.rear.road.lane")
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.gray).padding(4)
+                                .background(Color.white)
+                                .cornerRadius(5)
+                        }
+                        Spacer()
+                        // Botão do lado direito
+                        Button(action: {
+                            // Ação do botão direito
+                            print("Right button tapped")
+                        }) {
+                            Image(systemName: "ellipsis")
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.gray).padding(4)
+                                .background(Color.white)
+                                .cornerRadius(5)
+                        }
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 20) // Coloca os botões mais abaixo da borda superior
+                    Spacer()
                 }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                
+                // Botão para exibir o Bottom Sheet
+                VStack {
+                    Spacer()
+                    Button(action: {
+                        showBottomSheet.toggle() // Mostrar ou esconder o Bottom Sheet
+                    }) {
+                        Text("Show Bottom Sheet")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .padding()
+                }
+            }
+            .sheet(isPresented: $showBottomSheet) {
+                // O conteúdo do Bottom Sheet
+                VStack {
+                    Text("This is a Bottom Sheet")
+                        .font(.title)
+                        .padding()
+
+                    Button(action: {
+                        showBottomSheet = false // Fechar o Bottom Sheet
+                    }) {
+                        Text("Close")
+                            .foregroundColor(.blue)
+                            .padding()
                     }
                 }
-            }
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                .presentationDetents([.medium, .large]) // Definir tamanhos para o Bottom Sheet
+                .presentationDragIndicator(.visible) // Mostrar indicador de arrasto
             }
         }
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
 #Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    ContentView()
 }

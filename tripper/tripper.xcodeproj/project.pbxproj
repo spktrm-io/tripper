@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C16CDEC2C7D17900079A75B /* tripperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CDEB2C7D17900079A75B /* tripperApp.swift */; };
-		2C16CDEE2C7D17900079A75B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CDED2C7D17900079A75B /* ContentView.swift */; };
 		2C16CDF02C7D17910079A75B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C16CDEF2C7D17910079A75B /* Assets.xcassets */; };
 		2C16CDF32C7D17910079A75B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C16CDF22C7D17910079A75B /* Preview Assets.xcassets */; };
 		2C16CDF52C7D17910079A75B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CDF42C7D17910079A75B /* Persistence.swift */; };
@@ -16,6 +15,14 @@
 		2C16CE022C7D17910079A75B /* tripperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CE012C7D17910079A75B /* tripperTests.swift */; };
 		2C16CE0C2C7D17910079A75B /* tripperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CE0B2C7D17910079A75B /* tripperUITests.swift */; };
 		2C16CE0E2C7D17910079A75B /* tripperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CE0D2C7D17910079A75B /* tripperUITestsLaunchTests.swift */; };
+		2CB0C2632C8FD545007C077A /* CardItemRoadList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB0C2602C8FD545007C077A /* CardItemRoadList.swift */; };
+		2CB0C2772C8FD610007C077A /* tripper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CB0C2642C8FD60F007C077A /* tripper.xcdatamodeld */; };
+		2CB0C2782C8FD610007C077A /* CardItemRoadList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB0C2672C8FD60F007C077A /* CardItemRoadList.swift */; };
+		2CB0C2792C8FD610007C077A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB0C26B2C8FD60F007C077A /* Assets.xcassets */; };
+		2CB0C27A2C8FD610007C077A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB0C26D2C8FD60F007C077A /* Preview Assets.xcassets */; };
+		2CB0C27B2C8FD610007C077A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB0C2712C8FD60F007C077A /* ContentView.swift */; };
+		2CB0C27C2C8FD610007C077A /* tripperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB0C2732C8FD60F007C077A /* tripperApp.swift */; };
+		2CB0C27D2C8FD610007C077A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB0C2762C8FD610007C077A /* Persistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +45,6 @@
 /* Begin PBXFileReference section */
 		2C16CDE82C7D17900079A75B /* tripper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tripper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C16CDEB2C7D17900079A75B /* tripperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripperApp.swift; sourceTree = "<group>"; };
-		2C16CDED2C7D17900079A75B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2C16CDEF2C7D17910079A75B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C16CDF22C7D17910079A75B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2C16CDF42C7D17910079A75B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -48,6 +54,14 @@
 		2C16CE072C7D17910079A75B /* tripperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tripperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C16CE0B2C7D17910079A75B /* tripperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripperUITests.swift; sourceTree = "<group>"; };
 		2C16CE0D2C7D17910079A75B /* tripperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripperUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2CB0C2602C8FD545007C077A /* CardItemRoadList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardItemRoadList.swift; sourceTree = "<group>"; };
+		2CB0C2652C8FD60F007C077A /* tripper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tripper.xcdatamodel; sourceTree = "<group>"; };
+		2CB0C2672C8FD60F007C077A /* CardItemRoadList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardItemRoadList.swift; sourceTree = "<group>"; };
+		2CB0C26B2C8FD60F007C077A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2CB0C26D2C8FD60F007C077A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2CB0C2712C8FD60F007C077A /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2CB0C2732C8FD60F007C077A /* tripperApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripperApp.swift; sourceTree = "<group>"; };
+		2CB0C2762C8FD610007C077A /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +112,23 @@
 		2C16CDEA2C7D17900079A75B /* tripper */ = {
 			isa = PBXGroup;
 			children = (
+				2CB0C26B2C8FD60F007C077A /* Assets.xcassets */,
+				2CB0C2712C8FD60F007C077A /* ContentView.swift */,
+				2CB0C2662C8FD60F007C077A /* Controllers */,
+				2CB0C2702C8FD60F007C077A /* CoreData */,
+				2CB0C2742C8FD610007C077A /* Helpers */,
+				2CB0C26A2C8FD60F007C077A /* Models */,
+				2CB0C2722C8FD60F007C077A /* Networking */,
+				2CB0C2762C8FD610007C077A /* Persistence.swift */,
+				2CB0C26E2C8FD60F007C077A /* Preview Content */,
+				2CB0C26F2C8FD60F007C077A /* Resources */,
+				2CB0C26C2C8FD60F007C077A /* Services */,
+				2CB0C2642C8FD60F007C077A /* tripper.xcdatamodeld */,
+				2CB0C2732C8FD60F007C077A /* tripperApp.swift */,
+				2CB0C2752C8FD610007C077A /* ViewModels */,
+				2CB0C2692C8FD60F007C077A /* Views */,
+				2CB0C2622C8FD545007C077A /* Views */,
 				2C16CDEB2C7D17900079A75B /* tripperApp.swift */,
-				2C16CDED2C7D17900079A75B /* ContentView.swift */,
 				2C16CDEF2C7D17910079A75B /* Assets.xcassets */,
 				2C16CDF42C7D17910079A75B /* Persistence.swift */,
 				2C16CDF62C7D17910079A75B /* tripper.xcdatamodeld */,
@@ -131,6 +160,102 @@
 				2C16CE0D2C7D17910079A75B /* tripperUITestsLaunchTests.swift */,
 			);
 			path = tripperUITests;
+			sourceTree = "<group>";
+		};
+		2CB0C2612C8FD545007C077A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2CB0C2602C8FD545007C077A /* CardItemRoadList.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		2CB0C2622C8FD545007C077A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2CB0C2612C8FD545007C077A /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2CB0C2662C8FD60F007C077A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2CB0C2682C8FD60F007C077A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2CB0C2672C8FD60F007C077A /* CardItemRoadList.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		2CB0C2692C8FD60F007C077A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2CB0C2682C8FD60F007C077A /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2CB0C26A2C8FD60F007C077A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2CB0C26C2C8FD60F007C077A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2CB0C26E2C8FD60F007C077A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2CB0C26D2C8FD60F007C077A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2CB0C26F2C8FD60F007C077A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2CB0C2702C8FD60F007C077A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		2CB0C2722C8FD60F007C077A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		2CB0C2742C8FD610007C077A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2CB0C2752C8FD610007C077A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,7 +362,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CB0C27A2C8FD610007C077A /* Preview Assets.xcassets in Resources */,
 				2C16CDF32C7D17910079A75B /* Preview Assets.xcassets in Resources */,
+				2CB0C2792C8FD610007C077A /* Assets.xcassets in Resources */,
 				2C16CDF02C7D17910079A75B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,9 +390,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CB0C27D2C8FD610007C077A /* Persistence.swift in Sources */,
+				2CB0C2632C8FD545007C077A /* CardItemRoadList.swift in Sources */,
 				2C16CDF52C7D17910079A75B /* Persistence.swift in Sources */,
-				2C16CDEE2C7D17900079A75B /* ContentView.swift in Sources */,
+				2CB0C27C2C8FD610007C077A /* tripperApp.swift in Sources */,
+				2CB0C27B2C8FD610007C077A /* ContentView.swift in Sources */,
 				2C16CDF82C7D17910079A75B /* tripper.xcdatamodeld in Sources */,
+				2CB0C2772C8FD610007C077A /* tripper.xcdatamodeld in Sources */,
+				2CB0C2782C8FD610007C077A /* CardItemRoadList.swift in Sources */,
 				2C16CDEC2C7D17900079A75B /* tripperApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,6 +737,17 @@
 			);
 			currentVersion = 2C16CDF72C7D17910079A75B /* tripper.xcdatamodel */;
 			path = tripper.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		2CB0C2642C8FD60F007C077A /* tripper.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2CB0C2652C8FD60F007C077A /* tripper.xcdatamodel */,
+			);
+			currentVersion = 2CB0C2652C8FD60F007C077A /* tripper.xcdatamodel */;
+			name = tripper.xcdatamodeld;
+			path = /Users/erickpatrickbarcelos/codes/tripper/tripper/tripper/tripper.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

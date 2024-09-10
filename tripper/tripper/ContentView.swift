@@ -141,6 +141,7 @@ struct ContentView: View {
                 .padding(.vertical, 10)
                 .presentationDetents([.fraction(0.15), .medium, .large], selection: $selectedDetent)
                 .presentationDragIndicator(.visible)
+                .interactiveDismissDisabled(true)
                 .presentationBackgroundInteraction(
                     .enabled(upThrough: .fraction(0.15))
                 )

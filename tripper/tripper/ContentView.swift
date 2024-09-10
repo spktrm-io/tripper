@@ -13,7 +13,6 @@ struct MapRouteView: UIViewRepresentable {
             self.parent = parent
         }
         
-        // Configura a renderização da rota
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             if let polyline = overlay as? MKPolyline {
                 let renderer = MKPolylineRenderer(polyline: polyline)
@@ -24,7 +23,6 @@ struct MapRouteView: UIViewRepresentable {
             return MKOverlayRenderer()
         }
         
-        // Atualiza a região quando o usuário interage com o mapa
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             parent.region = mapView.region
         }
@@ -41,20 +39,18 @@ struct MapRouteView: UIViewRepresentable {
         mapView.isScrollEnabled = true
         mapView.isPitchEnabled = true
         mapView.isRotateEnabled = true
-
-        // Adiciona as anotações de início e fim
-        let startAnnotation = MKPointAnnotation()
-        startAnnotation.coordinate = startCoordinate
-        startAnnotation.title = "Start"
+        
+        // Habilita a visualização da localização do usuário com a bolinha azul
+        mapView.showsUserLocation = true
         
         let endAnnotation = MKPointAnnotation()
         endAnnotation.coordinate = endCoordinate
         endAnnotation.title = "End"
         
-        mapView.addAnnotations([startAnnotation, endAnnotation])
+        mapView.addAnnotation(endAnnotation)
         mapView.setRegion(region, animated: true)
         
-        // Traça a rota entre os pontos
+        // Traça a rota entre o ponto inicial (localização do usuário) e o destino
         let request = MKDirections.Request()
         let startPlacemark = MKPlacemark(coordinate: startCoordinate)
         let endPlacemark = MKPlacemark(coordinate: endCoordinate)
@@ -73,7 +69,6 @@ struct MapRouteView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        // Atualiza a região somente se houver mudança significativa
         if !regionsAreEqual(uiView.region, region) {
             uiView.setRegion(region, animated: true)
         }
@@ -96,13 +91,12 @@ struct ContentView: View {
 
     @State private var selectedDetent: PresentationDetent = .fraction(0.3)
     @State private var searchText = ""
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
                 if let userLocation = locationManager.lastKnownLocation {
-                
-                    // Exibe o mapa com a rota usando a localização em tempo real como ponto de partida
+                    // Mapa com a rota usando a localização em tempo real como ponto de partida
                     MapRouteView(
                         region: $region,
                         startCoordinate: userLocation,

@@ -72,7 +72,7 @@ struct MapRouteView: UIViewRepresentable {
             mapView.addOverlay(route.polyline)
             if self.showEntireRoute {
                 // Define o padding maior para garantir que a rota tenha mais espaço ao redor
-                let edgePadding = UIEdgeInsets(top: 200, left: 200, bottom: 200, right: 200)
+                let edgePadding = UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100)
                 mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: edgePadding, animated: true)
             } else {
                 mapView.setRegion(self.region, animated: true)
@@ -94,7 +94,7 @@ struct MapRouteView: UIViewRepresentable {
             let directions = MKDirections(request: request)
             directions.calculate { response, error in
                 guard let route = response?.routes.first else { return }
-                let edgePadding = UIEdgeInsets(top: 200, left: 200, bottom: 200, right: 200)  // Padding maior
+                let edgePadding = UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100)  // Padding maior
                 uiView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: edgePadding, animated: true)
             }
         } else if isMapFocusedOnUser {

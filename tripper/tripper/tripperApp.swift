@@ -13,7 +13,7 @@ struct tripperApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SearchableMap()
+            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

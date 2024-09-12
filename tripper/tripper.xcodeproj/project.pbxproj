@@ -52,7 +52,6 @@
 		2CB0C26B2C8FD60F007C077A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CB0C2762C8FD610007C077A /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		2CB2B3062C8FE19E00466E54 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = SOURCE_ROOT; };
-		2CB2B30A2C8FE1CD00466E54 /* CardItemRoadList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItemRoadList.swift; sourceTree = "<group>"; };
 		2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtons.swift; sourceTree = "<group>"; };
 		2CD5D7282C933D490069EBB2 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationService.swift; path = tripper/Services/LocationService.swift; sourceTree = SOURCE_ROOT; };
 		2CFDDB092C93B221004B2E53 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = tripper/ContentView.swift; sourceTree = SOURCE_ROOT; };
@@ -145,7 +144,6 @@
 		2CB0C2682C8FD60F007C077A /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				2CB2B30A2C8FE1CD00466E54 /* CardItemRoadList.swift */,
 				2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */,
 				2CFDDB0B2C93B360004B2E53 /* SheetView.swift */,
 			);

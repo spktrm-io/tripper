@@ -1,7 +1,7 @@
 import SwiftUI
 import MapKit
 
-struct SearchableMap: View {
+struct ContentView: View {
     @State private var position = MapCameraPosition.automatic
     @State private var searchResults = [SearchResult]()
     @State private var selectedLocation: SearchResult?

@@ -25,6 +25,7 @@
 		2CB0C27D2C8FD610007C077A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB0C2762C8FD610007C077A /* Persistence.swift */; };
 		2CB2B3072C8FE19E00466E54 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB2B3062C8FE19E00466E54 /* MapView.swift */; };
 		2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */; };
+		2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5D7282C933D490069EBB2 /* LocationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +57,7 @@
 		2C16CE072C7D17910079A75B /* tripperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tripperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C16CE0B2C7D17910079A75B /* tripperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripperUITests.swift; sourceTree = "<group>"; };
 		2C16CE0D2C7D17910079A75B /* tripperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripperUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		2C39AA062C90AED800ECCDF4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = tripper/LocationManager.swift; sourceTree = SOURCE_ROOT; };
+		2C39AA062C90AED800ECCDF4 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationManager.swift; path = tripper/Utils/LocationManager.swift; sourceTree = SOURCE_ROOT; };
 		2C3D79922C910EFF0004EC41 /* MapRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouteView.swift; sourceTree = "<group>"; };
 		2CB0C2652C8FD60F007C077A /* tripper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tripper.xcdatamodel; sourceTree = "<group>"; };
 		2CB0C26B2C8FD60F007C077A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		2CB2B3062C8FE19E00466E54 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = SOURCE_ROOT; };
 		2CB2B30A2C8FE1CD00466E54 /* CardItemRoadList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItemRoadList.swift; sourceTree = "<group>"; };
 		2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtons.swift; sourceTree = "<group>"; };
+		2CD5D7282C933D490069EBB2 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationService.swift; path = tripper/Views/LocationService.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +123,7 @@
 				2CB0C2712C8FD60F007C077A /* ContentView.swift */,
 				2CB0C2662C8FD60F007C077A /* Controllers */,
 				2CB0C2702C8FD60F007C077A /* CoreData */,
-				2CB0C2742C8FD610007C077A /* Helpers */,
+				2CB0C2742C8FD610007C077A /* Utils */,
 				2CB0C26A2C8FD60F007C077A /* Models */,
 				2CB0C2722C8FD60F007C077A /* Networking */,
 				2CB0C2762C8FD610007C077A /* Persistence.swift */,
@@ -202,6 +204,7 @@
 		2CB0C26C2C8FD60F007C077A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				2CD5D7282C933D490069EBB2 /* LocationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -217,7 +220,6 @@
 		2CB0C26F2C8FD60F007C077A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2C39AA062C90AED800ECCDF4 /* LocationManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -236,11 +238,12 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		2CB0C2742C8FD610007C077A /* Helpers */ = {
+		2CB0C2742C8FD610007C077A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2C39AA062C90AED800ECCDF4 /* LocationManager.swift */,
 			);
-			path = Helpers;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		2CB0C2752C8FD610007C077A /* ViewModels */ = {
@@ -392,6 +395,7 @@
 				2CB0C2772C8FD610007C077A /* tripper.xcdatamodeld in Sources */,
 				2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */,
 				2CB2B3072C8FE19E00466E54 /* MapView.swift in Sources */,
+				2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */,
 				2C16CDEC2C7D17900079A75B /* tripperApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

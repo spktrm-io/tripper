@@ -41,37 +41,19 @@ struct MapRouteView: UIViewRepresentable {
         mapView.isRotateEnabled = true
         mapView.showsUserLocation = true
 
-        if let endCoordinate = endCoordinate {
-            let endAnnotation = MKPointAnnotation()
-            endAnnotation.coordinate = endCoordinate
-            endAnnotation.title = "Destino"
-            mapView.addAnnotation(endAnnotation)
-
-            let request = MKDirections.Request()
-            let startPlacemark = MKPlacemark(coordinate: startCoordinate)
-            let endPlacemark = MKPlacemark(coordinate: endCoordinate)
-            request.source = MKMapItem(placemark: startPlacemark)
-            request.destination = MKMapItem(placemark: endPlacemark)
-            request.transportType = .automobile
-
-            let directions = MKDirections(request: request)
-            directions.calculate { response, error in
-                guard let route = response?.routes.first else { return }
-                mapView.addOverlay(route.polyline)
-                if self.showEntireRoute {
-                    let edgePadding = UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100)
-                    mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: edgePadding, animated: true)
-                } else {
-                    mapView.setRegion(self.region, animated: true)
-                }
-            }
-        }
-
         return mapView
     }
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        if let endCoordinate = endCoordinate {
+        // Verificar se o destino é válido e se há mudanças antes de recalcular a rota
+        guard let endCoordinate = endCoordinate else {
+            uiView.setRegion(region, animated: true)
+            return
+        }
+        
+        // Verificar se já existe uma rota desenhada no mapa
+        if uiView.overlays.isEmpty {
+            // Recalcular e adicionar a rota apenas se não houver nenhuma rota desenhada
             let request = MKDirections.Request()
             let startPlacemark = MKPlacemark(coordinate: startCoordinate)
             let endPlacemark = MKPlacemark(coordinate: endCoordinate)
@@ -82,11 +64,27 @@ struct MapRouteView: UIViewRepresentable {
             let directions = MKDirections(request: request)
             directions.calculate { response, error in
                 guard let route = response?.routes.first else { return }
-                let edgePadding = UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100)
-                uiView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: edgePadding, animated: true)
+
+                // Adicionar nova rota ao mapa
+                uiView.addOverlay(route.polyline)
+
+                if self.showEntireRoute {
+                    let edgePadding = UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100)
+                    uiView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: edgePadding, animated: true)
+                } else {
+                    uiView.setRegion(self.region, animated: true)
+                }
             }
         } else {
-            uiView.setRegion(region, animated: true)
+            // Se já houver uma rota, apenas ajustar a visualização se necessário
+            if showEntireRoute {
+                if let overlay = uiView.overlays.first as? MKPolyline {
+                    let edgePadding = UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100)
+                    uiView.setVisibleMapRect(overlay.boundingMapRect, edgePadding: edgePadding, animated: true)
+                }
+            } else {
+                uiView.setRegion(self.region, animated: true)
+            }
         }
     }
 }

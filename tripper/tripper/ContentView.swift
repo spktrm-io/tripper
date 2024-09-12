@@ -1,10 +1,11 @@
 import SwiftUI
 import MapKit
 
+// ContentView - Interface principal
 struct ContentView: View {
     @StateObject private var locationManager = LocationManager()
     @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
+        center: CLLocationCoordinate2D(latitude: 0, longitude: 0), // Valores padrão temporários
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
     @State private var showEntireRoute = false
@@ -12,8 +13,9 @@ struct ContentView: View {
     @State private var selectedDetent: PresentationDetent = .fraction(0.3)
     @State private var searchText = ""
     @State private var searchResults = [MKMapItem]()
-    @State private var destinationCoordinate: CLLocationCoordinate2D?
+    @State private var destinationCoordinate: CLLocationCoordinate2D?  // Começa como nil
     @StateObject private var locationService = LocationService()
+    @State private var isSearchSheetPresented = true // Controla a exibição do sheet
 
     var body: some View {
         NavigationStack {
@@ -22,7 +24,7 @@ struct ContentView: View {
                     MapRouteView(
                         region: $region,
                         startCoordinate: userLocation,
-                        endCoordinate: destinationCoordinate ?? CLLocationCoordinate2D(latitude: -22.035075649084703, longitude: -47.899701419181405),
+                        endCoordinate: destinationCoordinate,
                         showEntireRoute: showEntireRoute
                     )
                     .edgesIgnoringSafeArea(.all)
@@ -89,11 +91,17 @@ struct ContentView: View {
                 locationManager.checkLocationAuthorization()
             }
             .onReceive(locationManager.$lastKnownLocation) { newLocation in
-                if let newLocation = newLocation, !showEntireRoute, isFollowingUser {
+                if let newLocation = newLocation {
                     region.center = newLocation
+                    if isFollowingUser {
+                        region = MKCoordinateRegion(
+                            center: newLocation,
+                            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                        )
+                    }
                 }
             }
-            .sheet(isPresented: .constant(true)) {
+            .sheet(isPresented: $isSearchSheetPresented) {  // Controla o sheet
                 VStack {
                     TextField("Pesquisar destino...", text: $searchText, onEditingChanged: { isEditing in
                         if isEditing {
@@ -120,10 +128,9 @@ struct ContentView: View {
                         }
                         .listRowBackground(Color.clear)  // Remove o fundo de cada linha
                     }
-                    .listStyle(.plain)  // Remove o estilo padrão da lista
+                    .listStyle(.plain)
                     .scrollContentBackground(.hidden)  // Remove o fundo da lista
-                    
-                    
+
                     Spacer()
                 }
                 .padding()
@@ -136,6 +143,7 @@ struct ContentView: View {
         }
     }
 
+    // Função de busca de localização
     func searchForLocation(query: String) {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = query
@@ -143,13 +151,18 @@ struct ContentView: View {
         search.start { response, error in
             if let results = response?.mapItems {
                 self.searchResults = results
+                if let firstResult = results.first {
+                    setDestination(to: firstResult)
+                    selectedDetent = .fraction(0.15)
+                }
             }
         }
     }
 
+    // Função para definir o destino e calcular a rota no mapa
     func setDestination(to mapItem: MKMapItem) {
         destinationCoordinate = mapItem.placemark.coordinate
         searchResults = []
-        showEntireRoute = false
+        showEntireRoute = true // Exibir a rota completa após a seleção
     }
 }

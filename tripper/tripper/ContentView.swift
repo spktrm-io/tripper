@@ -20,17 +20,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                if let userLocation = locationManager.lastKnownLocation {
-                    MapRouteView(
-                        region: $region,
-                        startCoordinate: userLocation,
-                        endCoordinate: destinationCoordinate,
-                        showEntireRoute: showEntireRoute
-                    )
-                    .edgesIgnoringSafeArea(.all)
-                } else {
-                    Text("Obtendo localização...")
-                }
+               
 
                 VStack {
                     Button(action: {

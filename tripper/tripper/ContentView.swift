@@ -58,3 +58,10 @@ struct ContentView: View {
         return try await lookAroundScene.scene
     }
 }
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+       ContentView()
+    }
+}

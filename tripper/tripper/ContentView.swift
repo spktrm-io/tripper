@@ -2,20 +2,36 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
+    @StateObject private var locationService = LocationService(completer: MKLocalSearchCompleter())
     @State private var position = MapCameraPosition.automatic
     @State private var searchResults = [SearchResult]()
     @State private var selectedLocation: SearchResult?
     @State private var isSheetPresented: Bool = true
     @State private var scene: MKLookAroundScene?
+    @State private var route: MKRoute?
 
     var body: some View {
-        ZStack{
+        ZStack {
             Map(position: $position, selection: $selectedLocation) {
                 ForEach(searchResults) { result in
                     Marker(coordinate: result.location) {
                         Image(systemName: "mappin")
                     }
                     .tag(result)
+                }
+
+                // Marcador da localização atual do usuário
+                if let userLocation = locationService.currentLocation {
+                    Marker(coordinate: userLocation) {
+                        Image(systemName: "location.fill")
+                            .foregroundColor(.blue)
+                    }
+                }
+
+                // Exibição da rota
+                if let route {
+                    MapPolyline(route.polyline)
+                        .stroke(Color.blue, lineWidth: 5)
                 }
             }
             .overlay(alignment: .bottom) {
@@ -28,11 +44,13 @@ struct ContentView: View {
                 }
             }
             .ignoresSafeArea()
-            .onChange(of: selectedLocation) {
+            .onChange(of: selectedLocation) { oldValue, newValue in
                 if let selectedLocation {
                     Task {
                         scene = try? await fetchScene(for: selectedLocation.location)
                     }
+                    // Calcula a rota
+                    calculateRoute()
                 }
                 isSheetPresented = selectedLocation == nil
             }
@@ -41,11 +59,11 @@ struct ContentView: View {
                     selectedLocation = firstResult
                 }
             }
-            
+
             FloatingButtons(leftAction: {
-                print("Left button tapped")
+                print("Botão esquerdo pressionado")
             }, rightAction: {
-                print("Right button tapped")
+                print("Botão direito pressionado")
             })
         }
         .sheet(isPresented: $isSheetPresented) {
@@ -56,6 +74,34 @@ struct ContentView: View {
     private func fetchScene(for coordinate: CLLocationCoordinate2D) async throws -> MKLookAroundScene? {
         let lookAroundScene = MKLookAroundSceneRequest(coordinate: coordinate)
         return try await lookAroundScene.scene
+    }
+
+    private func calculateRoute() {
+        // Verifica se temos a localização do usuário e um destino selecionado
+        guard let userLocation = locationService.currentLocation,
+              let destinationCoordinate = selectedLocation?.location else { return }
+
+        let sourcePlacemark = MKPlacemark(coordinate: userLocation)
+        let destinationPlacemark = MKPlacemark(coordinate: destinationCoordinate)
+
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: sourcePlacemark)
+        request.destination = MKMapItem(placemark: destinationPlacemark)
+        request.transportType = .automobile
+
+        let directions = MKDirections(request: request)
+        directions.calculate { response, error in
+            if let routeResponse = response?.routes.first {
+                self.route = routeResponse
+                let routeRect = routeResponse.polyline.boundingMapRect
+                let region = MKCoordinateRegion(routeRect)
+                DispatchQueue.main.async {
+                    self.position = .region(region)
+                }
+            } else if let error {
+                print("Erro ao calcular direções: \(error.localizedDescription)")
+            }
+        }
     }
 }
 

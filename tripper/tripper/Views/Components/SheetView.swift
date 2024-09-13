@@ -51,7 +51,7 @@ struct SheetView: View {
         }
         .padding()
         .interactiveDismissDisabled()
-        .presentationDetents([.height(200), .large])
+        .presentationDetents([.height(100), .large])
         .presentationBackground(.regularMaterial)
         .presentationBackgroundInteraction(.enabled(upThrough: .large))
     }

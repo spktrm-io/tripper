@@ -9,6 +9,8 @@ struct ContentView: View {
     @State private var isSheetPresented: Bool = true
     @State private var scene: MKLookAroundScene?
     @State private var route: MKRoute?
+    @State private var fetchTask: Task<Void, Never>?
+
 
     var body: some View {
         ZStack {
@@ -44,13 +46,10 @@ struct ContentView: View {
                 }
             }
             .ignoresSafeArea()
-            .onChange(of: selectedLocation) { oldValue, newValue in
-                if let selectedLocation {
-                    Task {
-                        scene = try? await fetchScene(for: selectedLocation.location)
-                    }
-                    // Calcula a rota
-                    calculateRoute()
+            .onChange(of: selectedLocation) { _, _ in
+                fetchTask?.cancel()
+                fetchTask = Task {
+                    await updateForSelectedLocation()
                 }
                 isSheetPresented = selectedLocation == nil
             }
@@ -68,6 +67,17 @@ struct ContentView: View {
         }
         .sheet(isPresented: $isSheetPresented) {
             SheetView(searchResults: $searchResults)
+        }
+    }
+    
+    private func updateForSelectedLocation() async {
+        guard let selectedLocation else { return }
+        do {
+            async let sceneResult = fetchScene(for: selectedLocation.location)
+            calculateRoute()
+            scene = try await sceneResult
+        } catch {
+            print("Erro ao atualizar para a localização selecionada: \(error)")
         }
     }
 
@@ -89,18 +99,10 @@ struct ContentView: View {
         request.destination = MKMapItem(placemark: destinationPlacemark)
         request.transportType = .automobile
 
-        let directions = MKDirections(request: request)
-        directions.calculate { response, error in
-            if let routeResponse = response?.routes.first {
-                self.route = routeResponse
-                let routeRect = routeResponse.polyline.boundingMapRect
-                let region = MKCoordinateRegion(routeRect)
-                DispatchQueue.main.async {
-                    self.position = .region(region)
-                }
-            } else if let error {
-                print("Erro ao calcular direções: \(error.localizedDescription)")
-            }
+        Task {
+            let directions = MKDirections(request: request)
+            let response = try? await directions.calculate()
+            route = response?.routes.first
         }
     }
 }

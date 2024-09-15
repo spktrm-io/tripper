@@ -49,7 +49,7 @@ struct SheetView: View {
             locationService.update(queryFragment: search)
         }
         .padding()
-        .interactiveDismissDisabled()
+
         .presentationDetents([.height(100), .large])
         .presentationBackground(.regularMaterial)
         .presentationBackgroundInteraction(.enabled(upThrough: .large))

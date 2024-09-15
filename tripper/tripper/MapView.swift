@@ -1,7 +1,7 @@
 import SwiftUI
 import MapKit
 
-struct ContentView: View {
+struct MapView: View {
     @StateObject private var locationService = LocationService(completer: MKLocalSearchCompleter())
     @State private var position = MapCameraPosition.automatic
     @State private var searchResults = [SearchResult]()
@@ -126,6 +126,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-       ContentView()
+        MapView()
     }
 }

@@ -2,22 +2,25 @@ import SwiftUI
 
 struct MainView: View {
     @State private var selectedIndex: Int = 0 // Índice do item selecionado
-    
+    @Environment(\.colorScheme) var colorScheme // Access the current color scheme
+
     var body: some View {
         ZStack {
             // Mostrar a View correta com base no índice selecionado
             switch selectedIndex {
-                case 0:
-                    HomeView()
-                case 1:
-                    CreateNewRouteView()
-                case 2:
-                    SavedRoutesView()
-                case 3:
-                    ProfileView()
-                default:
-                    HomeView()
+            case 0:
+                HomeView()
+            case 1:
+                CreateNewRouteView()
+            case 2:
+                SavedRoutesView()
+            case 3:
+                ProfileView()
+            default:
+                HomeView()
             }
+            let primaryColor: Color = colorScheme == .dark ? Color.white : Color.black
+            let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
 
             // Barra de guias personalizada
             VStack {
@@ -35,8 +38,8 @@ struct MainView: View {
                             }
                         }
                         .padding()
-                        .background(selectedIndex == 0 ? Color.black : Color.clear) // Fundo preto quando selecionado
-                        .foregroundColor(selectedIndex == 0 ? .white : .black) // Muda a cor do ícone e do texto
+                        .background(selectedIndex == 0 ? primaryColor : Color.clear)
+                        .foregroundColor(selectedIndex == 0 ? secondaryColor : primaryColor)
                         .cornerRadius(10) // Borda arredondada
                     }
                     Spacer()
@@ -51,8 +54,8 @@ struct MainView: View {
                             }
                         }
                         .padding()
-                        .background(selectedIndex == 1 ? Color.black : Color.clear) // Fundo preto quando selecionado
-                        .foregroundColor(selectedIndex == 1 ? .white : .black) // Muda a cor do ícone e do texto
+                        .background(selectedIndex == 1 ? primaryColor : Color.clear) // Fundo preto quando selecionado
+                        .foregroundColor(selectedIndex == 1 ? secondaryColor : primaryColor) // Muda a cor do ícone e do texto
                         .cornerRadius(10) // Borda arredondada
                     }
                     Spacer()
@@ -67,8 +70,8 @@ struct MainView: View {
                             }
                         }
                         .padding()
-                        .background(selectedIndex == 2 ? Color.black : Color.clear) // Fundo preto quando selecionado
-                        .foregroundColor(selectedIndex == 2 ? .white : .black) // Muda a cor do ícone e do texto
+                        .background(selectedIndex == 2 ? primaryColor : Color.clear) // Fundo preto quando selecionado
+                        .foregroundColor(selectedIndex == 2 ? secondaryColor : primaryColor) // Muda a cor do ícone e do texto
                         .cornerRadius(10) // Borda arredondada
                     }
                     Spacer()
@@ -83,8 +86,8 @@ struct MainView: View {
                             }
                         }
                         .padding()
-                        .background(selectedIndex == 3 ? Color.black : Color.clear) // Fundo preto quando selecionado
-                        .foregroundColor(selectedIndex == 3 ? .white : .black) // Muda a cor do ícone e do texto
+                        .background(selectedIndex == 3 ? primaryColor : Color.clear) // Fundo preto quando selecionado
+                        .foregroundColor(selectedIndex == 3 ? secondaryColor : primaryColor) // Muda a cor do ícone e do texto
                         .cornerRadius(10) // Borda arredondada
                     }
                     Spacer()

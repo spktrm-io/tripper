@@ -2,7 +2,8 @@ import SwiftUI
 
 struct ToggleButtonsView: View {
     @State private var selectedIndex: Int? = 0 // Índice do botão selecionado (inicia como nil)
-
+    @Environment(\.colorScheme) var colorScheme // Access the current color scheme
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) { // Espaçamento entre os botões
@@ -11,16 +12,18 @@ struct ToggleButtonsView: View {
                         // Define o botão selecionado. Se for o mesmo, deseleciona.
                         selectedIndex = selectedIndex == index ? nil : index
                     }) {
+                        let textColor: Color = colorScheme == .dark ? Color.black : Color.white
+
                         Text("Button \(index + 1)")
                             .padding(.vertical, 10) // Reduz o padding vertical
                             .padding(.horizontal, 20)
                             .fontWeight(.bold)
-                            .background(selectedIndex == index ? Color.black : Color.clear)
-                            .foregroundColor(selectedIndex == index ? .white : .black)
+                            .background(selectedIndex == index ? Color.primary : Color.clear)
+                            .foregroundColor(selectedIndex == index ? textColor : Color.primary)
                             .cornerRadius(10)
                             .overlay(
                                RoundedRectangle(cornerRadius: 10)
-                                .stroke(selectedIndex == index ? Color.clear : Color.black, lineWidth: 1.5)
+                                .stroke(selectedIndex == index ? Color.clear : Color.primary, lineWidth: 1.5)
                             )
                     }
                 }
@@ -34,15 +37,15 @@ struct CardView: View {
     var title: String
     var description: String
     let cardWidth = UIScreen.main.bounds.width * 0.85
-    let cardHeight: CGFloat =  450
+    let cardHeight = UIScreen.main.bounds.height * 0.50
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
         
-            Image(systemName: "photo")
+            Image("andes")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: cardWidth, height: cardHeight + 3) // Define o tamanho da imagem
+                .frame(width: cardWidth, height: cardHeight) // Define o tamanho da imagem
                 .clipped()
             
             // Conteúdo do card (textos) sobre a imagem
@@ -64,9 +67,7 @@ struct CardView: View {
             .padding([.leading, .trailing, .bottom], 10) // Espaçamento para não ficar colado nas bordas do card
         }
         .frame(width: cardWidth, height: cardHeight) // Define a largura e altura do card
-        .background(Color.white) // Fundo do card (visível quando o conteúdo for menor)
         .cornerRadius(15) // Bordas arredondadas
-        .shadow(radius: 5) // Sombra do card
         .padding(.trailing, 20) // Espaçamento entre os cards
     }
 }
@@ -101,10 +102,10 @@ struct HomeView: View {
                         CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)")
                     }
                 }
-                .padding(.leading, 20) // Adiciona padding apenas à esquerda
+                .padding(.leading, 20)
             }
             Spacer()
-        }
+        }.padding(.top, 10)
 
     }
 }

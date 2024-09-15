@@ -12,14 +12,15 @@ struct ToggleButtonsView: View {
                         selectedIndex = selectedIndex == index ? nil : index
                     }) {
                         Text("Button \(index + 1)")
-                            .padding()
+                            .padding(.vertical, 10) // Reduz o padding vertical
+                            .padding(.horizontal, 20)
                             .fontWeight(.bold)
                             .background(selectedIndex == index ? Color.black : Color.clear)
                             .foregroundColor(selectedIndex == index ? .white : .black)
                             .cornerRadius(10)
                             .overlay(
                                RoundedRectangle(cornerRadius: 10)
-                                .stroke(selectedIndex == index ? Color.clear : Color.black, lineWidth: 2)
+                                .stroke(selectedIndex == index ? Color.clear : Color.black, lineWidth: 1.5)
                             )
                     }
                 }
@@ -36,8 +37,8 @@ struct CardView: View {
     let cardHeight: CGFloat =  450
     
     var body: some View {
-        ZStack(alignment: .bottomLeading) { // Usando ZStack para sobrepor os textos à imagem
-            // Imagem do card que ocupa todo o card
+        ZStack(alignment: .bottomLeading) {
+        
             Image(systemName: "photo")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -71,8 +72,28 @@ struct CardView: View {
 }
 
 struct HomeView: View {
+    @State private var searchText: String = "" // Estado para armazenar o texto de pesquisa
+
     var body: some View {
         VStack{
+            Image("tripper-logo-dark") // Substitua pelo nome da imagem no Assets
+               .resizable()
+               .aspectRatio(contentMode: .fit) // Ajusta a imagem
+               .frame(height: 60) // Define a altura da imagem
+            
+            HStack {
+                TextField("Where you want to pass?", text: $searchText)
+                    .padding(10)
+                    .background(Color(.clear)) // Fundo da barra de pesquisa
+                    .cornerRadius(10)
+                    .overlay(
+                       RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray.opacity(0.5), lineWidth: 1.5)
+                    )
+                    .padding(.horizontal)
+            }
+            .padding(.top)
+            
             ToggleButtonsView()
             ScrollView(.horizontal, showsIndicators: false) { // Lista horizontal
                 HStack(alignment: .top, spacing: 0) { // Remove o espaçamento padrão
@@ -82,7 +103,9 @@ struct HomeView: View {
                 }
                 .padding(.leading, 20) // Adiciona padding apenas à esquerda
             }
+            Spacer()
         }
+
     }
 }
 

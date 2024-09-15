@@ -6,14 +6,17 @@ struct MainView: View {
     var body: some View {
         ZStack {
             // Mostrar a View correta com base no índice selecionado
-            if selectedIndex == 0 {
-                HomeView()
-            } else if selectedIndex == 1 {
-                CreateNewRouteView()
-            } else if selectedIndex == 2 {
-                SavedRoutesView()
-            } else if selectedIndex == 3 {
-                ProfileView()
+            switch selectedIndex {
+                case 0:
+                    HomeView()
+                case 1:
+                    CreateNewRouteView()
+                case 2:
+                    SavedRoutesView()
+                case 3:
+                    ProfileView()
+                default:
+                    HomeView()
             }
 
             // Barra de guias personalizada

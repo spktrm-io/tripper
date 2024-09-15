@@ -31,6 +31,8 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate, MK
     init(completer: MKLocalSearchCompleter) {
         self.completer = completer
         super.init()
+        print("LocationService: Initialized")
+        
         self.completer.delegate = self
 
         // Configuração do Location Manager
@@ -38,9 +40,11 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate, MK
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
+        print("LocationService: Location Manager configured and started updating location")
     }
 
     func update(queryFragment: String) {
+        print("LocationService.update: Updating query fragment to '\(queryFragment)'")
         completer.resultTypes = .pointOfInterest
         completer.queryFragment = queryFragment
     }
@@ -48,8 +52,10 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate, MK
     // MARK: - MKLocalSearchCompleterDelegate
 
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        print("LocationService.completerDidUpdateResults: Received new search completions")
         completions = completer.results.map { completion in
             let mapItem = completion.value(forKey: "_mapItem") as? MKMapItem
+            print("LocationService.completerDidUpdateResults: Completion - Title: \(completion.title), Subtitle: \(completion.subtitle)")
             return .init(
                 title: completion.title,
                 subTitle: completion.subtitle,
@@ -62,6 +68,7 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate, MK
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
+            print("LocationService.locationManager: Updated location to \(location.coordinate)")
             DispatchQueue.main.async {
                 self.currentLocation = location.coordinate
             }
@@ -69,16 +76,20 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate, MK
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("LocationService.locationManager: Authorization status changed to \(status)")
         switch status {
         case .authorizedWhenInUse, .authorizedAlways:
             locationManager.startUpdatingLocation()
+            print("LocationService.locationManager: Started updating location")
         default:
             locationManager.stopUpdatingLocation()
+            print("LocationService.locationManager: Stopped updating location")
         }
     }
 
     // Função de busca permanece a mesma
     func search(with query: String, coordinate: CLLocationCoordinate2D? = nil) async throws -> [SearchResult] {
+        print("LocationService.search: Searching for '\(query)' with coordinate: \(String(describing: coordinate))")
         let mapKitRequest = MKLocalSearch.Request()
         mapKitRequest.naturalLanguageQuery = query
         mapKitRequest.resultTypes = .pointOfInterest
@@ -89,8 +100,13 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate, MK
 
         let response = try await search.start()
 
+        print("LocationService.search: Search completed with \(response.mapItems.count) results")
         return response.mapItems.compactMap { mapItem in
-            guard let location = mapItem.placemark.location?.coordinate else { return nil }
+            guard let location = mapItem.placemark.location?.coordinate else {
+                print("LocationService.search: Failed to get coordinate for a map item")
+                return nil
+            }
+            print("LocationService.search: Found location at \(location)")
             return .init(location: location)
         }
     }

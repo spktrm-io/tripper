@@ -4,7 +4,6 @@ import MapKit
 struct SheetView: View {
     @State private var locationService = LocationService(completer: .init())
     @State private var search: String = ""
-    // 1
     @Binding var searchResults: [SearchResult]
 
     var body: some View {
@@ -13,10 +12,11 @@ struct SheetView: View {
                 Image(systemName: "magnifyingglass")
                 TextField("Search for a restaurant", text: $search)
                     .autocorrectionDisabled()
-                    // 2
                     .onSubmit {
+                        print("SheetView: Search submitted with text '\(search)'")
                         Task {
                             searchResults = (try? await locationService.search(with: search)) ?? []
+                            print("SheetView: Search results updated with \(searchResults.count) items")
                         }
                     }
             }
@@ -26,14 +26,12 @@ struct SheetView: View {
 
             List {
                 ForEach(locationService.completions) { completion in
-                    // 3
                     Button(action: { didTapOnCompletion(completion) }) {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(completion.title)
                                 .font(.headline)
                                 .fontDesign(.rounded)
                             Text(completion.subTitle)
-                            // What can we show?
                             if let url = completion.url {
                                 Link(url.absoluteString, destination: url)
                                     .lineLimit(1)
@@ -46,7 +44,8 @@ struct SheetView: View {
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
         }
-        .onChange(of: search) {
+        .onChange(of: search) { _, newValue in
+            print("SheetView: Search text changed to '\(newValue)'")
             locationService.update(queryFragment: search)
         }
         .padding()
@@ -56,11 +55,14 @@ struct SheetView: View {
         .presentationBackgroundInteraction(.enabled(upThrough: .large))
     }
 
-    // 4
     private func didTapOnCompletion(_ completion: SearchCompletions) {
+        print("SheetView.didTapOnCompletion: Tapped on completion with title '\(completion.title)' and subtitle '\(completion.subTitle)'")
         Task {
             if let singleLocation = try? await locationService.search(with: "\(completion.title) \(completion.subTitle)").first {
                 searchResults = [singleLocation]
+                print("SheetView.didTapOnCompletion: Search results updated with the selected location")
+            } else {
+                print("SheetView.didTapOnCompletion: Failed to find location for the selected completion")
             }
         }
     }
@@ -75,4 +77,3 @@ struct TextFieldGrayBackgroundColor: ViewModifier {
             .foregroundColor(.primary)
     }
 }
-

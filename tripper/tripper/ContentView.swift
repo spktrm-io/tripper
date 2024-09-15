@@ -11,7 +11,6 @@ struct ContentView: View {
     @State private var route: MKRoute?
     @State private var fetchTask: Task<Void, Never>?
 
-
     var body: some View {
         ZStack {
             Map(position: $position, selection: $selectedLocation) {
@@ -46,7 +45,8 @@ struct ContentView: View {
                 }
             }
             .ignoresSafeArea()
-            .onChange(of: selectedLocation) { _, _ in
+            .onChange(of: selectedLocation) { oldValue, newValue in
+                print("ContentView: Selected location changed from \(String(describing: oldValue)) to \(String(describing: newValue))")
                 fetchTask?.cancel()
                 fetchTask = Task {
                     await updateForSelectedLocation()
@@ -54,15 +54,17 @@ struct ContentView: View {
                 isSheetPresented = selectedLocation == nil
             }
             .onChange(of: searchResults) {
+                print("ContentView: Search results updated with \(searchResults.count) items")
                 if let firstResult = searchResults.first, searchResults.count == 1 {
                     selectedLocation = firstResult
+                    print("ContentView: Automatically selected the first search result")
                 }
             }
 
             FloatingButtons(leftAction: {
-                print("Botão esquerdo pressionado")
+                print("ContentView: Left button pressed")
             }, rightAction: {
-                print("Botão direito pressionado")
+                print("ContentView: Right button pressed")
             })
         }
         .sheet(isPresented: $isSheetPresented) {
@@ -71,17 +73,22 @@ struct ContentView: View {
     }
     
     private func updateForSelectedLocation() async {
-        guard let selectedLocation else { return }
+        guard let selectedLocation else {
+            print("ContentView.updateForSelectedLocation: No location selected")
+            return
+        }
         do {
+            print("ContentView.updateForSelectedLocation: Updating for selected location \(selectedLocation)")
             async let sceneResult = fetchScene(for: selectedLocation.location)
             calculateRoute()
             scene = try await sceneResult
         } catch {
-            print("Erro ao atualizar para a localização selecionada: \(error)")
+            print("ContentView.updateForSelectedLocation: Error updating for selected location: \(error)")
         }
     }
 
     private func fetchScene(for coordinate: CLLocationCoordinate2D) async throws -> MKLookAroundScene? {
+        print("ContentView.fetchScene: Fetching scene for coordinate \(coordinate)")
         let lookAroundScene = MKLookAroundSceneRequest(coordinate: coordinate)
         return try await lookAroundScene.scene
     }
@@ -89,8 +96,13 @@ struct ContentView: View {
     private func calculateRoute() {
         // Verifica se temos a localização do usuário e um destino selecionado
         guard let userLocation = locationService.currentLocation,
-              let destinationCoordinate = selectedLocation?.location else { return }
+              let destinationCoordinate = selectedLocation?.location else {
+            print("ContentView.calculateRoute: Missing user location or selected location")
+            return
+        }
 
+        print("ContentView.calculateRoute: Calculating route from \(userLocation) to \(destinationCoordinate)")
+        
         let sourcePlacemark = MKPlacemark(coordinate: userLocation)
         let destinationPlacemark = MKPlacemark(coordinate: destinationCoordinate)
 
@@ -103,10 +115,14 @@ struct ContentView: View {
             let directions = MKDirections(request: request)
             let response = try? await directions.calculate()
             route = response?.routes.first
+            if let route = route {
+                print("ContentView.calculateRoute: Route successfully calculated with \(route.distance) meters")
+            } else {
+                print("ContentView.calculateRoute: Failed to calculate route")
+            }
         }
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

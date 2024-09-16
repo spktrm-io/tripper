@@ -43,7 +43,7 @@ struct HomeView: View {
                 .modifier(TextFieldGrayBackgroundColor())
                 .padding()
                 
-                ToggleButtonsView().padding(.horizontal)
+                ToggleButtonsView()
                 ScrollView(.horizontal, showsIndicators: false) { // Lista horizontal
                     HStack(alignment: .top, spacing: 0) { // Remove o espaçamento padrão
                         ForEach(0..<5) { index in

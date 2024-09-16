@@ -35,7 +35,7 @@ struct ToggleButtonsView: View {
                             )
                     }
                 }
-            }
+            }.padding(.horizontal)
         }
     }
 }

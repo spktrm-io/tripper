@@ -5,13 +5,31 @@ struct HomeView: View {
     @Environment(\.colorScheme) var colorScheme // Access the current color scheme
 
     var body: some View {
+        let logoName: String = colorScheme == .dark ? "tripper-logo-light" : "tripper-logo-dark"
+        let buttonContentColor: Color = colorScheme == .dark ? Color.white : Color.black
+        
         ScrollView(showsIndicators: false) { // Remove a barra de rolagem lateral
             VStack{
-                let logoName: String = colorScheme == .dark ? "tripper-logo-light" : "tripper-logo-dark"
-                Image(logoName) // Substitua pelo nome da imagem no Assets
-                    .resizable()
-                    .aspectRatio(contentMode: .fit) // Ajusta a imagem
-                    .frame(height: 60) // Define a altura da imagem
+                HStack{
+                    Image(logoName) // Substitua pelo nome da imagem no Assets
+                        .resizable()
+                        .aspectRatio(contentMode: .fit) // Ajusta a imagem
+                        .frame(height: 60) // Define a altura da imagem
+                    Spacer()
+                    Button(action: {}) {
+                        Image(systemName: "mappin")
+                        Text("Location")
+                    }
+                    .padding()
+                    .foregroundColor(buttonContentColor)
+                    .fontWeight(.bold)
+                    .cornerRadius(10)
+                    .overlay(
+                       RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+                    )
+                }
+                .padding(.horizontal)
                 
                 HStack {
                     TextField("Where you want to pass?", text: $searchText)

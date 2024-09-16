@@ -5,23 +5,32 @@ struct MainView: View {
     @Environment(\.colorScheme) var colorScheme // Access the current color scheme
 
     var body: some View {
+        let primaryColor: Color = colorScheme == .dark ? Color.white : Color.black
+        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
+        let bottomTabMenuHeight: CGFloat = 110
+        
         ZStack {
             // Mostrar a View correta com base no índice selecionado
             switch selectedIndex {
             case 0:
                 HomeView()
+                    .padding(.bottom, bottomTabMenuHeight)
             case 1:
                 CreateNewRouteView()
+                    .padding(.bottom, bottomTabMenuHeight)
             case 2:
                 SavedRoutesView()
+                    .padding(.bottom, bottomTabMenuHeight)
             case 3:
                 ProfileView()
+                    .padding(.bottom, bottomTabMenuHeight)
             default:
                 HomeView()
+                    .padding(bottomTabMenuHeight)
             }
-            let primaryColor: Color = colorScheme == .dark ? Color.white : Color.black
-            let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
+           
 
+            Spacer()
             // Barra de guias personalizada
             VStack {
                 Spacer()
@@ -94,6 +103,7 @@ struct MainView: View {
                 }
                 .padding()
                 .padding(.bottom, 30)
+                .frame(height: bottomTabMenuHeight)
                 .background(.ultraThinMaterial) // Fundo da barra de guias
             }
         }

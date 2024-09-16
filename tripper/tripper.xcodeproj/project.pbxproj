@@ -13,6 +13,8 @@
 		2C15E7242C9750C200E3726A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15E7232C9750C200E3726A /* ProfileView.swift */; };
 		2C15E7262C97513800E3726A /* CreateNewRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15E7252C97513800E3726A /* CreateNewRouteView.swift */; };
 		2C15E7292C97A0D300E3726A /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15E7282C97A0D300E3726A /* ThemeManager.swift */; };
+		2C15E72B2C97B53B00E3726A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15E72A2C97B53B00E3726A /* CardView.swift */; };
+		2C15E72D2C97B56C00E3726A /* ToggleButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15E72C2C97B56C00E3726A /* ToggleButtonsView.swift */; };
 		2C16CDEC2C7D17900079A75B /* tripperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CDEB2C7D17900079A75B /* tripperApp.swift */; };
 		2C16CDF32C7D17910079A75B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C16CDF22C7D17910079A75B /* Preview Assets.xcassets */; };
 		2C16CDF82C7D17910079A75B /* tripper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CDF62C7D17910079A75B /* tripper.xcdatamodeld */; };
@@ -50,6 +52,8 @@
 		2C15E7232C9750C200E3726A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		2C15E7252C97513800E3726A /* CreateNewRouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewRouteView.swift; sourceTree = "<group>"; };
 		2C15E7282C97A0D300E3726A /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		2C15E72A2C97B53B00E3726A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		2C15E72C2C97B56C00E3726A /* ToggleButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButtonsView.swift; sourceTree = "<group>"; };
 		2C16CDE82C7D17900079A75B /* tripper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tripper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C16CDEB2C7D17900079A75B /* tripperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripperApp.swift; sourceTree = "<group>"; };
 		2C16CDF22C7D17910079A75B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 			children = (
 				2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */,
 				2CFDDB0B2C93B360004B2E53 /* SheetView.swift */,
+				2C15E72A2C97B53B00E3726A /* CardView.swift */,
+				2C15E72C2C97B56C00E3726A /* ToggleButtonsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -335,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C15E72D2C97B56C00E3726A /* ToggleButtonsView.swift in Sources */,
 				2CFDDB0C2C93B360004B2E53 /* SheetView.swift in Sources */,
 				2C15E7202C973C4800E3726A /* MainView.swift in Sources */,
 				2C15E7242C9750C200E3726A /* ProfileView.swift in Sources */,
@@ -342,6 +349,7 @@
 				2CFDDB0A2C93B221004B2E53 /* MapView.swift in Sources */,
 				2C15E7262C97513800E3726A /* CreateNewRouteView.swift in Sources */,
 				2C16CDF82C7D17910079A75B /* tripper.xcdatamodeld in Sources */,
+				2C15E72B2C97B53B00E3726A /* CardView.swift in Sources */,
 				2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */,
 				2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */,
 				2C16CDEC2C7D17900079A75B /* tripperApp.swift in Sources */,

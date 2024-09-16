@@ -4,7 +4,9 @@ struct HomeView: View {
     @State private var searchText: String = "" // Estado para armazenar o texto de pesquisa
     @Environment(\.colorScheme) var colorScheme // Access the current color scheme
     @EnvironmentObject var locationService: LocationService // Use EnvironmentObject
-
+    @State private var searchResults = [SearchResult]()
+    @State private var isSheetPresented: Bool = false
+    
     var body: some View {
         let logoName: String = colorScheme == .dark ? "tripper-logo-light" : "tripper-logo-dark"
         let buttonContentColor: Color = colorScheme == .dark ? Color.white : Color.black
@@ -17,7 +19,9 @@ struct HomeView: View {
                         .aspectRatio(contentMode: .fit) // Ajusta a imagem
                         .frame(height: 60) // Define a altura da imagem
                     Spacer()
-                    Button(action: {}) {
+                    Button(action: {
+                        isSheetPresented = !isSheetPresented
+                    }) {
                         Image(systemName: "mappin")
                         Text(locationService.currentCity ?? "Searching...") // Display the city here
                     }
@@ -33,19 +37,13 @@ struct HomeView: View {
                 .padding(.horizontal)
                 
                 HStack {
+                    Image(systemName: "magnifyingglass")
                     TextField("Where you want to pass?", text: $searchText)
-                        .padding(10)
-                        .background(Color(.clear)) // Fundo da barra de pesquisa
-                        .cornerRadius(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.primary.opacity(0.1), lineWidth: 1)
-                        )
-                        .padding(.horizontal)
                 }
-                .padding(.top)
+                .modifier(TextFieldGrayBackgroundColor())
+                .padding()
                 
-                ToggleButtonsView()
+                ToggleButtonsView().padding(.horizontal)
                 ScrollView(.horizontal, showsIndicators: false) { // Lista horizontal
                     HStack(alignment: .top, spacing: 0) { // Remove o espaçamento padrão
                         ForEach(0..<5) { index in
@@ -54,6 +52,7 @@ struct HomeView: View {
                     }
                     .padding(.leading, 20)
                 }
+                .padding(.vertical)
                 Spacer()
             }
             .padding(.top, 16)
@@ -62,6 +61,9 @@ struct HomeView: View {
             if locationService.currentCity == nil {
                 locationService.startLocationUpdates()
             }
+        }
+        .sheet(isPresented: $isSheetPresented) {
+            SheetSearchCityView(searchResults: $searchResults)
         }
     }
 }

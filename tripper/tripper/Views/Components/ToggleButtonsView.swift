@@ -36,7 +36,6 @@ struct ToggleButtonsView: View {
                     }
                 }
             }
-            .padding()
         }
     }
 }

@@ -24,8 +24,10 @@ struct SearchCompletions: Identifiable {
 class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate, MKLocalSearchCompleterDelegate {
     private let completer: MKLocalSearchCompleter
     private let locationManager = CLLocationManager()
+    private let geocoder = CLGeocoder() // Add CLGeocoder for reverse geocoding
 
     @Published var currentLocation: CLLocationCoordinate2D?
+    @Published var currentCity: String? // Add a published property for the current city
     @Published var completions = [SearchCompletions]()
 
     init(completer: MKLocalSearchCompleter) {
@@ -35,7 +37,7 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate, MK
         
         self.completer.delegate = self
 
-        // Configuração do Location Manager
+        // Configure Location Manager
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
@@ -48,6 +50,11 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate, MK
         completer.resultTypes = .pointOfInterest
         completer.queryFragment = queryFragment
     }
+    
+    func startLocationUpdates() {
+        locationManager.startUpdatingLocation()
+    }
+
 
     // MARK: - MKLocalSearchCompleterDelegate
 
@@ -72,6 +79,7 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate, MK
             DispatchQueue.main.async {
                 self.currentLocation = location.coordinate
             }
+            fetchCity(for: location) // Call the method to fetch the city
         }
     }
 
@@ -87,7 +95,27 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate, MK
         }
     }
 
-    // Função de busca permanece a mesma
+    // MARK: - Fetch City
+    private func fetchCity(for location: CLLocation) {
+        geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
+            guard let self = self else { return }
+            if let error = error {
+                print("LocationService.fetchCity: Error during reverse geocoding - \(error)")
+                return
+            }
+            
+            if let placemark = placemarks?.first, let city = placemark.locality {
+                print("LocationService.fetchCity: Current city - \(city)")
+                DispatchQueue.main.async {
+                    self.currentCity = city
+                }
+            } else {
+                print("LocationService.fetchCity: City not found")
+            }
+        }
+    }
+
+    // MARK: - Search Method
     func search(with query: String, coordinate: CLLocationCoordinate2D? = nil) async throws -> [SearchResult] {
         print("LocationService.search: Searching for '\(query)' with coordinate: \(String(describing: coordinate))")
         let mapKitRequest = MKLocalSearch.Request()

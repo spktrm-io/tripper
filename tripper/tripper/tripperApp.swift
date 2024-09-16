@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct tripperApp: App {
+    @StateObject private var locationService = LocationService(completer: .init())
+
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(locationService) // Provide the LocationService to the environment
+
         }
     }
 }

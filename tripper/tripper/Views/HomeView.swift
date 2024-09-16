@@ -3,6 +3,7 @@ import SwiftUI
 struct HomeView: View {
     @State private var searchText: String = "" // Estado para armazenar o texto de pesquisa
     @Environment(\.colorScheme) var colorScheme // Access the current color scheme
+    @EnvironmentObject var locationService: LocationService // Use EnvironmentObject
 
     var body: some View {
         let logoName: String = colorScheme == .dark ? "tripper-logo-light" : "tripper-logo-dark"
@@ -18,7 +19,7 @@ struct HomeView: View {
                     Spacer()
                     Button(action: {}) {
                         Image(systemName: "mappin")
-                        Text("Location")
+                        Text(locationService.currentCity ?? "Searching...") // Display the city here
                     }
                     .padding()
                     .foregroundColor(buttonContentColor)
@@ -54,7 +55,13 @@ struct HomeView: View {
                     .padding(.leading, 20)
                 }
                 Spacer()
-            }.padding(.top, 10)
+            }
+            .padding(.top, 16)
+        }
+        .onAppear {
+            if locationService.currentCity == nil {
+                locationService.startLocationUpdates()
+            }
         }
     }
 }
@@ -62,5 +69,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(LocationService(completer: .init()))
     }
 }

@@ -6,11 +6,12 @@ struct HomeView: View {
     @EnvironmentObject var locationService: LocationService // Use EnvironmentObject
     @State private var searchResults = [SearchResult]()
     @State private var isSheetPresented: Bool = false
+    let bottomSpacer: CGFloat?
     
     var body: some View {
         let logoName: String = colorScheme == .dark ? "tripper-logo-light" : "tripper-logo-dark"
         let buttonContentColor: Color = colorScheme == .dark ? Color.white : Color.black
-        
+
         ScrollView(showsIndicators: false) { // Remove a barra de rolagem lateral
             VStack{
                 HStack{
@@ -56,6 +57,9 @@ struct HomeView: View {
                 Spacer()
             }
             .padding(.top, 16)
+            Spacer()
+                .frame(minHeight: bottomSpacer)
+                .fixedSize()
         }
         .onAppear {
             if locationService.currentCity == nil {
@@ -70,7 +74,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(bottomSpacer: 110)
             .environmentObject(LocationService(completer: .init()))
     }
 }

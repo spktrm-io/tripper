@@ -10,11 +10,9 @@ struct MainView: View {
         let bottomTabMenuHeight: CGFloat = 110
         
         ZStack {
-            // Mostrar a View correta com base no índice selecionado
             switch selectedIndex {
             case 0:
-                HomeView()
-                    .padding(.bottom, bottomTabMenuHeight)
+                HomeView(bottomSpacer: bottomTabMenuHeight)
             case 1:
                 CreateNewRouteView()
                     .padding(.bottom, bottomTabMenuHeight)
@@ -25,13 +23,9 @@ struct MainView: View {
                 ProfileView()
                     .padding(.bottom, bottomTabMenuHeight)
             default:
-                HomeView()
-                    .padding(bottomTabMenuHeight)
+                HomeView(bottomSpacer: bottomTabMenuHeight)
             }
-           
-
-            Spacer()
-            // Barra de guias personalizada
+               
             VStack {
                 Spacer()
                 HStack {
@@ -104,15 +98,16 @@ struct MainView: View {
                 .padding()
                 .padding(.bottom, 30)
                 .frame(height: bottomTabMenuHeight)
-                .background(.ultraThinMaterial) // Fundo da barra de guias
+                .background(.ultraThinMaterial)
             }
         }
-        .edgesIgnoringSafeArea(.bottom) // Ignora a área segura para cobrir toda a parte inferior da tela
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environmentObject(LocationService(completer: .init()))
     }
 }

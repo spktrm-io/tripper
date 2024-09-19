@@ -9,8 +9,11 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        Text("ProfileView")
-            .font(.largeTitle)
+        VStack{
+            Text("Welcome!")
+                .font(.system(size: 36, weight: .black))
+                .foregroundColor(.primary)
+        }
     }
 }
 

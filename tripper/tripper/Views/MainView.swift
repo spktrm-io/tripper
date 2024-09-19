@@ -34,9 +34,9 @@ struct MainView: View {
                         selectedIndex = 0
                     }) {
                         HStack {
-                            Image(systemName: "house.fill")
+                            Image(systemName: "map.fill")
                             if selectedIndex == 0 { // Exibe o texto apenas se selecionado
-                                Text("Home")
+                                Text("Explore")
                                     .fontWeight(.bold)
                             }
                         }
@@ -52,7 +52,7 @@ struct MainView: View {
                         HStack {
                             Image(systemName: "plus.circle.fill")
                             if selectedIndex == 1 { // Exibe o texto apenas se selecionado
-                                Text("Add trip")
+                                Text("Create")
                                     .fontWeight(.bold)
                             }
                         }

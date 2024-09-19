@@ -1,5 +1,11 @@
 import SwiftUI
 
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
 struct HomeView: View {
     @State private var searchText: String = "" // Estado para armazenar o texto de pesquisa
     @Environment(\.colorScheme) var colorScheme // Access the current color scheme
@@ -46,7 +52,7 @@ struct HomeView: View {
                     }) {
                         HStack {
                             Image(systemName: "safari.fill")
-                            Text("Find")
+                            Text("Discover")
                                 .fontWeight(.bold)
                         }
                         .padding()
@@ -179,12 +185,20 @@ struct HomeView: View {
         .sheet(isPresented: $isSheetPresented) {
             SheetSearchCityView(searchResults: $searchResults)
         }
+        .onTapGesture {
+            UIApplication.shared.endEditing() // Fecha o teclado ao tocar fora do TextField
+        }
+        .gesture(
+            DragGesture().onChanged { _ in
+                UIApplication.shared.endEditing() // Fecha o teclado ao arrastar fora do TextField
+            }
+        )
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(bottomSpacer: 110)
+        MainView()
             .environmentObject(LocationService(completer: .init()))
     }
 }

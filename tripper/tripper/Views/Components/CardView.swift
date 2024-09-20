@@ -22,12 +22,12 @@ struct CardView: View {
         self.description = description
         self.isVertical = isVertical
         self.rating = rating
+        self.cardHeight = UIScreen.main.bounds.height * 0.50
+        
         if isVertical {
             self.cardWidth = UIScreen.main.bounds.width * 0.90
-            self.cardHeight = UIScreen.main.bounds.height * 0.55
         } else {
             self.cardWidth = UIScreen.main.bounds.width * 0.85
-            self.cardHeight = UIScreen.main.bounds.height * 0.55
         }
     }
 

@@ -108,10 +108,11 @@ struct HomeView: View {
                             }
                         }
                         .scrollTargetLayout()
-                        .padding(.leading, 20)
+                        .padding(.leading, 10)
                     }
                     .scrollTargetBehavior(.viewAligned)
                     .padding(.bottom)
+                    .safeAreaPadding(10)
                     
                     Divider()
                         .padding(.vertical)
@@ -128,9 +129,12 @@ struct HomeView: View {
                                 CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)", isVertical: false)
                             }
                         }
-                        .padding(.leading, 20)
+                        .scrollTargetLayout()
+                        .padding(.leading, 10)
                     }
+                    .scrollTargetBehavior(.viewAligned)
                     .padding(.bottom)
+                    .safeAreaPadding(10)
                     
                     Divider()
                         .padding(.vertical)
@@ -147,9 +151,13 @@ struct HomeView: View {
                                 CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)", isVertical: false)
                             }
                         }
-                        .padding(.leading, 20)
+                        .scrollTargetLayout()
+                        .padding(.leading, 10)
                     }
+                    .scrollTargetBehavior(.viewAligned)
                     .padding(.bottom)
+                    .safeAreaPadding(10)
+                    
                 case 1:
                     Divider()
                         .padding(.top)

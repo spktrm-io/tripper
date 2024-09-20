@@ -21,6 +21,7 @@
 		2C16CE022C7D17910079A75B /* tripperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CE012C7D17910079A75B /* tripperTests.swift */; };
 		2C16CE0C2C7D17910079A75B /* tripperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CE0B2C7D17910079A75B /* tripperUITests.swift */; };
 		2C16CE0E2C7D17910079A75B /* tripperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CE0D2C7D17910079A75B /* tripperUITestsLaunchTests.swift */; };
+		2C5344B82C9E138400D06777 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344B72C9E137A00D06777 /* SplashView.swift */; };
 		2CB0C2792C8FD610007C077A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB0C26B2C8FD60F007C077A /* Assets.xcassets */; };
 		2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */; };
 		2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5D7282C933D490069EBB2 /* LocationService.swift */; };
@@ -63,6 +64,8 @@
 		2C16CE072C7D17910079A75B /* tripperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tripperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C16CE0B2C7D17910079A75B /* tripperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripperUITests.swift; sourceTree = "<group>"; };
 		2C16CE0D2C7D17910079A75B /* tripperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripperUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2C5344B42C9E037900D06777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2C5344B72C9E137A00D06777 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		2CB0C26B2C8FD60F007C077A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtons.swift; sourceTree = "<group>"; };
 		2CD5D7282C933D490069EBB2 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationService.swift; path = tripper/Services/LocationService.swift; sourceTree = SOURCE_ROOT; };
@@ -118,6 +121,7 @@
 		2C16CDEA2C7D17900079A75B /* tripper */ = {
 			isa = PBXGroup;
 			children = (
+				2C5344B42C9E037900D06777 /* Info.plist */,
 				2CFDDB082C93B172004B2E53 /* Assets */,
 				2CFDDB072C93B13C004B2E53 /* CoreData */,
 				2CFDDB062C93B121004B2E53 /* Services */,
@@ -168,6 +172,7 @@
 		2CB0C2692C8FD60F007C077A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2C5344B72C9E137A00D06777 /* SplashView.swift */,
 				2CFDDB092C93B221004B2E53 /* MapView.swift */,
 				2CB0C2682C8FD60F007C077A /* Components */,
 				2C15E71D2C9737AD00E3726A /* HomeView.swift */,
@@ -335,6 +340,7 @@
 			files = (
 				2C15E72D2C97B56C00E3726A /* ToggleButtonsView.swift in Sources */,
 				2CFDDB0C2C93B360004B2E53 /* SheetView.swift in Sources */,
+				2C5344B82C9E138400D06777 /* SplashView.swift in Sources */,
 				2C15E7202C973C4800E3726A /* MainView.swift in Sources */,
 				2C15E7242C9750C200E3726A /* ProfileView.swift in Sources */,
 				2C15E71E2C9737AD00E3726A /* HomeView.swift in Sources */,
@@ -513,13 +519,14 @@
 				DEVELOPMENT_TEAM = VCF3DS6BTV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = tripper/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app needs access to your location to provide location-based services.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -544,13 +551,14 @@
 				DEVELOPMENT_TEAM = VCF3DS6BTV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = tripper/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app needs access to your location to provide location-based services.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

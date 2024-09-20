@@ -13,9 +13,8 @@ struct tripperApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            SplashView()
                 .environmentObject(locationService) // Provide the LocationService to the environment
-
         }
     }
 }

@@ -21,7 +21,6 @@ struct MainView: View {
                     .padding(.bottom, bottomTabMenuHeight)
             case 3:
                 ProfileView()
-                    .padding(.bottom, bottomTabMenuHeight)
             default:
                 HomeView(bottomSpacer: bottomTabMenuHeight)
             }

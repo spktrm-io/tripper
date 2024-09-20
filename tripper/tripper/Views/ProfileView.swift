@@ -77,6 +77,138 @@ struct ProfileView: View {
                 Divider()
                     .padding(.vertical)
                 
+                Text("General vision")
+                    .font(.system(size: 20, weight: .black))
+                    .foregroundColor(.primary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                let columns = [
+                    GridItem(.flexible(), spacing: 10),
+                    GridItem(.flexible(), spacing: 10)
+                ]
+
+                LazyVGrid(columns: columns, spacing: 10) {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Image(systemName: "car.fill")
+                                .scaledToFill()
+                                .frame(width: 10, height: 10)
+                            Text("100.000 KM")
+                                .fontWeight(.bold)
+                                .foregroundColor(.primary)
+                                .padding(.leading, 8) // Adiciona espaço entre a imagem e o texto
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        Text("kilometers")
+                            .foregroundColor(.primary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.primary.opacity(0.2), lineWidth: 1)
+                    )
+
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Image(systemName: "road.lanes")
+                                .scaledToFill()
+                                .frame(width: 10, height: 10)
+                            Text("100 routes")
+                                .fontWeight(.bold)
+                                .foregroundColor(.primary)
+                                .padding(.leading, 8) // Adiciona espaço entre a imagem e o texto
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        Text("routes made")
+                            .foregroundColor(.primary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.primary.opacity(0.2), lineWidth: 1)
+                    )
+
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Image(systemName: "medal.fill")
+                                .scaledToFill()
+                                .frame(width: 10, height: 10)
+                            Text("Gold")
+                                .fontWeight(.bold)
+                                .foregroundColor(.primary)
+                                .padding(.leading, 8) // Adiciona espaço entre a imagem e o texto
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        Text("your ranking")
+                            .foregroundColor(.primary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.primary.opacity(0.2), lineWidth: 1)
+                    )
+
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Image(systemName: "text.book.closed.fill")
+                                .scaledToFill()
+                                .frame(width: 10, height: 10)
+                            Text("10 saveds")
+                                .fontWeight(.bold)
+                                .foregroundColor(.primary)
+                                .padding(.leading, 8) // Adiciona espaço entre a imagem e o texto
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        Text("routes saved")
+                            .foregroundColor(.primary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.primary.opacity(0.2), lineWidth: 1)
+                    )
+                }
+                
+                Text("Medals")
+                    .font(.system(size: 20, weight: .black))
+                    .foregroundColor(.primary)
+                    .padding(.top)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+            
+                ScrollView(.horizontal, showsIndicators: false) { // Lista horizontal
+                    HStack(alignment: .center, spacing: 20) { // Remove o espaçamento padrão
+                        ForEach(0..<10) { index in
+                            VStack{
+                                Image("image")
+                                    .resizable()
+                                    .scaledToFill() // Preenche o espaço mantendo a proporção
+                                    .frame(width: 90, height: 90) // Tamanho do avatar
+                                    .clipShape(Circle()) // Torna a imagem circular
+                                    .overlay(
+                                        Circle().stroke(Color.primary.opacity(0.1), lineWidth: 4) // Adiciona uma borda branca
+                                    )
+                                    
+                            }
+                        }
+                    }
+                    .padding(.leading, 20)
+                }
+                .padding(.vertical)
+                .frame(maxWidth: .infinity)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.primary.opacity(0.2), lineWidth: 1)
+                )
+                
                 Spacer()
             case 1:
                 Spacer()

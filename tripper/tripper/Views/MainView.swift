@@ -7,7 +7,7 @@ struct MainView: View {
     var body: some View {
         let primaryColor: Color = colorScheme == .dark ? Color.white : Color.black
         let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
-        let bottomTabMenuHeight: CGFloat = 110
+        let bottomTabMenuHeight: CGFloat = 100
         
         ZStack {
             switch selectedIndex {
@@ -55,6 +55,7 @@ struct MainView: View {
                                     .fontWeight(.bold)
                             }
                         }
+
                         .padding()
                         .background(selectedIndex == 1 ? primaryColor : Color.clear) // Fundo preto quando selecionado
                         .foregroundColor(selectedIndex == 1 ? secondaryColor : primaryColor) // Muda a cor do ícone e do texto

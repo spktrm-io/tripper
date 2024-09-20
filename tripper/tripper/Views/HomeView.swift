@@ -21,7 +21,7 @@ struct HomeView: View {
         let primaryColor: Color = colorScheme == .dark ? Color.white : Color.black
         let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
         
-        ScrollView(showsIndicators: false) { // Remove a barra de rolagem lateral
+        
             VStack{
                 HStack{
                     Image(logoName) // Substitua pelo nome da imagem no Assets
@@ -87,105 +87,101 @@ struct HomeView: View {
                     
                 }
                 .padding(.horizontal)
-                .padding(.top)
                 
-                switch selectedIndex {
-                case 0:
-                    Divider()
-                        .padding(.top)
-                    
-                    Text("Recommended")
-                        .font(.system(size: 30, weight: .black))
-                        .foregroundColor(.primary)
-                        .padding(.top)
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity, alignment: .leading) // Alinha o texto à esquerda
+                Divider() // O divisor agora ocupa toda a largura
+                    .padding(.top, 7)
+                    .padding(.bottom, -10)
+                
+                ScrollView(showsIndicators: false) { // Remove a barra de rolagem lateral
+                   
+                    switch selectedIndex {
+                    case 0:
+                        Text("Recommended")
+                            .font(.system(size: 30, weight: .black))
+                            .foregroundColor(.primary)
+                            .padding([.horizontal, .top])
+                            .frame(maxWidth: .infinity, alignment: .leading) // Alinha o texto à esquerda
 
-                    ScrollView(.horizontal, showsIndicators: false) { // Lista horizontal
-                        HStack(alignment: .top, spacing: 0) { // Remove o espaçamento padrão
+                        ScrollView(.horizontal, showsIndicators: false) { // Lista horizontal
+                            HStack(alignment: .top, spacing: 0) { // Remove o espaçamento padrão
+                                ForEach(0..<5) { index in
+                                    CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)", isVertical: false)
+                                }
+                            }
+                            .scrollTargetLayout()
+                            .padding(.leading, 10)
+                        }
+                        .scrollTargetBehavior(.viewAligned)
+                        .safeAreaPadding(10)
+                        
+                        Divider()
+                            .padding(.vertical)
+                        
+                        Text("Top rated")
+                            .font(.system(size: 30, weight: .black))
+                            .foregroundColor(.primary)
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity, alignment: .leading) // Alinha o texto à esquerda
+
+                        ScrollView(.horizontal, showsIndicators: false) { // Lista horizontal
+                            HStack(alignment: .top, spacing: 0) { // Remove o espaçamento padrão
+                                ForEach(0..<5) { index in
+                                    CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)", isVertical: false)
+                                }
+                            }
+                            .scrollTargetLayout()
+                            .padding(.leading, 10)
+                        }
+                        .scrollTargetBehavior(.viewAligned)
+                        .safeAreaPadding(10)
+                        
+                        Divider()
+                            .padding(.vertical)
+                        
+                        Text("Fastest")
+                            .font(.system(size: 30, weight: .black))
+                            .foregroundColor(.primary)
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity, alignment: .leading) // Alinha o texto à esquerda
+
+                        ScrollView(.horizontal, showsIndicators: false) { // Lista horizontal
+                            HStack(alignment: .top, spacing: 0) { // Remove o espaçamento padrão
+                                ForEach(0..<5) { index in
+                                    CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)", isVertical: false)
+                                }
+                            }
+                            .scrollTargetLayout()
+                            .padding(.leading, 10)
+                        }
+                        .scrollTargetBehavior(.viewAligned)
+                        .padding(.bottom)
+                        .safeAreaPadding(10)
+                        
+                    case 1:
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                            TextField("Where you want to go?", text: $searchText)
+                        }
+                        .modifier(TextFieldGrayBackgroundColor())
+                        .padding()
+                        
+                        ToggleButtonsView()
+                        
+                        VStack(alignment: .leading, spacing: 0) { // Remove o espaçamento padrão
                             ForEach(0..<5) { index in
-                                CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)", isVertical: false)
+                                CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)")
                             }
                         }
-                        .scrollTargetLayout()
-                        .padding(.leading, 10)
-                    }
-                    .scrollTargetBehavior(.viewAligned)
-                    .padding(.bottom)
-                    .safeAreaPadding(10)
-                    
-                    Divider()
                         .padding(.vertical)
-                    
-                    Text("Top rated")
-                        .font(.system(size: 30, weight: .black))
-                        .foregroundColor(.primary)
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity, alignment: .leading) // Alinha o texto à esquerda
-
-                    ScrollView(.horizontal, showsIndicators: false) { // Lista horizontal
-                        HStack(alignment: .top, spacing: 0) { // Remove o espaçamento padrão
-                            ForEach(0..<5) { index in
-                                CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)", isVertical: false)
-                            }
-                        }
-                        .scrollTargetLayout()
-                        .padding(.leading, 10)
+                    default:
+                        Spacer()
                     }
-                    .scrollTargetBehavior(.viewAligned)
-                    .padding(.bottom)
-                    .safeAreaPadding(10)
-                    
-                    Divider()
-                        .padding(.vertical)
-                    
-                    Text("Fastest")
-                        .font(.system(size: 30, weight: .black))
-                        .foregroundColor(.primary)
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity, alignment: .leading) // Alinha o texto à esquerda
-
-                    ScrollView(.horizontal, showsIndicators: false) { // Lista horizontal
-                        HStack(alignment: .top, spacing: 0) { // Remove o espaçamento padrão
-                            ForEach(0..<5) { index in
-                                CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)", isVertical: false)
-                            }
-                        }
-                        .scrollTargetLayout()
-                        .padding(.leading, 10)
-                    }
-                    .scrollTargetBehavior(.viewAligned)
-                    .padding(.bottom)
-                    .safeAreaPadding(10)
-                    
-                case 1:
-                    Divider()
-                        .padding(.top)
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                        TextField("Where you want to go?", text: $searchText)
-                    }
-                    .modifier(TextFieldGrayBackgroundColor())
-                    .padding()
-                    
-                    ToggleButtonsView()
-                    
-                    VStack(alignment: .leading, spacing: 0) { // Remove o espaçamento padrão
-                        ForEach(0..<5) { index in
-                            CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)")
-                        }
-                    }
-                    .padding(.vertical)
-                default:
-                    Spacer()
-                }
             
-                Spacer()
+                    Spacer()
+                        .frame(minHeight: bottomSpacer)
+                        .fixedSize()
             }
-            .padding(.top, 16)
-            Spacer()
-                .frame(minHeight: bottomSpacer)
-                .fixedSize()
+           
         }
         .onAppear {
             if locationService.currentCity == nil {

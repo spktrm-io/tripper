@@ -177,7 +177,7 @@ struct ProfileView: View {
                     HStack(alignment: .center, spacing: 20) { // Remove o espaçamento padrão
                         ForEach(0..<10) { index in
                             VStack{
-                                Image("image")
+                                Image("medal-ship")
                                     .resizable()
                                     .scaledToFill() // Preenche o espaço mantendo a proporção
                                     .frame(width: 90, height: 90) // Tamanho do avatar

@@ -91,12 +91,9 @@ struct ProfileView: View {
                     VStack(alignment: .leading) {
                         HStack {
                             Image(systemName: "car.fill")
-                                .scaledToFill()
-                                .frame(width: 10, height: 10)
                             Text("100.000 KM")
                                 .fontWeight(.bold)
                                 .foregroundColor(.primary)
-                                .padding(.leading, 8) // Adiciona espaço entre a imagem e o texto
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         Text("kilometers")
@@ -107,18 +104,15 @@ struct ProfileView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.primary.opacity(0.2), lineWidth: 1)
+                            .stroke(Color.primary.opacity(0.1), lineWidth: 1)
                     )
 
                     VStack(alignment: .leading) {
                         HStack {
                             Image(systemName: "road.lanes")
-                                .scaledToFill()
-                                .frame(width: 10, height: 10)
                             Text("100 routes")
                                 .fontWeight(.bold)
                                 .foregroundColor(.primary)
-                                .padding(.leading, 8) // Adiciona espaço entre a imagem e o texto
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         Text("routes made")
@@ -129,18 +123,15 @@ struct ProfileView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.primary.opacity(0.2), lineWidth: 1)
+                            .stroke(Color.primary.opacity(0.1), lineWidth: 1)
                     )
 
                     VStack(alignment: .leading) {
                         HStack {
                             Image(systemName: "medal.fill")
-                                .scaledToFill()
-                                .frame(width: 10, height: 10)
                             Text("Gold")
                                 .fontWeight(.bold)
                                 .foregroundColor(.primary)
-                                .padding(.leading, 8) // Adiciona espaço entre a imagem e o texto
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         Text("your ranking")
@@ -151,18 +142,16 @@ struct ProfileView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.primary.opacity(0.2), lineWidth: 1)
+                            .stroke(Color.primary.opacity(0.1), lineWidth: 1)
                     )
 
                     VStack(alignment: .leading) {
                         HStack {
                             Image(systemName: "text.book.closed.fill")
-                                .scaledToFill()
-                                .frame(width: 10, height: 10)
                             Text("10 saveds")
                                 .fontWeight(.bold)
                                 .foregroundColor(.primary)
-                                .padding(.leading, 8) // Adiciona espaço entre a imagem e o texto
+
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         Text("routes saved")
@@ -173,7 +162,7 @@ struct ProfileView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.primary.opacity(0.2), lineWidth: 1)
+                            .stroke(Color.primary.opacity(0.1), lineWidth: 1)
                     )
                 }
                 
@@ -206,11 +195,143 @@ struct ProfileView: View {
                 .frame(maxWidth: .infinity)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.primary.opacity(0.2), lineWidth: 1)
+                        .stroke(Color.primary.opacity(0.1), lineWidth: 1)
                 )
                 
                 Spacer()
             case 1:
+                
+                Text("Personal")
+                    .font(.system(size: 20, weight: .black))
+                    .foregroundColor(.primary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                HStack(alignment: .center) {
+                    Image(systemName: "person")
+                    Text("Account information")
+                        .foregroundColor(.primary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .scaledToFill() // Preenche o espaço mantendo a proporção
+                        .frame(width: 6, height: 6) // Tamanho do avatar
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+                )
+                HStack(alignment: .center) {
+                    Image(systemName: "house.fill")
+                    Text("Address information")
+                        .foregroundColor(.primary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .scaledToFill() // Preenche o espaço mantendo a proporção
+                        .frame(width: 6, height: 6) // Tamanho do avatar
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+                )
+                Text("General")
+                    .font(.system(size: 20, weight: .black))
+                    .foregroundColor(.primary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top)
+                HStack(alignment: .center) {
+                    Image(systemName: "circle.grid.3x3.fill")
+                    Text("Apparence")
+                        .foregroundColor(.primary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .scaledToFill() // Preenche o espaço mantendo a proporção
+                        .frame(width: 6, height: 6) // Tamanho do avatar
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+                )
+                HStack(alignment: .center) {
+                    Image(systemName: "bell.fill")
+                    Text("Notifications")
+                        .foregroundColor(.primary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .scaledToFill() // Preenche o espaço mantendo a proporção
+                        .frame(width: 6, height: 6) // Tamanho do avatar
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+                )
+                Text("Support")
+                    .font(.system(size: 20, weight: .black))
+                    .foregroundColor(.primary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top)
+                HStack(alignment: .center) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                    Text("Report a error")
+                        .foregroundColor(.primary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .scaledToFill() // Preenche o espaço mantendo a proporção
+                        .frame(width: 6, height: 6) // Tamanho do avatar
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+                )
+                HStack(alignment: .center) {
+                    Image(systemName: "questionmark.circle")
+                    Text("FAQ")
+                        .foregroundColor(.primary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .resizable()
+                        .scaledToFill() // Preenche o espaço mantendo a proporção
+                        .frame(width: 6, height: 6) // Tamanho do avatar
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+                )
+                Spacer()
+                Button(action: {
+                    print()
+                }) {
+                    HStack {
+                        
+                        Text("Logout")
+                            .fontWeight(.bold)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity) // O botão ocupa todo o espaço disponível
+                    .background(.red)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                }
                 Spacer()
             default:
                 VStack{

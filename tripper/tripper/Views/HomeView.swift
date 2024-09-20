@@ -107,8 +107,10 @@ struct HomeView: View {
                                 CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)", isVertical: false)
                             }
                         }
+                        .scrollTargetLayout()
                         .padding(.leading, 20)
                     }
+                    .scrollTargetBehavior(.viewAligned)
                     .padding(.bottom)
                     
                     Divider()

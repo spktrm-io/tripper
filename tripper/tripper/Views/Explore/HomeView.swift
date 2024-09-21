@@ -32,8 +32,18 @@ struct HomeView: View {
             }
             .padding(.horizontal)
             
-            TabButtonView(selectedIndex: $selectedIndex, primaryColor: primaryColor, secondaryColor: secondaryColor)
-            
+            HStack {
+                TabButtonView(iconName: "safari.fill", title: "Discover", isSelected: selectedIndex == 0, primaryColor: primaryColor, secondaryColor: secondaryColor) {
+                    selectedIndex = 0
+                }
+
+                Spacer()
+
+                TabButtonView(iconName: "magnifyingglass", title: "Search", isSelected: selectedIndex == 1, primaryColor: primaryColor, secondaryColor: secondaryColor) {
+                    selectedIndex = 1
+                }
+            }
+            .padding(.horizontal)
             Divider()
                 .padding(.top, 7)
                 .padding(.bottom, -10)

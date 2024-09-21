@@ -28,6 +28,9 @@
 		2C5344C02C9F445B00D06777 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344BF2C9F445400D06777 /* DiscoverView.swift */; };
 		2C5344C22C9F446F00D06777 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344C12C9F446F00D06777 /* SearchView.swift */; };
 		2C5344C42C9F448D00D06777 /* LocationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344C32C9F448700D06777 /* LocationButtonView.swift */; };
+		2C5344C62C9F453400D06777 /* BottomTabBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344C52C9F452900D06777 /* BottomTabBarButtonView.swift */; };
+		2C5344C82C9F455A00D06777 /* BottomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344C72C9F454900D06777 /* BottomTabBarView.swift */; };
+		2C5344CA2C9F457500D06777 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344C92C9F456D00D06777 /* MainContentView.swift */; };
 		2CB0C2792C8FD610007C077A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB0C26B2C8FD60F007C077A /* Assets.xcassets */; };
 		2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */; };
 		2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5D7282C933D490069EBB2 /* LocationService.swift */; };
@@ -78,6 +81,9 @@
 		2C5344BF2C9F445400D06777 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		2C5344C12C9F446F00D06777 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		2C5344C32C9F448700D06777 /* LocationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButtonView.swift; sourceTree = "<group>"; };
+		2C5344C52C9F452900D06777 /* BottomTabBarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBarButtonView.swift; sourceTree = "<group>"; };
+		2C5344C72C9F454900D06777 /* BottomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBarView.swift; sourceTree = "<group>"; };
+		2C5344C92C9F456D00D06777 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
 		2CB0C26B2C8FD60F007C077A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtons.swift; sourceTree = "<group>"; };
 		2CD5D7282C933D490069EBB2 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationService.swift; path = tripper/Services/LocationService.swift; sourceTree = SOURCE_ROOT; };
@@ -172,6 +178,8 @@
 		2CB0C2682C8FD60F007C077A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2C5344C72C9F454900D06777 /* BottomTabBarView.swift */,
+				2C5344C52C9F452900D06777 /* BottomTabBarButtonView.swift */,
 				2C5344BD2C9F442F00D06777 /* HorizontalCardListView.swift */,
 				2C5344BB2C9F441900D06777 /* TabButtonView.swift */,
 				2C5344B92C9F43FC00D06777 /* SearchBarView.swift */,
@@ -187,6 +195,7 @@
 		2CB0C2692C8FD60F007C077A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2C5344C92C9F456D00D06777 /* MainContentView.swift */,
 				2C5344C32C9F448700D06777 /* LocationButtonView.swift */,
 				2C5344C12C9F446F00D06777 /* SearchView.swift */,
 				2C5344BF2C9F445400D06777 /* DiscoverView.swift */,
@@ -359,6 +368,7 @@
 				2C15E72D2C97B56C00E3726A /* ToggleButtonsView.swift in Sources */,
 				2CFDDB0C2C93B360004B2E53 /* SheetView.swift in Sources */,
 				2C5344B82C9E138400D06777 /* SplashView.swift in Sources */,
+				2C5344C62C9F453400D06777 /* BottomTabBarButtonView.swift in Sources */,
 				2C15E7202C973C4800E3726A /* MainView.swift in Sources */,
 				2C5344BA2C9F440300D06777 /* SearchBarView.swift in Sources */,
 				2C15E7242C9750C200E3726A /* ProfileView.swift in Sources */,
@@ -366,6 +376,7 @@
 				2C15E71E2C9737AD00E3726A /* HomeView.swift in Sources */,
 				2C5344C42C9F448D00D06777 /* LocationButtonView.swift in Sources */,
 				2CFDDB0A2C93B221004B2E53 /* MapView.swift in Sources */,
+				2C5344CA2C9F457500D06777 /* MainContentView.swift in Sources */,
 				2C5344C02C9F445B00D06777 /* DiscoverView.swift in Sources */,
 				2C15E7262C97513800E3726A /* CreateNewRouteView.swift in Sources */,
 				2C16CDF82C7D17910079A75B /* tripper.xcdatamodeld in Sources */,
@@ -376,6 +387,7 @@
 				2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */,
 				2C16CDEC2C7D17900079A75B /* tripperApp.swift in Sources */,
 				2C15E7222C97504900E3726A /* SavedRoutes.swift in Sources */,
+				2C5344C82C9F455A00D06777 /* BottomTabBarView.swift in Sources */,
 				2C15E7312C97C08300E3726A /* SheetSearchCityView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

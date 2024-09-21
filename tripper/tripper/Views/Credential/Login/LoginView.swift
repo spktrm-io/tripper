@@ -38,7 +38,7 @@ public struct LoginView: View {
             .foregroundColor(.white)
             .cornerRadius(10)
         }
-        .padding([.horizontal])
+        .padding([.horizontal, .top])
         
         Divider().padding()
         

@@ -35,8 +35,12 @@
 		2C5344CE2C9F46BA00D06777 /* StatisticsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344CD2C9F46B800D06777 /* StatisticsGridView.swift */; };
 		2C5344D02C9F46DA00D06777 /* MedalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344CF2C9F46CF00D06777 /* MedalsView.swift */; };
 		2C5344D22C9F46FD00D06777 /* SettingsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344D12C9F46F400D06777 /* SettingsSectionView.swift */; };
-		2C5344ED2C9F4A5B00D06777 /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344EC2C9F4A5400D06777 /* SigninView.swift */; };
+		2C5344ED2C9F4A5B00D06777 /* StepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344EC2C9F4A5400D06777 /* StepperView.swift */; };
 		2C5344EF2C9F4A6300D06777 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344EE2C9F4A5E00D06777 /* LoginView.swift */; };
+		2C5344F52C9F534400D06777 /* FullNameStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344F42C9F533F00D06777 /* FullNameStepView.swift */; };
+		2C5344F92C9F535000D06777 /* EmailStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344F82C9F534E00D06777 /* EmailStepView.swift */; };
+		2C5344FB2C9F55F400D06777 /* FinalStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344FA2C9F55EE00D06777 /* FinalStepView.swift */; };
+		2C5344FD2C9F736200D06777 /* PasswordStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344FC2C9F735B00D06777 /* PasswordStepView.swift */; };
 		2CB0C2792C8FD610007C077A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB0C26B2C8FD60F007C077A /* Assets.xcassets */; };
 		2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */; };
 		2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5D7282C933D490069EBB2 /* LocationService.swift */; };
@@ -94,8 +98,12 @@
 		2C5344CD2C9F46B800D06777 /* StatisticsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsGridView.swift; sourceTree = "<group>"; };
 		2C5344CF2C9F46CF00D06777 /* MedalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedalsView.swift; sourceTree = "<group>"; };
 		2C5344D12C9F46F400D06777 /* SettingsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSectionView.swift; sourceTree = "<group>"; };
-		2C5344EC2C9F4A5400D06777 /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
+		2C5344EC2C9F4A5400D06777 /* StepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperView.swift; sourceTree = "<group>"; };
 		2C5344EE2C9F4A5E00D06777 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2C5344F42C9F533F00D06777 /* FullNameStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullNameStepView.swift; sourceTree = "<group>"; };
+		2C5344F82C9F534E00D06777 /* EmailStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailStepView.swift; sourceTree = "<group>"; };
+		2C5344FA2C9F55EE00D06777 /* FinalStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepView.swift; sourceTree = "<group>"; };
+		2C5344FC2C9F735B00D06777 /* PasswordStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStepView.swift; sourceTree = "<group>"; };
 		2CB0C26B2C8FD60F007C077A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtons.swift; sourceTree = "<group>"; };
 		2CD5D7282C933D490069EBB2 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationService.swift; path = tripper/Services/LocationService.swift; sourceTree = SOURCE_ROOT; };
@@ -366,9 +374,21 @@
 		2C5344EB2C9F4A4600D06777 /* Signin */ = {
 			isa = PBXGroup;
 			children = (
-				2C5344EC2C9F4A5400D06777 /* SigninView.swift */,
+				2C5344F32C9F533000D06777 /* Templates */,
+				2C5344EC2C9F4A5400D06777 /* StepperView.swift */,
 			);
 			path = Signin;
+			sourceTree = "<group>";
+		};
+		2C5344F32C9F533000D06777 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				2C5344FC2C9F735B00D06777 /* PasswordStepView.swift */,
+				2C5344FA2C9F55EE00D06777 /* FinalStepView.swift */,
+				2C5344F82C9F534E00D06777 /* EmailStepView.swift */,
+				2C5344F42C9F533F00D06777 /* FullNameStepView.swift */,
+			);
+			path = Templates;
 			sourceTree = "<group>";
 		};
 		2CB0C2682C8FD60F007C077A /* Components */ = {
@@ -556,7 +576,10 @@
 				2C5344B82C9E138400D06777 /* SplashView.swift in Sources */,
 				2C5344C62C9F453400D06777 /* BottomTabBarButtonView.swift in Sources */,
 				2C15E7202C973C4800E3726A /* MainView.swift in Sources */,
+				2C5344FD2C9F736200D06777 /* PasswordStepView.swift in Sources */,
+				2C5344F92C9F535000D06777 /* EmailStepView.swift in Sources */,
 				2C5344BA2C9F440300D06777 /* SearchBarView.swift in Sources */,
+				2C5344FB2C9F55F400D06777 /* FinalStepView.swift in Sources */,
 				2C15E7242C9750C200E3726A /* ProfileView.swift in Sources */,
 				2C5344C22C9F446F00D06777 /* SearchView.swift in Sources */,
 				2C5344CC2C9F46A700D06777 /* ProfileSectionView.swift in Sources */,
@@ -575,7 +598,8 @@
 				2C15E72B2C97B53B00E3726A /* CardView.swift in Sources */,
 				2C5344BC2C9F441A00D06777 /* TabButtonView.swift in Sources */,
 				2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */,
-				2C5344ED2C9F4A5B00D06777 /* SigninView.swift in Sources */,
+				2C5344ED2C9F4A5B00D06777 /* StepperView.swift in Sources */,
+				2C5344F52C9F534400D06777 /* FullNameStepView.swift in Sources */,
 				2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */,
 				2C16CDEC2C7D17900079A75B /* tripperApp.swift in Sources */,
 				2C15E7222C97504900E3726A /* SavedRoutes.swift in Sources */,

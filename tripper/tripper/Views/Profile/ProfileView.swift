@@ -10,7 +10,8 @@ import SwiftUI
 struct ProfileView: View {
     @State private var selectedIndex: Int = 0
     @Environment(\.colorScheme) var colorScheme
-    
+    let bottomSpacer: CGFloat?
+
     var body: some View {
         let primaryColor: Color = colorScheme == .dark ? Color.white : Color.black
        
@@ -28,12 +29,15 @@ struct ProfileView: View {
                     }
                 }
                 
-                ScrollView {
+                ScrollView (showsIndicators: false){
                     if selectedIndex == 0 {
                         ProfileSectionView(primaryColor: primaryColor)
                     } else {
                         SettingsSectionView(primaryColor: primaryColor)
                     }
+                    Spacer()
+                        .frame(minHeight: bottomSpacer)
+                        .fixedSize()
                 }
             }
             .padding()
@@ -43,6 +47,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(bottomSpacer: 100)
     }
 }

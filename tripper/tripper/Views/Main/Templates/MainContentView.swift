@@ -23,7 +23,7 @@ struct MainContentView: View {
                 SavedRoutesView()
                     .padding(.bottom, bottomTabMenuHeight)
             case 3:
-                ProfileView()
+                ProfileView(bottomSpacer: bottomTabMenuHeight)
             default:
                 HomeView(bottomSpacer: bottomTabMenuHeight)
             }

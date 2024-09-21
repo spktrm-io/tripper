@@ -14,29 +14,30 @@ struct ProfileView: View {
     var body: some View {
         let primaryColor: Color = colorScheme == .dark ? Color.white : Color.black
        
-
          let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
         
-        VStack {
-            HStack {
-                TabButtonView(iconName: "staroflife.fill", title: "Me", isSelected: selectedIndex == 0, primaryColor: primaryColor, secondaryColor: secondaryColor) {
-                    selectedIndex = 0
+        NavigationView{
+            VStack {
+                HStack {
+                    TabButtonView(iconName: "staroflife.fill", title: "Me", isSelected: selectedIndex == 0, primaryColor: primaryColor, secondaryColor: secondaryColor) {
+                        selectedIndex = 0
+                    }
+                    Spacer()
+                    TabButtonView(iconName: "gear", title: "Settings", isSelected: selectedIndex == 1, primaryColor: primaryColor, secondaryColor: secondaryColor) {
+                        selectedIndex = 1
+                    }
                 }
-                Spacer()
-                TabButtonView(iconName: "gear", title: "Settings", isSelected: selectedIndex == 1, primaryColor: primaryColor, secondaryColor: secondaryColor) {
-                    selectedIndex = 1
+                
+                ScrollView {
+                    if selectedIndex == 0 {
+                        ProfileSectionView(primaryColor: primaryColor)
+                    } else {
+                        SettingsSectionView(primaryColor: primaryColor)
+                    }
                 }
             }
-            
-            ScrollView {
-                if selectedIndex == 0 {
-                    ProfileSectionView(primaryColor: primaryColor)
-                } else {
-                    SettingsSectionView(primaryColor: primaryColor)
-                }
-            }
+            .padding()
         }
-        .padding()
     }
 }
 

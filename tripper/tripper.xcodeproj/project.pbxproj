@@ -201,6 +201,7 @@
 				2C5344DC2C9F480800D06777 /* Components */,
 				2C5344DB2C9F47F600D06777 /* Templates */,
 				2C15E7232C9750C200E3726A /* ProfileView.swift */,
+				2C5344E92C9F4A3800D06777 /* Credential */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -405,7 +406,6 @@
 		2CB0C2692C8FD60F007C077A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2C5344E92C9F4A3800D06777 /* Credential */,
 				2C5344E12C9F489F00D06777 /* Map */,
 				2C5344E02C9F488400D06777 /* Main */,
 				2C5344D72C9F47BA00D06777 /* Create */,

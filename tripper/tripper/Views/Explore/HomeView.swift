@@ -49,14 +49,11 @@ struct HomeView: View {
                 .padding(.bottom, -10)
             
             if selectedIndex == 0 {
-                DiscoverView()
+                DiscoverView(bottomSpacer: bottomSpacer)
             } else {
-                SearchView(searchText: $searchText)
+                SearchView(searchText: $searchText, bottomSpacer: bottomSpacer)
             }
-            
-            Spacer()
-                .frame(minHeight: bottomSpacer)
-                .fixedSize()
+           
         }
         .onAppear {
             if locationService.currentCity == nil {

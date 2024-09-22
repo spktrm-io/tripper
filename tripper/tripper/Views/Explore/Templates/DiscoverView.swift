@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DiscoverView: View {
+    let bottomSpacer: CGFloat?
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             HorizontalCardListView(title: "Recommended")
@@ -15,6 +17,10 @@ struct DiscoverView: View {
             HorizontalCardListView(title: "Top rated")
             Divider().padding(.vertical)
             HorizontalCardListView(title: "Fastest")
+            
+            Spacer()
+                .frame(minHeight: bottomSpacer)
+                .fixedSize()
         }
     }
 }

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SearchView: View {
     @Binding var searchText: String
-    
+    let bottomSpacer: CGFloat?
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             SearchBarView(searchText: $searchText)
@@ -21,6 +22,10 @@ struct SearchView: View {
                 }
             }
             .padding(.vertical)
+            
+            Spacer()
+                .frame(minHeight: bottomSpacer)
+                .fixedSize()
         }
     }
 }

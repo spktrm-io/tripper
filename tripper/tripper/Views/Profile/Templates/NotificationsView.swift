@@ -9,8 +9,10 @@ import SwiftUI
 
 struct NotificationsView: View {
     @Environment(\.presentationMode) var presentationMode
-    
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
+        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
         VStack {
             Text("Notifications Settings Screen")
                 .font(.largeTitle)
@@ -29,7 +31,7 @@ struct NotificationsView: View {
                     }
                     .padding()
                     .background(Color.primary)
-                    .foregroundColor(.white)
+                    .foregroundColor(secondaryColor)
                     .cornerRadius(10)
                 }
             }

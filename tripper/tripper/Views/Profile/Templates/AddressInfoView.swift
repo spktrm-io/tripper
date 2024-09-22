@@ -10,7 +10,8 @@ import SwiftUI
 struct AddressInfoView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var searchText: String = ""
-    
+    @Environment(\.colorScheme) var colorScheme
+
     init() {
        // Personaliza a aparência da UINavigationBar para torná-la transparente
        let appearance = UINavigationBarAppearance()
@@ -22,6 +23,7 @@ struct AddressInfoView: View {
    }
     
     var body: some View {
+        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
         ScrollView (showsIndicators: false){
             VStack {
                 Text("Address information")
@@ -77,7 +79,7 @@ struct AddressInfoView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.primary)
-                    .foregroundColor(.white)
+                    .foregroundColor(secondaryColor)
                     .cornerRadius(10)
                 }
                 .padding([.horizontal, .top])
@@ -99,7 +101,7 @@ struct AddressInfoView: View {
                         }
                         .padding()
                         .background(Color.primary)
-                        .foregroundColor(.white)
+                        .foregroundColor(secondaryColor)
                         .cornerRadius(10)
                     }
                 }

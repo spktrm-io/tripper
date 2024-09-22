@@ -41,6 +41,13 @@
 		2C5344F92C9F535000D06777 /* EmailStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344F82C9F534E00D06777 /* EmailStepView.swift */; };
 		2C5344FB2C9F55F400D06777 /* FinalStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344FA2C9F55EE00D06777 /* FinalStepView.swift */; };
 		2C5344FD2C9F736200D06777 /* PasswordStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344FC2C9F735B00D06777 /* PasswordStepView.swift */; };
+		2C5344FF2C9FC3E700D06777 /* AppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344FE2C9FC3DE00D06777 /* AppearanceView.swift */; };
+		2C5345012C9FC3EC00D06777 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5345002C9FC3EA00D06777 /* NotificationsView.swift */; };
+		2C5345032C9FC44500D06777 /* ReportErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5345022C9FC43E00D06777 /* ReportErrorView.swift */; };
+		2C5345052C9FC46000D06777 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5345042C9FC45B00D06777 /* FAQView.swift */; };
+		2C5345072C9FC49200D06777 /* AddressInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5345062C9FC48100D06777 /* AddressInfoView.swift */; };
+		2C5345092C9FC4DB00D06777 /* PasswordInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5345082C9FC4B100D06777 /* PasswordInfoView.swift */; };
+		2C53450B2C9FC4FA00D06777 /* AccountInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53450A2C9FC4F500D06777 /* AccountInfoView.swift */; };
 		2CB0C2792C8FD610007C077A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB0C26B2C8FD60F007C077A /* Assets.xcassets */; };
 		2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */; };
 		2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5D7282C933D490069EBB2 /* LocationService.swift */; };
@@ -104,6 +111,13 @@
 		2C5344F82C9F534E00D06777 /* EmailStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailStepView.swift; sourceTree = "<group>"; };
 		2C5344FA2C9F55EE00D06777 /* FinalStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalStepView.swift; sourceTree = "<group>"; };
 		2C5344FC2C9F735B00D06777 /* PasswordStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStepView.swift; sourceTree = "<group>"; };
+		2C5344FE2C9FC3DE00D06777 /* AppearanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceView.swift; sourceTree = "<group>"; };
+		2C5345002C9FC3EA00D06777 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		2C5345022C9FC43E00D06777 /* ReportErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportErrorView.swift; sourceTree = "<group>"; };
+		2C5345042C9FC45B00D06777 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
+		2C5345062C9FC48100D06777 /* AddressInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInfoView.swift; sourceTree = "<group>"; };
+		2C5345082C9FC4B100D06777 /* PasswordInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInfoView.swift; sourceTree = "<group>"; };
+		2C53450A2C9FC4F500D06777 /* AccountInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoView.swift; sourceTree = "<group>"; };
 		2CB0C26B2C8FD60F007C077A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtons.swift; sourceTree = "<group>"; };
 		2CD5D7282C933D490069EBB2 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationService.swift; path = tripper/Services/LocationService.swift; sourceTree = SOURCE_ROOT; };
@@ -262,6 +276,13 @@
 		2C5344DB2C9F47F600D06777 /* Templates */ = {
 			isa = PBXGroup;
 			children = (
+				2C53450A2C9FC4F500D06777 /* AccountInfoView.swift */,
+				2C5345082C9FC4B100D06777 /* PasswordInfoView.swift */,
+				2C5345062C9FC48100D06777 /* AddressInfoView.swift */,
+				2C5345042C9FC45B00D06777 /* FAQView.swift */,
+				2C5345022C9FC43E00D06777 /* ReportErrorView.swift */,
+				2C5345002C9FC3EA00D06777 /* NotificationsView.swift */,
+				2C5344FE2C9FC3DE00D06777 /* AppearanceView.swift */,
 				2C5344D12C9F46F400D06777 /* SettingsSectionView.swift */,
 				2C5344CB2C9F46A100D06777 /* ProfileSectionView.swift */,
 			);
@@ -573,10 +594,12 @@
 			files = (
 				2C15E72D2C97B56C00E3726A /* ToggleButtonsView.swift in Sources */,
 				2CFDDB0C2C93B360004B2E53 /* SheetView.swift in Sources */,
+				2C53450B2C9FC4FA00D06777 /* AccountInfoView.swift in Sources */,
 				2C5344B82C9E138400D06777 /* SplashView.swift in Sources */,
 				2C5344C62C9F453400D06777 /* BottomTabBarButtonView.swift in Sources */,
 				2C15E7202C973C4800E3726A /* MainView.swift in Sources */,
 				2C5344FD2C9F736200D06777 /* PasswordStepView.swift in Sources */,
+				2C5345032C9FC44500D06777 /* ReportErrorView.swift in Sources */,
 				2C5344F92C9F535000D06777 /* EmailStepView.swift in Sources */,
 				2C5344BA2C9F440300D06777 /* SearchBarView.swift in Sources */,
 				2C5344FB2C9F55F400D06777 /* FinalStepView.swift in Sources */,
@@ -589,21 +612,26 @@
 				2C5344D02C9F46DA00D06777 /* MedalsView.swift in Sources */,
 				2C5344D22C9F46FD00D06777 /* SettingsSectionView.swift in Sources */,
 				2C5344CA2C9F457500D06777 /* MainContentView.swift in Sources */,
+				2C5345092C9FC4DB00D06777 /* PasswordInfoView.swift in Sources */,
 				2C5344CE2C9F46BA00D06777 /* StatisticsGridView.swift in Sources */,
 				2C5344C02C9F445B00D06777 /* DiscoverView.swift in Sources */,
 				2C15E7262C97513800E3726A /* CreateNewRouteView.swift in Sources */,
 				2C5344EF2C9F4A6300D06777 /* LoginView.swift in Sources */,
 				2C16CDF82C7D17910079A75B /* tripper.xcdatamodeld in Sources */,
 				2C5344BE2C9F443100D06777 /* HorizontalCardListView.swift in Sources */,
+				2C5344FF2C9FC3E700D06777 /* AppearanceView.swift in Sources */,
 				2C15E72B2C97B53B00E3726A /* CardView.swift in Sources */,
 				2C5344BC2C9F441A00D06777 /* TabButtonView.swift in Sources */,
 				2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */,
+				2C5345052C9FC46000D06777 /* FAQView.swift in Sources */,
 				2C5344ED2C9F4A5B00D06777 /* StepperView.swift in Sources */,
 				2C5344F52C9F534400D06777 /* FullNameStepView.swift in Sources */,
+				2C5345012C9FC3EC00D06777 /* NotificationsView.swift in Sources */,
 				2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */,
 				2C16CDEC2C7D17900079A75B /* tripperApp.swift in Sources */,
 				2C15E7222C97504900E3726A /* SavedRoutes.swift in Sources */,
 				2C5344C82C9F455A00D06777 /* BottomTabBarView.swift in Sources */,
+				2C5345072C9FC49200D06777 /* AddressInfoView.swift in Sources */,
 				2C15E7312C97C08300E3726A /* SheetSearchCityView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -40,7 +40,7 @@ struct ProfileView: View {
                         .fixedSize()
                 }
             }
-            .padding()
+            .padding(.horizontal)
         }
     }
 }

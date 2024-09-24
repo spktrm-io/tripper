@@ -53,6 +53,7 @@ struct HomeView: View {
             } else {
                 SearchView(searchText: $searchText, bottomSpacer: bottomSpacer)
             }
+            
            
         }
         .onAppear {

@@ -17,15 +17,15 @@ struct CardView: View {
     let cardWidth: CGFloat
     let cardHeight: CGFloat
 
-    init(title: String, description: String, isVertical: Bool = true, rating: String? = "0.0") {
+    init(title: String, description: String, isVertical: Bool = true, rating: String? = "0.0", cardHeight: CGFloat = UIScreen.main.bounds.height * 0.50, cardWidth: CGFloat = UIScreen.main.bounds.width * 0.90) {
         self.title = title
         self.description = description
         self.isVertical = isVertical
         self.rating = rating
-        self.cardHeight = UIScreen.main.bounds.height * 0.50
+        self.cardHeight = cardHeight
         
         if isVertical {
-            self.cardWidth = UIScreen.main.bounds.width * 0.90
+            self.cardWidth = cardWidth
         } else {
             self.cardWidth = UIScreen.main.bounds.width * 0.85
         }

@@ -11,16 +11,35 @@ struct DiscoverView: View {
     let bottomSpacer: CGFloat?
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            HorizontalCardListView(title: "Recommended")
-            Divider().padding(.vertical)
-            HorizontalCardListView(title: "Top rated")
-            Divider().padding(.vertical)
-            HorizontalCardListView(title: "Fastest")
-            
-            Spacer()
-                .frame(minHeight: bottomSpacer)
-                .fixedSize()
+        GeometryReader { geometry in
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 0) {
+                    let availableHeight = geometry.size.height - 100
+                    
+                    VStack(spacing: 0){
+                        HorizontalCardListView(title: "Recommended")
+                        Spacer()
+                        Divider()
+                    }.frame(height: availableHeight)
+                    
+                    VStack(spacing: 0) {
+                        HorizontalCardListView(title: "Recommended")
+                        Spacer()
+                        Divider()
+                    }.frame(height: availableHeight)
+                    
+                    VStack(spacing: 0) {
+                        HorizontalCardListView(title: "Recommended")
+                        Spacer()
+                        Divider()
+                    }.frame(height: availableHeight)
+                }
+                
+                
+                Spacer()
+                    .frame(minHeight: bottomSpacer)
+                    .fixedSize()
+            }
         }
     }
 }

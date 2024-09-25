@@ -69,5 +69,5 @@ public struct FullNameStepView: View {
 }
 
 #Preview {
-    FullNameStepView(fullName: .constant(""), nextAction: {}, previousAction: {})
+    FullNameStepView(fullName: .constant(""), nextAction: {}, selectedIndex: .constant(0))
 }

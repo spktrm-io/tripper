@@ -12,8 +12,11 @@ public struct LoginView: View {
     @State var password: String = ""
     @Binding var selectedIndex: Int
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false // Estado de login
+    @Environment(\.colorScheme) var colorScheme
 
     public var body: some View {
+        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
+
         VStack(){
             Text("Login")
                 .font(.system(size: 30, weight: .black))
@@ -41,7 +44,7 @@ public struct LoginView: View {
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(Color.primary)
-                .foregroundColor(.white)
+                .foregroundColor(secondaryColor)
                 .cornerRadius(10)
             }
             .padding([.horizontal, .top])
@@ -104,7 +107,7 @@ public struct LoginView: View {
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(Color.primary)
-                .foregroundColor(.white)
+                .foregroundColor(secondaryColor)
                 .cornerRadius(10)
             }
             .padding([.horizontal])

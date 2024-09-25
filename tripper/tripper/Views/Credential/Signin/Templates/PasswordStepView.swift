@@ -12,8 +12,11 @@ public struct PasswordStepView: View {
     @Binding var confirmPassword: String
     var nextAction: () -> Void
     var previousAction: () -> Void
-    
+    @Environment(\.colorScheme) var colorScheme
+
     public var body: some View {
+        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
+
         VStack(alignment: .leading) {
             Text("Password")
                 .font(.system(size: 30, weight: .black))
@@ -45,7 +48,7 @@ public struct PasswordStepView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.primary)
-                    .foregroundColor(.white)
+                    .foregroundColor(secondaryColor)
                     .cornerRadius(10)
                 }
                 .padding([.leading, .top])
@@ -60,7 +63,7 @@ public struct PasswordStepView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.primary)
-                    .foregroundColor(.white)
+                    .foregroundColor(secondaryColor)
                     .cornerRadius(10)
                 }
                 .padding([.trailing, .top])

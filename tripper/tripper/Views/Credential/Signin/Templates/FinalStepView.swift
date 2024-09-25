@@ -12,8 +12,11 @@ import SwiftUI
 public struct FinalStepView: View {
     @Binding var selectedIndex: Int // Adicionando o Binding para o controle de navegação
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false // Estado de login
-
+    @Environment(\.colorScheme) var colorScheme
+    
     public var body: some View {
+        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
+
         VStack(alignment: .leading) {
             Text("Final Step")
                 .font(.system(size: 30, weight: .black))
@@ -22,8 +25,8 @@ public struct FinalStepView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             Text("You have successfully completed your registration!")
-                .font(.title2)
                 .foregroundColor(.primary)
+                .fontWeight(.bold)
                 .padding(.horizontal)
                 .padding(.vertical, 20)
             
@@ -39,7 +42,7 @@ public struct FinalStepView: View {
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(Color.primary)
-                .foregroundColor(.white)
+                .foregroundColor(secondaryColor)
                 .cornerRadius(10)
             }
             .padding([.horizontal, .top])

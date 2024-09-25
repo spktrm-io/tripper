@@ -12,8 +12,12 @@ public struct EmailStepView: View {
     @Binding var confirmEmail: String
     var nextAction: () -> Void
     var previousAction: () -> Void
+    @Environment(\.colorScheme) var colorScheme
+
     
     public var body: some View {
+        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
+
         VStack(alignment: .leading) {
             Text("Email")
                 .font(.system(size: 30, weight: .black))
@@ -51,7 +55,7 @@ public struct EmailStepView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.primary)
-                    .foregroundColor(.white)
+                    .foregroundColor(secondaryColor)
                     .cornerRadius(10)
                 }
                 .padding([.leading, .top])
@@ -66,7 +70,7 @@ public struct EmailStepView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.primary)
-                    .foregroundColor(.white)
+                    .foregroundColor(secondaryColor)
                     .cornerRadius(10)
                 }
                 .padding([.trailing, .top])

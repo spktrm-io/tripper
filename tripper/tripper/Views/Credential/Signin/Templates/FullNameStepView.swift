@@ -11,8 +11,12 @@ public struct FullNameStepView: View {
     @Binding var fullName: String
     var nextAction: () -> Void
     @Binding var selectedIndex: Int // Controle da navegação
+    @Environment(\.colorScheme) var colorScheme
 
+    
     public var body: some View {
+        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
+
         VStack(alignment: .leading) {
             Text("Full Name")
                 .font(.system(size: 30, weight: .black))
@@ -58,7 +62,7 @@ public struct FullNameStepView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.primary)
-                    .foregroundColor(.white)
+                    .foregroundColor(secondaryColor)
                     .cornerRadius(10)
                 }
                 .padding([.trailing, .top])

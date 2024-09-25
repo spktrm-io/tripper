@@ -32,59 +32,61 @@ struct CardView: View {
     }
 
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
-        
-            Image("andes")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: cardWidth, height: cardHeight) // Define o tamanho da imagem
-                .clipped()
-            
-            VStack {
-                HStack {
-                    Text(duration)
-                        .font(.system(size: 20, weight: .black))
-                        .foregroundColor(.white)
-                }
-                .padding()
-                .background(.ultraThinMaterial)
-                .cornerRadius(10)
-                .padding([.leading, .trailing, .top], 10)
-                .frame(maxWidth: .infinity, alignment: .leading)
+        NavigationLink(destination: RouteDetailView()) {
+            ZStack(alignment: .bottomLeading) {
                 
-                Spacer()
+                Image("andes")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: cardWidth, height: cardHeight) // Define o tamanho da imagem
+                    .clipped()
                 
-                HStack {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(title)
-                            .font(.system(size: 36, weight: .black))
-                            .foregroundColor(.white)
-                        
-                        Text(description)
-                            .font(.headline)
+                VStack {
+                    HStack {
+                        Text(duration)
+                            .font(.system(size: 20, weight: .black))
                             .foregroundColor(.white)
                     }
+                    .padding()
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(10)
+                    .padding([.leading, .trailing, .top], 10)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
                     Spacer()
-                    if let rating = rating {
-                        Text(rating)
-                            .font(.system(size: 36, weight: .black))
-                            .foregroundColor(.white)
-                            .padding()
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.primary.opacity(0.1), lineWidth: 1)
-                            )
+                    
+                    HStack {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(title)
+                                .font(.system(size: 36, weight: .black))
+                                .foregroundColor(.white)
+                            
+                            Text(description)
+                                .font(.headline)
+                                .foregroundColor(.white)
+                        }
+                        Spacer()
+                        if let rating = rating {
+                            Text(rating)
+                                .font(.system(size: 36, weight: .black))
+                                .foregroundColor(.white)
+                                .padding()
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+                                )
+                        }
                     }
+                    .padding()
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(10)
+                    .padding([.leading, .trailing, .bottom], 10)
                 }
-                .padding()
-                .background(.ultraThinMaterial)
-                .cornerRadius(10)
-                .padding([.leading, .trailing, .bottom], 10)
             }
+            .frame(width: cardWidth, height: cardHeight)
+            .cornerRadius(15)
+            .padding(isVertical ? .bottom : .trailing, 20)
         }
-        .frame(width: cardWidth, height: cardHeight)
-        .cornerRadius(15)
-        .padding(isVertical ? .bottom : .trailing, 20)
     }
 }
 

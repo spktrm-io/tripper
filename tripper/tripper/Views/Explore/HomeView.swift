@@ -20,64 +20,62 @@ struct HomeView: View {
         let buttonContentColor: Color = colorScheme == .dark ? Color.white : Color.black
         let primaryColor: Color = colorScheme == .dark ? Color.white : Color.black
         let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
-        
-        VStack {
-            HStack {
-                Image(logoName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 60)
-                Spacer()
-                LocationButtonView(isSheetPresented: $isSheetPresented, buttonContentColor: buttonContentColor)
-            }
-            .padding(.horizontal)
-            
-            HStack {
-                TabButtonView(iconName: "safari.fill", title: "Discover", isSelected: selectedIndex == 0, primaryColor: primaryColor, secondaryColor: secondaryColor) {
-                    selectedIndex = 0
+            VStack {
+                HStack {
+                    Image(logoName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 60)
+                    Spacer()
+                    LocationButtonView(isSheetPresented: $isSheetPresented, buttonContentColor: buttonContentColor)
                 }
-
-                Spacer()
-
-                TabButtonView(iconName: "magnifyingglass", title: "Search", isSelected: selectedIndex == 1, primaryColor: primaryColor, secondaryColor: secondaryColor) {
-                    selectedIndex = 1
+                .padding(.horizontal)
+                
+                HStack {
+                    TabButtonView(iconName: "safari.fill", title: "Discover", isSelected: selectedIndex == 0, primaryColor: primaryColor, secondaryColor: secondaryColor) {
+                        selectedIndex = 0
+                    }
+                    
+                    Spacer()
+                    
+                    TabButtonView(iconName: "magnifyingglass", title: "Search", isSelected: selectedIndex == 1, primaryColor: primaryColor, secondaryColor: secondaryColor) {
+                        selectedIndex = 1
+                    }
+                }
+                .padding(.horizontal)
+                Divider()
+                    .padding(.top, 7)
+                    .padding(.bottom, -10)
+                
+                if selectedIndex == 0 {
+                    DiscoverView(bottomSpacer: bottomSpacer)
+                } else {
+                    SearchView(searchText: $searchText, bottomSpacer: bottomSpacer)
+                }
+                
+                
+            }
+            .onAppear {
+                if locationService.currentCity == nil {
+                    locationService.startLocationUpdates()
                 }
             }
-            .padding(.horizontal)
-            Divider()
-                .padding(.top, 7)
-                .padding(.bottom, -10)
-            
-            if selectedIndex == 0 {
-                DiscoverView(bottomSpacer: bottomSpacer)
-            } else {
-                SearchView(searchText: $searchText, bottomSpacer: bottomSpacer)
+            .sheet(isPresented: $isSheetPresented) {
+                SheetSearchCityView(searchResults: $searchResults)
             }
-            
-           
-        }
-        .onAppear {
-            if locationService.currentCity == nil {
-                locationService.startLocationUpdates()
-            }
-        }
-        .sheet(isPresented: $isSheetPresented) {
-            SheetSearchCityView(searchResults: $searchResults)
-        }
-        .onTapGesture {
-            UIApplication.shared.endEditing()
-        }
-        .gesture(
-            DragGesture().onChanged { _ in
+            .onTapGesture {
                 UIApplication.shared.endEditing()
             }
-        )
+            .gesture(
+                DragGesture().onChanged { _ in
+                    UIApplication.shared.endEditing()
+                }
+            )
+        
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-            .environmentObject(LocationService(completer: .init()))
-    }
+#Preview{
+    MainView()
+        .environmentObject(LocationService(completer: .init()))
 }

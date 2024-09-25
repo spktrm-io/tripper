@@ -8,20 +8,21 @@ struct MainView: View {
         let primaryColor: Color = colorScheme == .dark ? Color.white : Color.black
         let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
         let bottomTabMenuHeight: CGFloat = 100
-
-        ZStack {
-            MainContentView(selectedIndex: $selectedIndex, bottomTabMenuHeight: bottomTabMenuHeight)
-            VStack {
-                Spacer()
-                BottomTabBarView(
-                    selectedIndex: $selectedIndex,
-                    primaryColor: primaryColor,
-                    secondaryColor: secondaryColor,
-                    bottomTabMenuHeight: bottomTabMenuHeight
-                )
+        NavigationView{
+            ZStack {
+                MainContentView(selectedIndex: $selectedIndex, bottomTabMenuHeight: bottomTabMenuHeight)
+                VStack {
+                    Spacer()
+                    BottomTabBarView(
+                        selectedIndex: $selectedIndex,
+                        primaryColor: primaryColor,
+                        secondaryColor: secondaryColor,
+                        bottomTabMenuHeight: bottomTabMenuHeight
+                    )
+                }
             }
+            .edgesIgnoringSafeArea(.bottom)
         }
-        .edgesIgnoringSafeArea(.bottom)
     }
 }
 

@@ -17,31 +17,31 @@ struct ProfileView: View {
        
          let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
         
-        NavigationView{
-            VStack {
-                HStack {
-                    TabButtonView(iconName: "staroflife.fill", title: "Me", isSelected: selectedIndex == 0, primaryColor: primaryColor, secondaryColor: secondaryColor) {
-                        selectedIndex = 0
-                    }
-                    Spacer()
-                    TabButtonView(iconName: "gear", title: "Settings", isSelected: selectedIndex == 1, primaryColor: primaryColor, secondaryColor: secondaryColor) {
-                        selectedIndex = 1
-                    }
+        
+        VStack {
+            HStack {
+                TabButtonView(iconName: "staroflife.fill", title: "Me", isSelected: selectedIndex == 0, primaryColor: primaryColor, secondaryColor: secondaryColor) {
+                    selectedIndex = 0
                 }
-                
-                ScrollView (showsIndicators: false){
-                    if selectedIndex == 0 {
-                        ProfileSectionView(primaryColor: primaryColor)
-                    } else {
-                        SettingsSectionView(primaryColor: primaryColor)
-                    }
-                    Spacer()
-                        .frame(minHeight: bottomSpacer)
-                        .fixedSize()
+                Spacer()
+                TabButtonView(iconName: "gear", title: "Settings", isSelected: selectedIndex == 1, primaryColor: primaryColor, secondaryColor: secondaryColor) {
+                    selectedIndex = 1
                 }
             }
-            .padding(.horizontal)
+            
+            ScrollView (showsIndicators: false){
+                if selectedIndex == 0 {
+                    ProfileSectionView(primaryColor: primaryColor)
+                } else {
+                    SettingsSectionView(primaryColor: primaryColor)
+                }
+                Spacer()
+                    .frame(minHeight: bottomSpacer)
+                    .fixedSize()
+            }
         }
+        .padding(.horizontal)
+        
     }
 }
 

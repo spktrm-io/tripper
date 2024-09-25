@@ -21,6 +21,7 @@
 		2C16CE022C7D17910079A75B /* tripperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CE012C7D17910079A75B /* tripperTests.swift */; };
 		2C16CE0C2C7D17910079A75B /* tripperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CE0B2C7D17910079A75B /* tripperUITests.swift */; };
 		2C16CE0E2C7D17910079A75B /* tripperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CE0D2C7D17910079A75B /* tripperUITestsLaunchTests.swift */; };
+		2C1B33C82CA3BB85000B8C75 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1B33C72CA3BB84000B8C75 /* RouteDetailView.swift */; };
 		2C5344B82C9E138400D06777 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344B72C9E137A00D06777 /* SplashView.swift */; };
 		2C5344BA2C9F440300D06777 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344B92C9F43FC00D06777 /* SearchBarView.swift */; };
 		2C5344BC2C9F441A00D06777 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344BB2C9F441900D06777 /* TabButtonView.swift */; };
@@ -90,6 +91,7 @@
 		2C16CE072C7D17910079A75B /* tripperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tripperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C16CE0B2C7D17910079A75B /* tripperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripperUITests.swift; sourceTree = "<group>"; };
 		2C16CE0D2C7D17910079A75B /* tripperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripperUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2C1B33C72CA3BB84000B8C75 /* RouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailView.swift; sourceTree = "<group>"; };
 		2C5344B42C9E037900D06777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2C5344B72C9E137A00D06777 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		2C5344B92C9F43FC00D06777 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
@@ -207,6 +209,14 @@
 				2C16CE0D2C7D17910079A75B /* tripperUITestsLaunchTests.swift */,
 			);
 			path = tripperUITests;
+			sourceTree = "<group>";
+		};
+		2C1B33C92CA3BB88000B8C75 /* RouteDetail */ = {
+			isa = PBXGroup;
+			children = (
+				2C1B33C72CA3BB84000B8C75 /* RouteDetailView.swift */,
+			);
+			path = RouteDetail;
 			sourceTree = "<group>";
 		};
 		2C5344D42C9F479800D06777 /* Profile */ = {
@@ -426,6 +436,7 @@
 		2CB0C2692C8FD60F007C077A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2C1B33C92CA3BB88000B8C75 /* RouteDetail */,
 				2C5344E12C9F489F00D06777 /* Map */,
 				2C5344E02C9F488400D06777 /* Main */,
 				2C5344D72C9F47BA00D06777 /* Create */,
@@ -622,6 +633,7 @@
 				2C5344FF2C9FC3E700D06777 /* AppearanceView.swift in Sources */,
 				2C15E72B2C97B53B00E3726A /* CardView.swift in Sources */,
 				2C5344BC2C9F441A00D06777 /* TabButtonView.swift in Sources */,
+				2C1B33C82CA3BB85000B8C75 /* RouteDetailView.swift in Sources */,
 				2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */,
 				2C5345052C9FC46000D06777 /* FAQView.swift in Sources */,
 				2C5344ED2C9F4A5B00D06777 /* StepperView.swift in Sources */,

@@ -10,13 +10,36 @@ import SwiftUI
 struct ReportErrorView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
-
+    @State private var largeText: String = ""
+    
     var body: some View {
         let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
         VStack {
-            Text("Report Error Screen")
-                .font(.largeTitle)
-                .padding()
+            Text("Report a error")
+            .font(.system(size: 30, weight: .black))
+            .foregroundColor(.primary)
+            .padding(.horizontal)
+            .padding(.top, 20)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            
+            ZStack(alignment: .top){
+                if largeText.isEmpty {
+                    HStack {
+                        Text("Write here")
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                    }
+                    .padding(10)
+                }
+                TextEditor(text: $largeText)
+                    .scrollContentBackground(.hidden)
+            }
+            .foregroundColor(.primary)
+            .frame(height: 200)
+            .modifier(TextFieldGrayBackgroundColor())
+            .padding()
+            
+            Spacer()
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {

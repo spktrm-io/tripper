@@ -50,11 +50,12 @@ struct SettingsSectionView: View {
             SettingOptionButton(iconName: "exclamationmark.triangle.fill", title: "Report a error", primaryColor: primaryColor) {
                 ReportErrorView()
             }
+            /*
             // Navegação para "FAQ"
             SettingOptionButton(iconName: "questionmark.circle", title: "FAQ", primaryColor: primaryColor) {
                 FAQView()
             }
-            
+            */
             Divider()
                 .padding(.vertical)
             

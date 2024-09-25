@@ -39,6 +39,21 @@ struct ReportErrorView: View {
             .modifier(TextFieldGrayBackgroundColor())
             .padding()
             
+            Button(action: {
+                print("Logout")
+            }) {
+                HStack {
+                    Text("Send")
+                        .fontWeight(.bold)
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.primary)
+                .foregroundColor(secondaryColor)
+                .cornerRadius(10)
+            }
+            .padding([.horizontal, .top])
+            
             Spacer()
         }
         .navigationBarBackButtonHidden(true)

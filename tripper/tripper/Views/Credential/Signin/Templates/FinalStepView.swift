@@ -7,9 +7,12 @@
 
 import SwiftUI
 
+import SwiftUI
+
 public struct FinalStepView: View {
-    var previousAction: () -> Void
-    
+    @Binding var selectedIndex: Int // Adicionando o Binding para o controle de navegação
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false // Estado de login
+
     public var body: some View {
         VStack(alignment: .leading) {
             Text("Final Step")
@@ -24,10 +27,13 @@ public struct FinalStepView: View {
                 .padding(.horizontal)
                 .padding(.vertical, 20)
             
-            // Finish or Go Back Button
-            Button(action: previousAction) {
+            Button(action: {
+                // Quando o cadastro é finalizado, definir como logado e navegar para o ProfileView
+                isLoggedIn = true
+                selectedIndex = 0 // Retorna ao fluxo principal (que vai direto para ProfileView se logado)
+            }) {
                 HStack {
-                    Text("Go Back")
+                    Text("Go to Profile")
                         .fontWeight(.bold)
                 }
                 .padding()
@@ -43,5 +49,5 @@ public struct FinalStepView: View {
 }
 
 #Preview {
-    FinalStepView(previousAction: {})
+    FinalStepView(selectedIndex: .constant(0))
 }

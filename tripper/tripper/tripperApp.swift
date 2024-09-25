@@ -11,6 +11,7 @@ import SwiftUI
 struct tripperApp: App {
     @StateObject private var locationService = LocationService(completer: .init())
     @AppStorage("selectedTheme") private var selectedTheme = 2
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
 
     var body: some Scene {
         WindowGroup {

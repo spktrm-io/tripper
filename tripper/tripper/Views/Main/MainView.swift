@@ -10,7 +10,7 @@ struct MainView: View {
         let bottomTabMenuHeight: CGFloat = 100
 
         ZStack {
-            MainContentView(selectedIndex: $selectedIndex, bottomTabMenuHeight: bottomTabMenuHeight) // home view que falei esta aqui
+            MainContentView(selectedIndex: $selectedIndex, bottomTabMenuHeight: bottomTabMenuHeight)
             VStack {
                 Spacer()
                 BottomTabBarView(

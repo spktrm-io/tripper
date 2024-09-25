@@ -215,7 +215,6 @@
 				2C5344DC2C9F480800D06777 /* Components */,
 				2C5344DB2C9F47F600D06777 /* Templates */,
 				2C15E7232C9750C200E3726A /* ProfileView.swift */,
-				2C5344E92C9F4A3800D06777 /* Credential */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -434,6 +433,7 @@
 				2C5344D52C9F479F00D06777 /* Explore */,
 				2C5344D42C9F479800D06777 /* Profile */,
 				2CB0C2682C8FD60F007C077A /* Components */,
+				2C5344E92C9F4A3800D06777 /* Credential */,
 			);
 			path = Views;
 			sourceTree = "<group>";

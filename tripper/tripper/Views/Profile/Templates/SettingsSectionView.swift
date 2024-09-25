@@ -2,7 +2,8 @@ import SwiftUI
 
 struct SettingsSectionView: View {
     var primaryColor: Color
-    
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false // Estado de login
+
     var body: some View {
         VStack {
             Text("Personal")
@@ -61,7 +62,7 @@ struct SettingsSectionView: View {
             
             // Logout button (sem navegação)
             Button(action: {
-                print("Logout")
+                isLoggedIn = false
             }) {
                 HStack {
                     Text("Logout")

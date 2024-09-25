@@ -10,8 +10,8 @@ import SwiftUI
 public struct FullNameStepView: View {
     @Binding var fullName: String
     var nextAction: () -> Void
-    var previousAction: () -> Void
-    
+    @Binding var selectedIndex: Int // Controle da navegação
+
     public var body: some View {
         VStack(alignment: .leading) {
             Text("Full Name")
@@ -33,7 +33,7 @@ public struct FullNameStepView: View {
             Divider().padding()
             
             HStack {
-                Button(action: previousAction) {
+                Button(action: {selectedIndex = 0} ) {
                     HStack {
                         Image(systemName: "x.circle")
                             .foregroundStyle(.primary)

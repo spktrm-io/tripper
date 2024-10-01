@@ -11,9 +11,7 @@ struct RouteDetailView: View {
     @Environment(\.presentationMode) var presentationMode // Controla o estado de apresentação
     @Environment(\.colorScheme) var colorScheme
 
-    var body: some View {
-        let primaryColor: Color = colorScheme == .dark ? Color.white : Color.black
-       
+    var body: some View {       
          let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
         
 

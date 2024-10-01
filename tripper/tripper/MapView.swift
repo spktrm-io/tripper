@@ -68,7 +68,7 @@ struct MapView: View {
             })
         }
         .sheet(isPresented: $isSheetPresented) {
-            SheetView(searchResults: $searchResults)
+            MapSheetView(searchResults: $searchResults)
         }
     }
     

@@ -19,11 +19,9 @@ struct MainContentView: View {
             case 0:
                 HomeView(bottomSpacer: bottomTabMenuHeight)
             case 1:
-                CreateNewRouteView()
-                    .padding(.bottom, bottomTabMenuHeight)
+                ExploreView(bottomSpacer: bottomTabMenuHeight)
             case 2:
-                SavedRoutesView()
-                    .padding(.bottom, bottomTabMenuHeight)
+                SavedRoutesView(bottomSpacer: bottomTabMenuHeight)
             case 3:
                 if isLoggedIn {
                     // Se o usuário está logado, vá para a ProfileView

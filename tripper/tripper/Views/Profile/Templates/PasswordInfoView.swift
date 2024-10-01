@@ -11,10 +11,8 @@ import SwiftUI
 struct PasswordInfoView: View {
     @Environment(\.presentationMode) var presentationMode // Controla o estado de apresentação
     @State var searchText: String = ""
-    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
         VStack{
             Text("Password")
             .font(.system(size: 30, weight: .black))
@@ -38,11 +36,7 @@ struct PasswordInfoView: View {
                     Text("Save")
                         .fontWeight(.bold)
                 }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.primary)
-                .foregroundColor(secondaryColor)
-                .cornerRadius(10)
+                .modifier(ButtonFill())
             }
             .padding([.horizontal, .top])
             Spacer()
@@ -59,11 +53,7 @@ struct PasswordInfoView: View {
                         Text("Back")
                             .fontWeight(.bold)
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.primary)
-                    .foregroundColor(secondaryColor)
-                    .cornerRadius(10)
+                    .modifier(ButtonFill())
                 }
             }
         }

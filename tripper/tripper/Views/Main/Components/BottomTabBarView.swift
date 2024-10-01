@@ -16,11 +16,11 @@ struct BottomTabBarView: View {
     var body: some View {
         HStack {
             Spacer()
-            BottomTabBarButtonView(iconName: "map.fill", title: "Explore", isSelected: selectedIndex == 0, primaryColor: primaryColor, secondaryColor: secondaryColor) {
+            BottomTabBarButtonView(iconName: "map.fill", title: "Home", isSelected: selectedIndex == 0, primaryColor: primaryColor, secondaryColor: secondaryColor) {
                 selectedIndex = 0
             }
             Spacer()
-            BottomTabBarButtonView(iconName: "plus.circle.fill", title: "Create", isSelected: selectedIndex == 1, primaryColor: primaryColor, secondaryColor: secondaryColor) {
+            BottomTabBarButtonView(iconName: "safari.fill", title: "Explore", isSelected: selectedIndex == 1, primaryColor: primaryColor, secondaryColor: secondaryColor) {
                 selectedIndex = 1
             }
             Spacer()
@@ -36,6 +36,7 @@ struct BottomTabBarView: View {
         .padding()
         .padding(.bottom, 30)
         .frame(height: bottomTabMenuHeight)
+        .frame(maxWidth: .infinity)
         .background(.ultraThinMaterial)
     }
 }

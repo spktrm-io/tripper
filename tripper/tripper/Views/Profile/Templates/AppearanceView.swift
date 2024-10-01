@@ -110,10 +110,7 @@ struct AppearanceView: View {
                         Text("Back")
                             .fontWeight(.bold)
                     }
-                    .padding()
-                    .background(Color.primary)
-                    .foregroundColor(secondaryColor)
-                    .cornerRadius(10)
+                    .modifier(ButtonFill())
                 }
             }
         }

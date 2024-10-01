@@ -1,7 +1,15 @@
+//
+//  SheetSearchCityView.swift
+//  tripper
+//
+//  Created by Erick Barcelos on 15/09/24.
+//
+
+import Foundation
 import SwiftUI
 import MapKit
 
-struct SheetView: View {
+struct SheetSearchCityView: View {
     @State private var locationService = LocationService(completer: .init())
     @State private var search: String = ""
     @Binding var searchResults: [SearchResult]
@@ -10,7 +18,7 @@ struct SheetView: View {
         VStack {
             HStack {
                 Image(systemName: "magnifyingglass")
-                TextField("Search for a restaurant", text: $search)
+                TextField("Search for a location", text: $search)
                     .autocorrectionDisabled()
                     .onSubmit {
                         print("SheetView: Search submitted with text '\(search)'")
@@ -49,9 +57,8 @@ struct SheetView: View {
             locationService.update(queryFragment: search)
         }
         .padding()
-
-        .presentationDetents([.height(100), .large])
-        .presentationBackground(.regularMaterial)
+        .presentationDetents([.large])
+        .presentationBackground(.ultraThinMaterial)
         .presentationBackgroundInteraction(.enabled(upThrough: .large))
     }
 
@@ -67,3 +74,4 @@ struct SheetView: View {
         }
     }
 }
+

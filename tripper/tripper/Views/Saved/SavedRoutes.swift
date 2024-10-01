@@ -10,6 +10,10 @@ import SwiftUI
 struct SavedRoutesView: View {
     let bottomSpacer: CGFloat?
     @Environment(\.colorScheme) var colorScheme // Access the current color scheme
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -17,19 +21,36 @@ struct SavedRoutesView: View {
                 .font(.system(size: 30, weight: .black))
                 .foregroundColor(.primary)
                 .padding(.horizontal)
-            
-            ScrollView(showsIndicators: false) {
-                                
-                VStack(alignment: .leading, spacing: 0) {
-                    ForEach(0..<5) { index in
-                        CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)")
-                    }
+            GeometryReader { geometry in
+                let edge = (geometry.size.width - 80) / 2
+                ScrollView{
+                    LazyVGrid(columns: columns, spacing: 16) {
+                        ForEach(0..<10) { _ in
+                            Button(action: {}) {
+                                VStack{
+                                    VStack(alignment: .leading) {
+                                        
+                                    }
+                                    .frame(width: edge, height: edge)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+                                    )
+                                    Text("Collection")
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.primary)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    Text("2 saved")
+                                        .foregroundColor(.primary)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }.padding(.horizontal)
+                            }
+                        }
+                    }.padding()
+                    Spacer(minLength: bottomSpacer)
                 }
-                .padding(.vertical)
-                Spacer()
-                    .frame(minHeight: bottomSpacer)
-                    .fixedSize()
             }
+            Spacer()
         }
         .padding(.vertical)
     }

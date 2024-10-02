@@ -13,7 +13,7 @@ struct CardView: View {
     var description: String
     var duration: String = "2 days, 2h"
     var rating: String? = "0.0"
-    let edge: CGFloat = UIScreen.main.bounds.width * 0.85
+    let edge: CGFloat = UIScreen.main.bounds.width * 0.90
     let photos: [String] = ["andes", "andes-1", "andes-2", "andes-3"] // Array de nomes das imagens
     
     var body: some View {

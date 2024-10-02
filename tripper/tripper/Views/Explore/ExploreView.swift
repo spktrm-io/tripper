@@ -33,10 +33,6 @@ struct ExploreView: View {
                 }
                 .padding(.horizontal)
                 .opacity(CGFloat(1.0) - collapseProgress * CGFloat(2))
-
-                ToggleButtonsView()
-                    .padding(.vertical)
-                    .opacity(CGFloat(1.0) - collapseProgress * CGFloat(2))
                 
                 HStack{
                     Button(action:{isSheetPresented.toggle()}){
@@ -53,11 +49,12 @@ struct ExploreView: View {
                     }
                     .modifier(ButtonBlank(cornerRadius: .infinity))
                 }
-                .padding([.bottom, .horizontal])
+                .padding(.horizontal)
+                .padding(.vertical, 4)
                 //.offset(y: collapseProgress * 70) // Translação com base no collapseProgress
 
-                
-                
+                ToggleButtonsView()
+                    .padding(.bottom)
             }
             .background(secondarColor)
             .overlay(
@@ -78,7 +75,7 @@ struct ExploreView: View {
                 .fixedSize()
         }
         .collapseProgress($collapseProgress)
-        .height(min: 70, max: 225)
+        .height(min: 125, max: 200)
         .sheet(isPresented: $isSheetPresented) {
             VStack {
                 

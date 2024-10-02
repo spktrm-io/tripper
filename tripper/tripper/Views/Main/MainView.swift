@@ -7,7 +7,7 @@ struct MainView: View {
     var body: some View {
         let primaryColor: Color = colorScheme == .dark ? Color.white : Color.black
         let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
-        let bottomTabMenuHeight: CGFloat = 100
+        let bottomTabMenuHeight: CGFloat = 95
         NavigationView{
             ZStack {
                 MainContentView(selectedIndex: $selectedIndex, bottomTabMenuHeight: bottomTabMenuHeight)

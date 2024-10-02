@@ -34,9 +34,16 @@ struct BottomTabBarView: View {
             Spacer()
         }
         .padding()
-        .padding(.bottom, 30)
+        .padding(.bottom, 25)
         .frame(height: bottomTabMenuHeight)
         .frame(maxWidth: .infinity)
         .background(.ultraThinMaterial)
+    }
+}
+
+struct BottomTabBarView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainView()
+            .environmentObject(LocationService(completer: .init()))
     }
 }

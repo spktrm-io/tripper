@@ -34,7 +34,7 @@ struct ExploreView: View {
                     Button(action:{isSheetPresented.toggle()}){
                         Image(systemName: "line.3.horizontal.decrease")
                     }
-                    .modifier(ButtonBlank())
+                    .modifier(ButtonBlank(cornerRadius: 10))
                     Button(action:{isSheetPresented.toggle()}){
                         Image(systemName: "plus")
                     }

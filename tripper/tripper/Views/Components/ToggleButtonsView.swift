@@ -75,10 +75,11 @@ struct ToggleButtonsView: View {
                         HStack {
                             Image(systemName: imageName)
                             Text(type)
+                                .font(.caption)
+                                .fontWeight(.bold)
                         }
                         .padding(.vertical, 10)
                         .padding(.horizontal, 20)
-                        .fontWeight(.bold)
                         .background(selectedIndex == index ? Color.primary : Color.clear)
                         .foregroundColor(selectedIndex == index ? textColor : Color.primary)
                         .cornerRadius(10)

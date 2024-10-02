@@ -18,3 +18,10 @@ struct SearchBarView: View {
         .modifier(TextFieldGrayBackgroundColor())
     }
 }
+
+
+#Preview {
+    ExploreView(bottomSpacer: 100)
+        .environmentObject(LocationService(completer: .init()))
+}
+

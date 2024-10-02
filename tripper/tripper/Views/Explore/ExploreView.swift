@@ -6,17 +6,21 @@
 //
 
 import SwiftUI
+import ScalingHeaderScrollView
 
 struct ExploreView: View {
     @State private var searchText: String = ""
     @State private var isSheetPresented: Bool = false
     let bottomSpacer: CGFloat?
     @Environment(\.colorScheme) var colorScheme
+    @State private var collapseProgress: CGFloat = 0.0 // State para ser passado como binding
     
     var body: some View {
         let logoName: String = colorScheme == .dark ? "tripper-logo-light" : "tripper-logo-dark"
         let buttonContentColor: Color = colorScheme == .dark ? Color.white : Color.black
-        VStack{
+        let secondarColor: Color = colorScheme == .dark ? Color.black : Color.white
+        
+        ScalingHeaderScrollView {
             VStack{ // Header ao qual que quero que seja sticky
                 HStack {
                     Image(logoName)
@@ -28,41 +32,50 @@ struct ExploreView: View {
                     
                 }
                 .padding(.horizontal)
+                .opacity(1 - collapseProgress)
                 
                 HStack{
-                    SearchBarView(searchText: $searchText)
+                    Button(action:{isSheetPresented.toggle()}){
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                            Text("Where you want to go?")
+                                .foregroundStyle(.primary.opacity(0.3))
+                            Spacer()
+                        }
+                        .modifier(TextFieldGrayBackgroundColor())
+                    }
                     Button(action:{isSheetPresented.toggle()}){
                         Image(systemName: "line.3.horizontal.decrease")
                     }
-                    .modifier(ButtonBlank(cornerRadius: 10))
-                    Button(action:{isSheetPresented.toggle()}){
-                        Image(systemName: "plus")
-                    }
-                    .modifier(ButtonFill())
+                    .modifier(ButtonBlank(cornerRadius: .infinity))
                 }
                 .padding()
-                // ate aqui some ao fazer scroll
+                .opacity(1 - collapseProgress)
                 
-                ToggleButtonsView() // esse fica no scroll
-                
-                Divider()
-                    .padding(.top, 7)
-                    .padding(.bottom, -10)
+                ToggleButtonsView()
+                    .padding(.bottom)
             }
-            
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 0) {
-                    ForEach(0..<5) { index in
-                        CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)")
-                    }
+            .background(secondarColor)
+            .overlay(
+                Rectangle()
+                    .frame(height: 1) // Define a espessura da borda
+                    .foregroundColor(.primary.opacity(0.1)), // Cor da borda
+                alignment: .bottom // Alinha a borda na parte inferior
+            )
+        } content: {
+            VStack(alignment: .leading, spacing: 0) {
+                ForEach(0..<5) { index in
+                    CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)")
                 }
-                .padding(.vertical)
-                
-                Spacer()
-                    .frame(minHeight: bottomSpacer)
-                    .fixedSize()
             }
-        }.sheet(isPresented: $isSheetPresented) {
+            .padding(.vertical)
+            Spacer()
+                .frame(minHeight: bottomSpacer)
+                .fixedSize()
+        }
+        .collapseProgress($collapseProgress)
+        .height(min: 60, max: 210)
+        .sheet(isPresented: $isSheetPresented) {
             VStack {
                 
             }

@@ -1,0 +1,6 @@
+framework module Pods_tripper_tripperUITests {
+  umbrella header "Pods-tripper-tripperUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

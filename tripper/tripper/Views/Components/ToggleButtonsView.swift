@@ -72,7 +72,7 @@ struct ToggleButtonsView: View {
                     }) {
                         let textColor: Color = colorScheme == .dark ? Color.black : Color.white
                         
-                        HStack {
+                        VStack (spacing: 4) {
                             Image(systemName: imageName)
                             Text(type)
                                 .font(.caption)

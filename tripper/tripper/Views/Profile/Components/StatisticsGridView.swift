@@ -39,12 +39,14 @@ struct StatisticCardView: View {
                     Image(systemName: iconName)
                         .foregroundStyle(primaryColor)
                     Text(title)
+                        .font(.subheadline)
                         .fontWeight(.bold)
                         .foregroundColor(.primary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Text(subtitle)
                     .foregroundColor(.primary)
+                    .font(.footnote)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding()
@@ -54,5 +56,11 @@ struct StatisticCardView: View {
                     .stroke(Color.primary.opacity(0.1), lineWidth: 1)
             )
         }
+    }
+}
+
+struct StatisticCardView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileView(bottomSpacer: 100)
     }
 }

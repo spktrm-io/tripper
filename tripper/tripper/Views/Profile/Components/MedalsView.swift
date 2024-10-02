@@ -12,13 +12,15 @@ struct MedalsView: View {
         VStack(alignment: .leading) {
             HStack {
                 Text("Medals")
-                    .font(.system(size: 20, weight: .black))
+                    .font(.headline)
+                    .fontWeight(.bold)
                     .foregroundColor(.primary)
                 
                 Spacer()
                 
                 Button(action: {}) {
                     Text("see all")
+                        .font(.headline)
                         .fontWeight(.bold)
                         .foregroundColor(.primary)
                 }

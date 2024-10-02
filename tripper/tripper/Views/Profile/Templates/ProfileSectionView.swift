@@ -49,7 +49,8 @@ struct ProfileSectionView: View {
                 .padding(.bottom)
             
             Text("General vision")
-                .font(.system(size: 20, weight: .black))
+                .font(.headline)
+                .fontWeight(.bold)
                 .foregroundColor(.primary)
                 .frame(maxWidth: .infinity, alignment: .leading)
             

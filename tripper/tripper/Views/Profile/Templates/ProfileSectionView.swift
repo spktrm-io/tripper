@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
-
+import ProgressIndicatorView
 
 struct ProfileSectionView: View {
     var primaryColor: Color
+    @State private var showProgressIndicator: Bool = true
+    @State private var progress: CGFloat = 0.5
     
     var body: some View {
         VStack {
@@ -22,12 +24,29 @@ struct ProfileSectionView: View {
                     Circle().stroke(Color.primary.opacity(0.1), lineWidth: 4)
                 )
             Text("@rckbrcls")
-                .font(.title3)
+                .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
             
+            HStack{
+                Text("1")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
+                ProgressIndicatorView(isVisible: $showProgressIndicator, type: .dashBar(progress: $progress, numberOfItems: 8, backgroundColor: .gray.opacity(0.5)))
+                    .frame(height: 8.0)
+                    .foregroundColor(.blue)
+                    .padding(.horizontal)
+                
+                Text("2")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
+            }
+            .padding()
+            
             Divider()
-                .padding(.vertical)
+                .padding(.bottom)
             
             Text("General vision")
                 .font(.system(size: 20, weight: .black))
@@ -39,5 +58,11 @@ struct ProfileSectionView: View {
             MedalsView()
         }
         .padding(.top)
+    }
+}
+
+struct ProfileSectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileView(bottomSpacer: 100)
     }
 }

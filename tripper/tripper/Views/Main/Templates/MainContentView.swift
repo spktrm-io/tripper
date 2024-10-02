@@ -17,9 +17,9 @@ struct MainContentView: View {
         ZStack {
             switch selectedIndex {
             case 0:
-                HomeView(bottomSpacer: bottomTabMenuHeight)
-            case 1:
                 ExploreView(bottomSpacer: bottomTabMenuHeight)
+            case 1:
+                MapView()
             case 2:
                 SavedRoutesView(bottomSpacer: bottomTabMenuHeight)
             case 3:
@@ -46,4 +46,5 @@ struct MainContentView: View {
 
 #Preview {
     MainContentView(selectedIndex: .constant(3), bottomTabMenuHeight: 100)
+        .environmentObject(LocationService(completer: .init()))
 }

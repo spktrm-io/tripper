@@ -46,11 +46,8 @@ struct ReportErrorView: View {
                     Text("Send")
                         .fontWeight(.bold)
                 }
-                .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.primary)
-                .foregroundColor(secondaryColor)
-                .cornerRadius(10)
+                .modifier(ButtonFill())
             }
             .padding([.horizontal, .top])
             

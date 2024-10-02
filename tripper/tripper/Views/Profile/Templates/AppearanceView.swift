@@ -13,7 +13,7 @@ struct AppearanceView: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
+       
         VStack(spacing: 20) {
             Text("Appearance")
                 .font(.system(size: 30, weight: .black))

@@ -16,6 +16,5 @@ struct SearchBarView: View {
             TextField("Where you want to go?", text: $searchText)
         }
         .modifier(TextFieldGrayBackgroundColor())
-        .padding()
     }
 }

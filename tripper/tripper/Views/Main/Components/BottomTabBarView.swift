@@ -16,11 +16,11 @@ struct BottomTabBarView: View {
     var body: some View {
         HStack {
             Spacer()
-            BottomTabBarButtonView(iconName: "map.fill", title: "Home", isSelected: selectedIndex == 0, primaryColor: primaryColor, secondaryColor: secondaryColor) {
+            BottomTabBarButtonView(iconName: "safari.fill", title: "Explore", isSelected: selectedIndex == 0, primaryColor: primaryColor, secondaryColor: secondaryColor) {
                 selectedIndex = 0
             }
             Spacer()
-            BottomTabBarButtonView(iconName: "safari.fill", title: "Explore", isSelected: selectedIndex == 1, primaryColor: primaryColor, secondaryColor: secondaryColor) {
+            BottomTabBarButtonView(iconName: "location.north.fill", title: "Trip", isSelected: selectedIndex == 1, primaryColor: primaryColor, secondaryColor: secondaryColor) {
                 selectedIndex = 1
             }
             Spacer()

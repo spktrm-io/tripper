@@ -15,28 +15,9 @@ struct HomeView: View {
     @State private var selectedIndex: Int = 0
     
     var body: some View {
-        let logoName: String = colorScheme == .dark ? "tripper-logo-light" : "tripper-logo-dark"
-        let buttonContentColor: Color = colorScheme == .dark ? Color.white : Color.black
-       
         VStack {
-            HStack {
-                Image(logoName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 50)
-                Spacer()
-                LocationButtonView(isSheetPresented: $isSheetPresented, buttonContentColor: buttonContentColor)
-              
-            }
-            .padding(.horizontal)
             
-            ToggleButtonsView()
-            Divider()
-                .padding(.top, 7)
-                .padding(.bottom, -10)
-            
-            
-            DiscoverView(bottomSpacer: bottomSpacer)
+            ExploreView(bottomSpacer: bottomSpacer)
             
         }
         .onAppear {

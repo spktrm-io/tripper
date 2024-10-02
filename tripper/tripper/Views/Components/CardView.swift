@@ -22,7 +22,7 @@ struct CardView: View {
         self.description = description
         self.isVertical = isVertical
         self.rating = rating
-        self.cardHeight = cardHeight
+        self.cardHeight = cardWidth
         
         if isVertical {
             self.cardWidth = cardWidth

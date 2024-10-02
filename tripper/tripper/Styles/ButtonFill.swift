@@ -14,7 +14,6 @@ struct ButtonFill: ViewModifier {
         let textColor: Color = colorScheme == .dark ? Color.black : Color.white
         content
             .padding()
-            .frame(maxWidth: .infinity)
             .background(Color.primary)
             .foregroundColor(textColor)
             .cornerRadius(10)

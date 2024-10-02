@@ -75,6 +75,7 @@ struct AddressInfoView: View {
                         Text("Save")
                             .fontWeight(.bold)
                     }
+                    .frame(maxWidth: .infinity)
                     .modifier(ButtonFill())
                 }
                 .padding([.horizontal, .top])

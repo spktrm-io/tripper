@@ -13,7 +13,7 @@ struct NotificationsView: View {
     @State private var isOn: Bool = false
 
     var body: some View {
-        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
+        
         VStack {
             Text("Notifications")
             .font(.system(size: 30, weight: .black))

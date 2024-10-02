@@ -11,21 +11,44 @@ struct ExploreView: View {
     @State private var searchText: String = ""
     @State private var isSheetPresented: Bool = false
     let bottomSpacer: CGFloat?
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
+        let logoName: String = colorScheme == .dark ? "tripper-logo-light" : "tripper-logo-dark"
+        let buttonContentColor: Color = colorScheme == .dark ? Color.white : Color.black
         VStack{
-            HStack{
-                SearchBarView(searchText: $searchText)
-                Button(action:{isSheetPresented.toggle()}){
-                    Image(systemName: "line.3.horizontal.decrease")
+            VStack{ // Header ao qual que quero que seja sticky
+                HStack {
+                    Image(logoName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 40)
+                    Spacer()
+                    LocationButtonView(isSheetPresented: $isSheetPresented, buttonContentColor: buttonContentColor)
+                    
                 }
-                .modifier(ButtonBlank())
+                .padding(.horizontal)
+                
+                HStack{
+                    SearchBarView(searchText: $searchText)
+                    Button(action:{isSheetPresented.toggle()}){
+                        Image(systemName: "line.3.horizontal.decrease")
+                    }
+                    .modifier(ButtonBlank())
+                    Button(action:{isSheetPresented.toggle()}){
+                        Image(systemName: "plus")
+                    }
+                    .modifier(ButtonFill())
+                }
+                .padding()
+                // ate aqui some ao fazer scroll
+                
+                ToggleButtonsView() // esse fica no scroll
+                
+                Divider()
+                    .padding(.top, 7)
+                    .padding(.bottom, -10)
             }
-            .padding(.trailing)
-            ToggleButtonsView()
-            Divider()
-                .padding(.top, 7)
-                .padding(.bottom, -10)
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 0) {
@@ -53,4 +76,5 @@ struct ExploreView: View {
 
 #Preview {
     ExploreView(bottomSpacer: 100)
+        .environmentObject(LocationService(completer: .init()))
 }

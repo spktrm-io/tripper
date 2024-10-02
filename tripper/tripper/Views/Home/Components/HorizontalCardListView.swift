@@ -22,7 +22,7 @@ struct HorizontalCardListView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(alignment: .top, spacing: 0) {
                         ForEach(0..<5) { index in
-                            CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)", isVertical: false, cardHeight: availableHeight)
+                            CardView(title: "Card \(index + 1)", description: "Descrição do card \(index + 1)")
                         }
                     }
                     .scrollTargetLayout()

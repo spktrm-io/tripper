@@ -26,7 +26,7 @@ struct ExploreView: View {
                     Image(logoName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(height: 40)
+                        .frame(height: 50)
                     Spacer()
                     LocationButtonView(isSheetPresented: $isSheetPresented, buttonContentColor: buttonContentColor)
                     

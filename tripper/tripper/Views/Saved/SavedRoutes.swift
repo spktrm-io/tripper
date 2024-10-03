@@ -18,7 +18,8 @@ struct SavedRoutesView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Saved routes")
-                .font(.system(size: 30, weight: .black))
+                .font(.title)
+                .fontWeight(.black)
                 .foregroundColor(.primary)
                 .padding(.horizontal)
             GeometryReader { geometry in
@@ -37,10 +38,12 @@ struct SavedRoutesView: View {
                                             .stroke(Color.primary.opacity(0.1), lineWidth: 1)
                                     )
                                     Text("Collection")
+                                        .font(.subheadline)
                                         .fontWeight(.bold)
                                         .foregroundColor(.primary)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                     Text("2 saved")
+                                        .font(.footnote)
                                         .foregroundColor(.primary)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 }.padding(.horizontal)

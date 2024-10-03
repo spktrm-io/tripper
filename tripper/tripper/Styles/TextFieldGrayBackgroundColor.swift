@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct TextFieldGrayBackgroundColor: ViewModifier {
+    var cornerRadius: CGFloat = CGFloat.infinity
     func body(content: Content) -> some View {
         content
             .padding(.vertical, 12)
             .padding(.horizontal)
             .background(.primary.opacity(0.05))
-            .cornerRadius(.infinity)
+            .cornerRadius(cornerRadius)
             .foregroundColor(.primary)
             .overlay(
-                RoundedRectangle(cornerRadius: .infinity)
+                RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(Color.primary.opacity(0.1), lineWidth: 1)
             )
     }

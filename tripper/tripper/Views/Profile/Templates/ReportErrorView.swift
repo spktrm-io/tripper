@@ -16,7 +16,8 @@ struct ReportErrorView: View {
         let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
         VStack {
             Text("Report a error")
-            .font(.system(size: 30, weight: .black))
+            .font(.title)
+            .fontWeight(.black)
             .foregroundColor(.primary)
             .padding(.horizontal)
             .padding(.top, 20)
@@ -36,7 +37,7 @@ struct ReportErrorView: View {
             }
             .foregroundColor(.primary)
             .frame(height: 200)
-            .modifier(TextFieldGrayBackgroundColor())
+            .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
             .padding()
             
             Button(action: {
@@ -45,6 +46,7 @@ struct ReportErrorView: View {
                 HStack {
                     Text("Send")
                         .fontWeight(.bold)
+                        .font(.subheadline)
                 }
                 .frame(maxWidth: .infinity)
                 .modifier(ButtonFill())
@@ -62,6 +64,7 @@ struct ReportErrorView: View {
                     HStack {
                         Image(systemName: "chevron.left")
                         Text("Back")
+                            .font(.footnote)
                             .fontWeight(.bold)
                     }
                     .padding()

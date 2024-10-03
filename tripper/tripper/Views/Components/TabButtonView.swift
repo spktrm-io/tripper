@@ -18,6 +18,7 @@ struct TabButtonView: View {
             HStack {
                 Image(systemName: iconName)
                 Text(title)
+                    .font(.subheadline)
                     .fontWeight(.bold)
             }
             .modifier(ButtonToggle(isSelected: isSelected))

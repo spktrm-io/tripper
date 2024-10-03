@@ -26,64 +26,96 @@ struct AddressInfoView: View {
         ScrollView (showsIndicators: false){
             VStack {
                 Text("Address information")
-                .font(.system(size: 30, weight: .black))
+                .font(.title)
+                .fontWeight(.black)
                 .foregroundColor(.primary)
-                .padding(.horizontal)
                 .padding(.top, 20)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
+                Text("Zip code")
+                    .font(.caption2)
+                    .padding(.top)
+                    .foregroundColor(.primary.opacity(0.4))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 TextField("Zip code", text: $searchText)
-                .modifier(TextFieldGrayBackgroundColor())
-                .padding(.horizontal)
+                    .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
+
+                Divider().padding(.vertical)
                 
-                Divider().padding()
-                
+                Text("Country")
+                    .font(.caption2)
+                    .foregroundColor(.primary.opacity(0.4))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 TextField("Country", text: $searchText)
-                .modifier(TextFieldGrayBackgroundColor())
-                .padding(.horizontal)
-                
+                    .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
+
+                Text("zip code")
+                    .font(.caption2)
+                    .padding(.top)
+                    .foregroundColor(.primary.opacity(0.4))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 TextField("State", text: $searchText)
-                .modifier(TextFieldGrayBackgroundColor())
-                .padding(.horizontal)
-                
+                    .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
+
+                Text("City")
+                    .font(.caption2)
+                    .padding(.top)
+                    .foregroundColor(.primary.opacity(0.4))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 TextField("City", text: $searchText)
-                .modifier(TextFieldGrayBackgroundColor())
-                .padding(.horizontal)
+                    .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
+
+                Divider().padding(.vertical)
                 
-                Divider().padding()
-                
+                Text("Street")
+                    .font(.caption2)
+                    .foregroundColor(.primary.opacity(0.4))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 TextField("Street", text: $searchText)
-                .modifier(TextFieldGrayBackgroundColor())
-                .padding(.horizontal)
-                
+                    .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
+
+                Text("Number")
+                    .font(.caption2)
+                    .padding(.top)
+                    .foregroundColor(.primary.opacity(0.4))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 TextField("Number", text: $searchText)
-                .modifier(TextFieldGrayBackgroundColor())
-                .padding(.horizontal)
-                
+                    .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
+
+                Text("Complemetion")
+                    .font(.caption2)
+                    .padding(.top)
+                    .foregroundColor(.primary.opacity(0.4))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 TextField("Complemetion", text: $searchText)
-                .modifier(TextFieldGrayBackgroundColor())
-                .padding(.horizontal)
-                
+                    .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
+
+                Text("Additional")
+                    .font(.caption2)
+                    .padding(.top)
+                    .foregroundColor(.primary.opacity(0.4))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 TextField("Additional", text: $searchText)
-                .modifier(TextFieldGrayBackgroundColor())
-                .padding(.horizontal)
-                
+                    .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
+
                 Button(action: {
                     print("Logout")
                 }) {
                     HStack {
                         Text("Save")
                             .fontWeight(.bold)
+                            .font(.subheadline)
                     }
                     .frame(maxWidth: .infinity)
                     .modifier(ButtonFill())
                 }
-                .padding([.horizontal, .top])
+                .padding( .top)
                 Spacer()
                     .frame(minHeight: 100)
                     .fixedSize()
                 Spacer()
             }
+            .padding(.horizontal)
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -93,6 +125,7 @@ struct AddressInfoView: View {
                         HStack {
                             Image(systemName: "chevron.left")
                             Text("Back")
+                                .font(.footnote)
                                 .fontWeight(.bold)
                         }
                         .modifier(ButtonFill())

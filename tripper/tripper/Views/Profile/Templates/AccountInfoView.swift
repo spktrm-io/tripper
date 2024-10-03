@@ -11,47 +11,65 @@ import SwiftUI
 struct AccountInfoView: View {
     @Environment(\.presentationMode) var presentationMode // Controla o estado de apresentação
     @State var searchText: String = ""
-
+    
     var body: some View {
         VStack{
             Text("Account information")
-            .font(.system(size: 30, weight: .black))
-            .foregroundColor(.primary)
-            .padding(.horizontal)
-            .padding(.top, 20)
-            .frame(maxWidth: .infinity, alignment: .leading)
-    
+                .font(.title)
+                .fontWeight(.black)
+                .foregroundColor(.primary)
+                .padding(.top, 20)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Text("full name")
+                .font(.caption2)
+                .foregroundColor(.primary.opacity(0.4))
+                .padding(.top)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
             TextField("full name", text: $searchText)
-            .modifier(TextFieldGrayBackgroundColor())
-            .padding(.horizontal)
-        
+                .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
+            
+            Text("username")
+                .font(.caption2)
+                .foregroundColor(.primary.opacity(0.4))
+                .padding(.top)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
             TextField("username", text: $searchText)
-            .modifier(TextFieldGrayBackgroundColor())
-            .padding(.horizontal)
+                .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
+
+            Divider().padding(.vertical)
             
-            Divider().padding()
-            
+            Text("email")
+                .font(.caption2)
+                .foregroundColor(.primary.opacity(0.4))
+                .frame(maxWidth: .infinity, alignment: .leading)
             TextField("email", text: $searchText)
-            .modifier(TextFieldGrayBackgroundColor())
-            .padding(.horizontal)
-            
+                .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
+
+            Text("confirm email")
+                .font(.caption2)
+                .padding(.top)
+                .foregroundColor(.primary.opacity(0.4))
+                .frame(maxWidth: .infinity, alignment: .leading)
             TextField("confirm email", text: $searchText)
-            .modifier(TextFieldGrayBackgroundColor())
-            .padding(.horizontal)
-            
+                .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
+
             Button(action: {
                 print("Logout")
             }) {
                 HStack {
                     Text("Save")
+                        .font(.subheadline)
                         .fontWeight(.bold)
                 }
                 .frame(maxWidth: .infinity)
                 .modifier(ButtonFill())
             }
-            .padding([.horizontal, .top])
+            .padding(.top)
             Spacer()
-        }
+        }.padding(.horizontal)
         .navigationBarBackButtonHidden(true) // Oculta o botão de voltar padrão
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -61,6 +79,7 @@ struct AccountInfoView: View {
                     HStack {
                         Image(systemName: "chevron.left") // Ícone personalizado
                         Text("Back")
+                            .font(.footnote)
                             .fontWeight(.bold)
                     }
                     .modifier(ButtonFill())

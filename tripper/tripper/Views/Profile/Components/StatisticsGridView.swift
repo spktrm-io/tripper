@@ -39,14 +39,14 @@ struct StatisticCardView: View {
                     Image(systemName: iconName)
                         .foregroundStyle(primaryColor)
                     Text(title)
-                        .font(.subheadline)
+                        .font(.headline)
                         .fontWeight(.bold)
                         .foregroundColor(.primary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Text(subtitle)
                     .foregroundColor(.primary)
-                    .font(.footnote)
+                    .font(.subheadline)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding()

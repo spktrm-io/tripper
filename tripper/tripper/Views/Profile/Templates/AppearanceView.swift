@@ -16,7 +16,8 @@ struct AppearanceView: View {
        
         VStack(spacing: 20) {
             Text("Appearance")
-                .font(.system(size: 30, weight: .black))
+                .font(.title)
+                .fontWeight(.black)
                 .foregroundColor(.primary)
                 .padding(.horizontal)
                 .padding(.top, 20)
@@ -108,6 +109,7 @@ struct AppearanceView: View {
                     HStack {
                         Image(systemName: "chevron.left")
                         Text("Back")
+                            .font(.footnote)
                             .fontWeight(.bold)
                     }
                     .modifier(ButtonFill())

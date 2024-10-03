@@ -21,6 +21,7 @@ struct BottomTabBarButtonView: View {
                 Image(systemName: iconName)
                 if isSelected { // Exibe o texto apenas se selecionado
                     Text(title)
+                        .font(.subheadline)
                         .fontWeight(.bold)
                 }
             }
@@ -29,5 +30,12 @@ struct BottomTabBarButtonView: View {
             .foregroundColor(isSelected ? secondaryColor : primaryColor) // Muda a cor do ícone e do texto
             .cornerRadius(10) // Borda arredondada
         }
+    }
+}
+
+struct BottomTabBarButtonView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainView()
+            .environmentObject(LocationService(completer: .init()))
     }
 }

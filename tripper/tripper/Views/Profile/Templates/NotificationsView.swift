@@ -16,15 +16,17 @@ struct NotificationsView: View {
         
         VStack {
             Text("Notifications")
-            .font(.system(size: 30, weight: .black))
-            .foregroundColor(.primary)
-            .padding(.horizontal)
-            .padding(.top, 20)
-            .frame(maxWidth: .infinity, alignment: .leading)
+                .font(.title)
+                .fontWeight(.black)
+                .foregroundColor(.primary)
+                .padding(.horizontal)
+                .padding(.top, 20)
+                .frame(maxWidth: .infinity, alignment: .leading)
           
             Toggle("Push", isOn: $isOn)
-               .toggleStyle(SwitchToggleStyle()) // Estilo de switch
-               .padding()
+                .font(.subheadline)
+                .toggleStyle(SwitchToggleStyle()) // Estilo de switch
+                .padding()
             
             Spacer()
         }
@@ -37,6 +39,7 @@ struct NotificationsView: View {
                     HStack {
                         Image(systemName: "chevron.left")
                         Text("Back")
+                            .font(.footnote)
                             .fontWeight(.bold)
                     }
                     .modifier(ButtonFill())

@@ -19,19 +19,20 @@ public struct PasswordStepView: View {
 
         VStack(alignment: .leading) {
             Text("Password")
-                .font(.system(size: 30, weight: .black))
+                .font(.title)
+                .fontWeight(.black)
                 .foregroundColor(.primary)
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             // Password Field
             SecureField("Enter your password", text: $password)
-                .modifier(TextFieldGrayBackgroundColor())
+                .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
                 .padding(.horizontal)
             
             // Confirm Password Field
             SecureField("Confirm your password", text: $confirmPassword)
-                .modifier(TextFieldGrayBackgroundColor())
+                .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
                 .padding(.horizontal)
             
             Divider().padding()
@@ -43,6 +44,7 @@ public struct PasswordStepView: View {
                         Image(systemName: "chevron.left")
                             .foregroundStyle(.primary)
                         Text("Previous")
+                            .font(.subheadline)
                             .fontWeight(.bold)
                     }
                     .padding()
@@ -56,6 +58,7 @@ public struct PasswordStepView: View {
                 Button(action: nextAction) {
                     HStack {
                         Text("Next")
+                            .font(.subheadline)
                             .fontWeight(.bold)
                         Image(systemName: "chevron.right")
                             .foregroundStyle(.primary)

@@ -20,6 +20,7 @@ struct MedalsView: View {
                 
                 Button(action: {}) {
                     Text("see all")
+                        .underline()
                         .font(.headline)
                         .fontWeight(.bold)
                         .foregroundColor(.primary)

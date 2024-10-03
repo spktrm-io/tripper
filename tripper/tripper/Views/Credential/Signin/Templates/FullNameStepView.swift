@@ -19,18 +19,19 @@ public struct FullNameStepView: View {
 
         VStack(alignment: .leading) {
             Text("Full Name")
-                .font(.system(size: 30, weight: .black))
+                .font(.title)
+                .fontWeight(.black)
                 .foregroundColor(.primary)
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             TextField("Enter your full name", text: $fullName)
-                .modifier(TextFieldGrayBackgroundColor())
+                .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
                 .padding(.horizontal)
                 .autocapitalization(.words)
             
             TextField("Enter your username", text: $fullName)
-                .modifier(TextFieldGrayBackgroundColor())
+                .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
                 .padding(.horizontal)
                 .autocapitalization(.words)
             
@@ -42,6 +43,7 @@ public struct FullNameStepView: View {
                         Image(systemName: "x.circle")
                             .foregroundStyle(.primary)
                         Text("Cancel")
+                            .font(.subheadline)
                             .fontWeight(.bold)
                     }
                     .padding()
@@ -56,6 +58,7 @@ public struct FullNameStepView: View {
                     HStack {
                         Text("Next")
                             .fontWeight(.bold)
+                            .font(.subheadline)
                         Image(systemName: "chevron.right")
                             .foregroundStyle(.primary)
                     }

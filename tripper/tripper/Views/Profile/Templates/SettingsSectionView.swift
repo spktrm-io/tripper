@@ -7,7 +7,8 @@ struct SettingsSectionView: View {
     var body: some View {
         VStack {
             Text("Personal")
-                .font(.system(size: 20, weight: .black))
+                .font(.headline)
+                .fontWeight(.black)
                 .foregroundColor(.primary)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top)
@@ -27,7 +28,8 @@ struct SettingsSectionView: View {
             }
             
             Text("General")
-                .font(.system(size: 20, weight: .black))
+                .font(.headline)
+                .fontWeight(.black)
                 .foregroundColor(.primary)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top)
@@ -42,7 +44,8 @@ struct SettingsSectionView: View {
             }
             
             Text("Support")
-                .font(.system(size: 20, weight: .black))
+                .font(.headline)
+                .fontWeight(.black)
                 .foregroundColor(.primary)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top)
@@ -51,12 +54,7 @@ struct SettingsSectionView: View {
             SettingOptionButton(iconName: "exclamationmark.triangle.fill", title: "Report a error", primaryColor: primaryColor) {
                 ReportErrorView()
             }
-            /*
-            // Navegação para "FAQ"
-            SettingOptionButton(iconName: "questionmark.circle", title: "FAQ", primaryColor: primaryColor) {
-                FAQView()
-            }
-            */
+
             Divider()
                 .padding(.vertical)
             
@@ -66,6 +64,7 @@ struct SettingsSectionView: View {
             }) {
                 HStack {
                     Text("Logout")
+                        .font(.subheadline)
                         .fontWeight(.bold)
                 }
                 .padding()
@@ -90,6 +89,7 @@ struct SettingOptionButton<Destination: View>: View {
                 Image(systemName: iconName)
                     .foregroundStyle(primaryColor)
                 Text(title)
+                    .font(.subheadline)
                     .foregroundColor(.primary)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()

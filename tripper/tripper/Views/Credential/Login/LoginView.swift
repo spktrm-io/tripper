@@ -19,17 +19,18 @@ public struct LoginView: View {
 
         VStack(){
             Text("Login")
-                .font(.system(size: 30, weight: .black))
+                .font(.title)
+                .fontWeight(.black)
                 .foregroundColor(.primary)
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             TextField("username", text: $username)
-                .modifier(TextFieldGrayBackgroundColor())
+                .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
                 .padding(.horizontal)
             
             SecureField("password", text: $password)
-                .modifier(TextFieldGrayBackgroundColor())
+                .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
                 .padding(.horizontal)
             
             Button(action: {
@@ -39,6 +40,7 @@ public struct LoginView: View {
             }) {
                 HStack {
                     Text("Enter")
+                        .font(.subheadline)
                         .fontWeight(.bold)
                 }
                 .padding()
@@ -63,6 +65,7 @@ public struct LoginView: View {
                         .foregroundStyle(.white)
                         .frame(width: 20, height: 20)
                     Text("Enter with Google")
+                        .font(.subheadline)
                         .fontWeight(.bold)
                 }
                 .padding()
@@ -85,6 +88,7 @@ public struct LoginView: View {
                         .foregroundStyle(.white)
                         .frame(width: 20, height: 20)
                     Text("Enter with Facebook")
+                        .font(.subheadline)
                         .fontWeight(.bold)
                 }
                 .padding()
@@ -102,6 +106,7 @@ public struct LoginView: View {
             }) {
                 HStack {
                     Text("Sigin")
+                        .font(.subheadline)
                         .fontWeight(.bold)
                 }
                 .padding()

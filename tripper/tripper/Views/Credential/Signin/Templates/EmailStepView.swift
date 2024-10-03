@@ -20,14 +20,15 @@ public struct EmailStepView: View {
 
         VStack(alignment: .leading) {
             Text("Email")
-                .font(.system(size: 30, weight: .black))
+                .font(.title)
+                .fontWeight(.black)
                 .foregroundColor(.primary)
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             // Email Field
             TextField("Enter your email", text: $email)
-                .modifier(TextFieldGrayBackgroundColor())
+                .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
                 .padding(.horizontal)
                 .keyboardType(.emailAddress)
                 .autocapitalization(.none)
@@ -35,7 +36,7 @@ public struct EmailStepView: View {
             
             // Confirm Email Field
             TextField("Confirm your email", text: $confirmEmail)
-                .modifier(TextFieldGrayBackgroundColor())
+                .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
                 .padding(.horizontal)
                 .keyboardType(.emailAddress)
                 .autocapitalization(.none)
@@ -50,6 +51,7 @@ public struct EmailStepView: View {
                         Image(systemName: "chevron.left")
                             .foregroundStyle(.primary)
                         Text("Previous")
+                            .font(.subheadline)
                             .fontWeight(.bold)
                     }
                     .padding()
@@ -64,6 +66,8 @@ public struct EmailStepView: View {
                     HStack {
                         Text("Next")
                             .fontWeight(.bold)
+                            .font(.subheadline)
+
                         Image(systemName: "chevron.right")
                             .foregroundStyle(.primary)
                     }

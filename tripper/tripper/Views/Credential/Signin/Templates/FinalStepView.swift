@@ -19,14 +19,15 @@ public struct FinalStepView: View {
 
         VStack(alignment: .leading) {
             Text("Final Step")
-                .font(.system(size: 30, weight: .black))
+                .font(.title)
+                .fontWeight(.black)
                 .foregroundColor(.primary)
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             Text("You have successfully completed your registration!")
                 .foregroundColor(.primary)
-                .fontWeight(.bold)
+                .font(.headline)
                 .padding(.horizontal)
                 .padding(.vertical, 20)
             
@@ -37,6 +38,7 @@ public struct FinalStepView: View {
             }) {
                 HStack {
                     Text("Go to Profile")
+                        .font(.subheadline)
                         .fontWeight(.bold)
                 }
                 .padding()

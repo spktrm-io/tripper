@@ -21,9 +21,8 @@ struct SavedRoutesView: View {
                 .font(.title)
                 .fontWeight(.black)
                 .foregroundColor(.primary)
-                .padding(.horizontal)
             GeometryReader { geometry in
-                let edge = (geometry.size.width - 80) / 2
+                let edge = (geometry.size.width - 10) / 2
                 ScrollView{
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(0..<10) { _ in
@@ -49,13 +48,13 @@ struct SavedRoutesView: View {
                                 }.padding(.horizontal)
                             }
                         }
-                    }.padding()
+                    }
                     Spacer(minLength: bottomSpacer)
                 }
             }
             Spacer()
         }
-        .padding(.vertical)
+        .padding()
     }
 }
 

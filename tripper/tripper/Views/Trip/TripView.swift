@@ -34,58 +34,61 @@ struct TripView: View {
     @State private var dragOffset: CGFloat = 0.0
     
     var body: some View {
-        ZStack {
-            Map (position: $cameraPosition){
-                ForEach(points) { point in
-                    Marker(coordinate: point.coordinate) {
-                        Image(systemName: "mappin")
+        VStack{
+            ZStack {
+                Map (position: $cameraPosition){
+                    ForEach(points) { point in
+                        Marker(coordinate: point.coordinate) {
+                            Image(systemName: "mappin")
+                        }
+                        .tag(point.id)
                     }
-                    .tag(point.id)
                 }
+                .frame(height: 400)
+                .background(Color.white) // Adiciona um fundo ao mapa
+                .clipShape(RoundedRectangle(cornerRadius: 10)) // Arredonda os cantos
+                .shadow(radius: 10)
+                .padding()
+                
+                Color.clear
+                    .contentShape(Rectangle()) // Permite que toda a área seja tocada
+                    .gesture(
+                        DragGesture()
+                            .onChanged { value in
+                                // Atualiza o deslocamento durante o gesto de arrastar
+                                dragOffset = value.translation.width
+                            }
+                            .onEnded { value in
+                                // Lógica de troca de pontos
+                                if dragOffset < -100 {
+                                    // Deslizando para a esquerda, próximo ponto
+                                    if currentIndex < points.count - 1 {
+                                        currentIndex += 1
+                                        updateRegion()
+                                    }
+                                } else if dragOffset > 100 {
+                                    // Deslizando para a direita, ponto anterior
+                                    if currentIndex > 0 {
+                                        currentIndex -= 1
+                                        updateRegion()
+                                    }
+                                }
+                                // Reseta o deslocamento
+                                dragOffset = 0
+                            }
+                    )
             }
             .frame(height: 400)
-            .background(Color.white) // Adiciona um fundo ao mapa
-            .clipShape(RoundedRectangle(cornerRadius: 10)) // Arredonda os cantos
-            .shadow(radius: 10)
+            HStack{
+                Text(points[currentIndex].title)
+                    .font(.headline)
+                    .foregroundStyle(.primary)
+            }
+            .frame(maxWidth: .infinity)
+            .modifier(ButtonBlank())
             .padding()
-            
-            Color.clear
-                .contentShape(Rectangle()) // Permite que toda a área seja tocada
-                .gesture(
-                    DragGesture()
-                        .onChanged { value in
-                            // Atualiza o deslocamento durante o gesto de arrastar
-                            dragOffset = value.translation.width
-                        }
-                        .onEnded { value in
-                            // Lógica de troca de pontos
-                            if dragOffset < -100 {
-                                // Deslizando para a esquerda, próximo ponto
-                                if currentIndex < points.count - 1 {
-                                    currentIndex += 1
-                                    updateRegion()
-                                }
-                            } else if dragOffset > 100 {
-                                // Deslizando para a direita, ponto anterior
-                                if currentIndex > 0 {
-                                    currentIndex -= 1
-                                    updateRegion()
-                                }
-                            }
-                            // Reseta o deslocamento
-                            dragOffset = 0
-                        }
-                )
+            Spacer()
         }
-        .overlay(
-            // Informação do ponto atual
-            Text(points[currentIndex].title)
-                .padding()
-                .background(Color.white.opacity(0.7))
-                .cornerRadius(8)
-                .padding(),
-            alignment: .bottom
-        )
     }
     
     // Atualizar a região do mapa quando o ponto muda

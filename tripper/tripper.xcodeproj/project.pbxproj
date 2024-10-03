@@ -54,6 +54,7 @@
 		2CB0C2792C8FD610007C077A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB0C26B2C8FD60F007C077A /* Assets.xcassets */; };
 		2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */; };
 		2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5D7282C933D490069EBB2 /* LocationService.swift */; };
+		2CDB4A262CAE28AC00D0492C /* SearchTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB4A252CAE289F00D0492C /* SearchTripView.swift */; };
 		2CFDDB0A2C93B221004B2E53 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFDDB092C93B221004B2E53 /* MapView.swift */; };
 		2CFDDB0C2C93B360004B2E53 /* MapSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFDDB0B2C93B360004B2E53 /* MapSheetView.swift */; };
 		49171DB6E91581B0C67DB8C6 /* Pods_tripperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D60A35D425D0AFF0454EA6 /* Pods_tripperTests.framework */; };
@@ -131,6 +132,7 @@
 		2CB0C26B2C8FD60F007C077A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtons.swift; sourceTree = "<group>"; };
 		2CD5D7282C933D490069EBB2 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationService.swift; path = tripper/Services/LocationService.swift; sourceTree = SOURCE_ROOT; };
+		2CDB4A252CAE289F00D0492C /* SearchTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTripView.swift; sourceTree = "<group>"; };
 		2CFDDB092C93B221004B2E53 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapView.swift; path = tripper/MapView.swift; sourceTree = SOURCE_ROOT; };
 		2CFDDB0B2C93B360004B2E53 /* MapSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSheetView.swift; sourceTree = "<group>"; };
 		43D60A35D425D0AFF0454EA6 /* Pods_tripperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tripperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -423,6 +425,7 @@
 			children = (
 				2C78CB252CAB7908007A572E /* Components */,
 				2C5344C12C9F446F00D06777 /* ExploreView.swift */,
+				2CDB4A242CAE288500D0492C /* Templates */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -470,6 +473,14 @@
 				2C5344E92C9F4A3800D06777 /* Credential */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2CDB4A242CAE288500D0492C /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				2CDB4A252CAE289F00D0492C /* SearchTripView.swift */,
+			);
+			path = Templates;
 			sourceTree = "<group>";
 		};
 		2CFDDB062C93B121004B2E53 /* Services */ = {
@@ -763,6 +774,7 @@
 				2C5344B82C9E138400D06777 /* SplashView.swift in Sources */,
 				2C78CB2D2CAB7BB3007A572E /* ButtonBlank.swift in Sources */,
 				2C78CB2F2CAB7BBB007A572E /* ButtonFill.swift in Sources */,
+				2CDB4A262CAE28AC00D0492C /* SearchTripView.swift in Sources */,
 				2C5344C62C9F453400D06777 /* BottomTabBarButtonView.swift in Sources */,
 				2C15E7202C973C4800E3726A /* MainView.swift in Sources */,
 				2C5344FD2C9F736200D06777 /* PasswordStepView.swift in Sources */,
@@ -889,7 +901,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -946,7 +958,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

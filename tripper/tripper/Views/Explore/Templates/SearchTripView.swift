@@ -11,9 +11,12 @@ struct SearchTripView : View{
     @Environment(\.presentationMode) var presentationMode // Controla o estado de apresentação
     @State var searchText: String = ""
     @Environment(\.colorScheme) var colorScheme
-    
+    @State private var distanceValue: Double = 10.0
+    @State private var costValue: Double = 10.0
+    @State private var durationValue: Double = 0.0
+
     var body: some View {
-        let backgroundColor: Color = colorScheme == .dark ? Color.black : Color.white
+      
         
         VStack{
             HStack{
@@ -64,15 +67,68 @@ struct SearchTripView : View{
                 }, title: "Search")
                 
                 ToggleContainerView(content:{
-                    VStack{}
+                    VStack{
+                        HStack{
+                            Text("10 km")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                            
+                            Slider(value: $distanceValue, in: 10...100000, step: 1)
+                                .frame(maxWidth: .infinity)
+                            
+                            Text("100.000 km")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                        }
+                        .padding(.vertical)
+                        Text("\(Int(distanceValue)) km")                            .font(.footnote)
+                            .fontWeight(.bold)
+                            .padding(.bottom)
+                    }
                 }, title: "Distance")
                 
                 ToggleContainerView(content:{
-                    VStack{}
+                    VStack{
+                        HStack{
+                            Text("$10,00")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                            
+                            Slider(value: $costValue, in: 10.00...100000.00, step: 5.5)
+                                .frame(maxWidth: .infinity)
+                            
+                            Text("$100.000,00")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                        }
+                        .padding(.vertical)
+                        
+                        Text(String(format: "$%.2f", costValue))                      .font(.footnote)
+                            .fontWeight(.bold)
+                            .padding(.bottom)
+                    }
                 }, title: "Cost Estimation")
                 
                 ToggleContainerView(content:{
-                    VStack{}
+                    VStack{
+                        HStack{
+                            Text("1 day")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                            
+                            Slider(value: $durationValue, in: 0...10, step: 1)
+                                .frame(maxWidth: .infinity)
+                            
+                            Text("10 Days")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                        }
+                        .padding(.vertical)
+                        
+                        Text("\(Int(durationValue)) days")                            .font(.footnote)
+                            .fontWeight(.bold)
+                            .padding(.bottom)
+                    }
                 }, title: "Duration")
                 
                 ToggleContainerView(content:{
@@ -82,14 +138,6 @@ struct SearchTripView : View{
                 ToggleContainerView(content:{
                     VStack{}
                 }, title: "Points of interest")
-                
-                ToggleContainerView(content:{
-                    VStack{}
-                }, title: "Stop type")
-                
-                ToggleContainerView(content:{
-                    VStack{}
-                }, title: "Trip purpose")
                 
                 ToggleContainerView(content:{
                     VStack{}
@@ -106,14 +154,13 @@ struct SearchTripView : View{
 struct ToggleContainerView<Content: View>: View {
     @Environment(\.presentationMode) var presentationMode // Controla o estado de apresentação
     @Environment(\.colorScheme) var colorScheme
-
+    
     @State private var searchText: String = ""
     
     @ViewBuilder let content: Content
     var title: String = ""
-
+    
     var body: some View {
-        let backgroundColor: Color = colorScheme == .dark ? Color.black : Color.white
         VStack{
             Text(title)
                 .font(.headline)
@@ -123,10 +170,13 @@ struct ToggleContainerView<Content: View>: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(backgroundColor)
         .cornerRadius(10)
-        .shadow(color: .primary.opacity(0.1), radius: 10, x: 5, y: 5)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+        )
         .padding(.horizontal)
+        
     }
 }
 

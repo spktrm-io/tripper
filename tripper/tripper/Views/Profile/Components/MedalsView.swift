@@ -21,7 +21,7 @@ struct MedalsView: View {
                 Button(action: {}) {
                     Text("see all")
                         .underline()
-                        .font(.headline)
+                        .font(.footnote)
                         .fontWeight(.bold)
                         .foregroundColor(.primary)
                 }
@@ -66,4 +66,8 @@ struct MedalButton: View {
                 )
         }
     }
+}
+
+#Preview {
+    ProfileView(bottomSpacer: 100)
 }

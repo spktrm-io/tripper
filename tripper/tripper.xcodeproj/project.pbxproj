@@ -55,6 +55,7 @@
 		2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */; };
 		2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5D7282C933D490069EBB2 /* LocationService.swift */; };
 		2CDB4A262CAE28AC00D0492C /* SearchTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB4A252CAE289F00D0492C /* SearchTripView.swift */; };
+		2CDB4A292CAF2D2200D0492C /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB4A282CAF2D1F00D0492C /* TripView.swift */; };
 		2CFDDB0A2C93B221004B2E53 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFDDB092C93B221004B2E53 /* MapView.swift */; };
 		2CFDDB0C2C93B360004B2E53 /* MapSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFDDB0B2C93B360004B2E53 /* MapSheetView.swift */; };
 		49171DB6E91581B0C67DB8C6 /* Pods_tripperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D60A35D425D0AFF0454EA6 /* Pods_tripperTests.framework */; };
@@ -133,6 +134,7 @@
 		2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtons.swift; sourceTree = "<group>"; };
 		2CD5D7282C933D490069EBB2 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationService.swift; path = tripper/Services/LocationService.swift; sourceTree = SOURCE_ROOT; };
 		2CDB4A252CAE289F00D0492C /* SearchTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTripView.swift; sourceTree = "<group>"; };
+		2CDB4A282CAF2D1F00D0492C /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		2CFDDB092C93B221004B2E53 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapView.swift; path = tripper/MapView.swift; sourceTree = SOURCE_ROOT; };
 		2CFDDB0B2C93B360004B2E53 /* MapSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSheetView.swift; sourceTree = "<group>"; };
 		43D60A35D425D0AFF0454EA6 /* Pods_tripperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tripperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -462,6 +464,7 @@
 		2CB0C2692C8FD60F007C077A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2CDB4A272CAF2D1800D0492C /* Trip */,
 				2C78CB242CAB78E2007A572E /* Explore */,
 				2C1B33C92CA3BB88000B8C75 /* RouteDetail */,
 				2C5344E12C9F489F00D06777 /* Map */,
@@ -481,6 +484,14 @@
 				2CDB4A252CAE289F00D0492C /* SearchTripView.swift */,
 			);
 			path = Templates;
+			sourceTree = "<group>";
+		};
+		2CDB4A272CAF2D1800D0492C /* Trip */ = {
+			isa = PBXGroup;
+			children = (
+				2CDB4A282CAF2D1F00D0492C /* TripView.swift */,
+			);
+			path = Trip;
 			sourceTree = "<group>";
 		};
 		2CFDDB062C93B121004B2E53 /* Services */ = {
@@ -787,6 +798,7 @@
 				2C5344CC2C9F46A700D06777 /* ProfileSectionView.swift in Sources */,
 				2C15E71E2C9737AD00E3726A /* HomeView.swift in Sources */,
 				2C5344C42C9F448D00D06777 /* LocationButtonView.swift in Sources */,
+				2CDB4A292CAF2D2200D0492C /* TripView.swift in Sources */,
 				2C78CB312CAB7CB6007A572E /* TextFieldGrayBackgroundColor.swift in Sources */,
 				2CFDDB0A2C93B221004B2E53 /* MapView.swift in Sources */,
 				2C5344D02C9F46DA00D06777 /* MedalsView.swift in Sources */,

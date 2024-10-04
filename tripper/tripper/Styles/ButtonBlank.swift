@@ -10,7 +10,7 @@ import SwiftUI
 struct ButtonBlank: ViewModifier {
     @Environment(\.colorScheme) var colorScheme
     var cornerRadius: CGFloat = 10
-    var padding: CGFloat = 10
+    var padding: CGFloat = 16
     
     func body(content: Content) -> some View {
         let buttonContentColor: Color = colorScheme == .dark ? Color.white : Color.black

@@ -12,15 +12,15 @@ struct FloatingButtons: View {
                 Button(action: {
                     leftAction()
                 }) {
-                    Image(systemName: "car.rear.road.lane")
+                    Image(systemName: "chevron.backward")
                         .frame(width: 40, height: 40)
-                        .foregroundColor(.gray).padding(4)
-                        .background(.thinMaterial)
-                        .cornerRadius(5)
-                        .shadow(color: .gray.opacity(0.5), radius: 5, x: 1, y: 3)
+                        .foregroundColor(.primary).padding(4)
+                        .background(.ultraThinMaterial)
+                        .cornerRadius(.infinity)
+                        .shadow(color: .primary.opacity(0.1), radius: 10)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.gray.opacity(0.1), lineWidth: 1) // Adicionar stroke
+                            RoundedRectangle(cornerRadius: .infinity)
+                                .stroke(Color.primary.opacity(0.1), lineWidth: 1) // Adicionar stroke
                         )
 
                        
@@ -32,13 +32,13 @@ struct FloatingButtons: View {
                 }) {
                     Image(systemName: "ellipsis")
                         .frame(width: 40, height: 40)
-                        .foregroundColor(.gray).padding(4)
-                        .background(.thinMaterial)
-                        .cornerRadius(5)
-                        .shadow(color: .gray.opacity(0.5), radius: 5, x: 1, y: 3)
+                        .foregroundColor(.primary).padding(4)
+                        .background(.ultraThinMaterial)
+                        .cornerRadius(.infinity)
+                        .shadow(color: .primary.opacity(0.1), radius: 10)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.gray.opacity(0.1), lineWidth: 1) // Adicionar stroke
+                            RoundedRectangle(cornerRadius: .infinity)
+                                .stroke(Color.primary.opacity(0.1), lineWidth: 1) // Adicionar stroke
                         )
 
                 }
@@ -48,4 +48,8 @@ struct FloatingButtons: View {
             Spacer()
         }
     }
+}
+
+#Preview {
+    MapView()
 }

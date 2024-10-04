@@ -6,10 +6,11 @@ struct MapView: View {
     @State private var position = MapCameraPosition.automatic
     @State private var searchResults = [SearchResult]()
     @State private var selectedLocation: SearchResult?
-    @State private var isSheetPresented: Bool = true
+    @State private var isSheetPresented: Bool = false
     @State private var scene: MKLookAroundScene?
     @State private var route: MKRoute?
     @State private var fetchTask: Task<Void, Never>?
+    @Environment(\.presentationMode) var presentationMode // Controla o estado de apresentação
 
     var body: some View {
         ZStack {
@@ -62,14 +63,21 @@ struct MapView: View {
             }
 
             FloatingButtons(leftAction: {
-                print("ContentView: Left button pressed")
+                presentationMode.wrappedValue.dismiss() // Volta para a tela anterior
             }, rightAction: {
-                print("ContentView: Right button pressed")
+                isSheetPresented.toggle()
             })
         }
         .sheet(isPresented: $isSheetPresented) {
-            MapSheetView(searchResults: $searchResults)
+            Rectangle()
+                   .frame(width: 40, height: 5)
+                   .cornerRadius(2.5)
+                   .foregroundColor(.gray)
+                   .padding(.top, 8)
+            MapSheetView()
         }
+        .navigationBarHidden(true) // Oculta a barra de navegação
+        .navigationBarBackButtonHidden(true)
     }
     
     private func updateForSelectedLocation() async {
@@ -124,8 +132,6 @@ struct MapView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
-    }
+#Preview {
+    MapView()
 }

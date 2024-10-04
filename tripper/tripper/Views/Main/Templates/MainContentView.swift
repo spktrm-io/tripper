@@ -45,6 +45,6 @@ struct MainContentView: View {
 }
 
 #Preview {
-    MainContentView(selectedIndex: .constant(3), bottomTabMenuHeight: 100)
+    MainContentView(selectedIndex: .constant(1), bottomTabMenuHeight: 100)
         .environmentObject(LocationService(completer: .init()))
 }

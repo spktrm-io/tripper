@@ -57,7 +57,6 @@ struct TripView: View {
                     .frame(height: 400)
                     .background(Color.white) // Adiciona um fundo ao mapa
                     .clipShape(RoundedRectangle(cornerRadius: 10)) // Arredonda os cantos
-                    .shadow(radius: 10)
                     .padding()
                     .disabled(true)
                     
@@ -66,31 +65,22 @@ struct TripView: View {
                         .gesture(
                             DragGesture()
                                 .onChanged { value in
-                                    // Atualiza o deslocamento durante o gesto de arrastar
                                     withAnimation{
                                         dragOffset = value.translation.width
                                     }
                                 }
                                 .onEnded { value in
-                                    // Lógica de troca de pontos
                                     if dragOffset < -100 {
-                                        // Deslizando para a esquerda, próximo ponto
                                         if currentIndex < points.count - 1 {
-                                            withAnimation{
-                                                currentIndex += 1
-                                                updateRegion()
-                                            }
+                                            currentIndex += 1
+                                            updateRegion(coordinate: points[currentIndex].coordinate)
                                         }
                                     } else if dragOffset > 100 {
-                                        // Deslizando para a direita, ponto anterior
                                         if currentIndex > 0 {
-                                            withAnimation{
-                                                currentIndex -= 1
-                                                updateRegion()
-                                            }
+                                            currentIndex -= 1
+                                            updateRegion(coordinate: points[currentIndex].coordinate)
                                         }
                                     }
-                                    // Reseta o deslocamento
                                     dragOffset = 0
                                 }
                         )
@@ -98,27 +88,48 @@ struct TripView: View {
                 .matchedTransitionSource(id: "map", in: namespace)
             }
             .frame(height: 400)
-            HStack{
-                Text(points[currentIndex].title)
-                    .font(.headline)
-                    .foregroundStyle(.primary)
+            
+            ScrollView{
+                ForEach(points) { point in
+                    Button(action: {
+                        updateRegion(coordinate: point.coordinate)
+                    }){
+                        HStack{
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text(point.title)
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                            }
+                            Spacer()
+                            VStack(spacing: 5) {
+                                
+                            }
+                        }
+                        .modifier(ButtonBlank())
+                    }
+                }
             }
-            .frame(maxWidth: .infinity)
-            .modifier(ButtonBlank())
             .padding()
+            
             Spacer()
         }
+        .navigationBarHidden(true) 
+        .navigationBarBackButtonHidden(true)
     }
     
     // Atualizar a região do mapa quando o ponto muda
-    private func updateRegion() {
-        cameraPosition = MapCameraPosition.region(MKCoordinateRegion(
-            center: points[currentIndex].coordinate,
-            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        ))
+    private func updateRegion(coordinate: CLLocationCoordinate2D) {
+        withAnimation{
+            cameraPosition = MapCameraPosition.region(MKCoordinateRegion(
+                center: coordinate,
+                span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+            ))
+        }
     }
 }
 
 #Preview {
-    TripView()
+    MainView()
+        .environmentObject(LocationService(completer: .init()))
+    
 }

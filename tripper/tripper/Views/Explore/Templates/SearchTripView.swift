@@ -45,9 +45,10 @@ struct SearchTripView : View{
                         }
                         .modifier(ButtonBlank())
                         .background(
-                            FluidGradient(blobs: [.blue, .cyan, .purple],
-                                          speed: 1.0,
-                                          blur: 0.75)
+                            FluidGradient(
+                                blobs: [.blue, .cyan, .purple],
+                                speed: 1.0,
+                                blur: 0.75)
                             .background(.quaternary)
                             .cornerRadius(10)
                         )

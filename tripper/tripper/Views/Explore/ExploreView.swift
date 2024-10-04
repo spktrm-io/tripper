@@ -4,10 +4,6 @@
 //
 //  Created by Erick Barcelos on 21/09/24.
 //
-
-import SwiftUI
-import ScalingHeaderScrollView
-
 import SwiftUI
 import ScalingHeaderScrollView
 

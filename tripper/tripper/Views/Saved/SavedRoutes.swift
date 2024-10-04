@@ -10,12 +10,22 @@ import SwiftUI
 struct SavedRoutesView: View {
     let bottomSpacer: CGFloat?
     @Environment(\.colorScheme) var colorScheme // Access the current color scheme
-    let columns = [
+    private let edge: CGFloat
+    private let columns: [GridItem]
+    private let columnsPhotos = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    let edge: CGFloat = UIScreen.main.bounds.width * 0.40
-    
+    let photos: [String] = ["andes", "andes-1", "andes-2", "andes-3"] // Array de nomes das imagens
+
+    init(bottomSpacer: CGFloat) {
+        self.edge = UIScreen.main.bounds.width * 0.40
+        self.columns = [
+            GridItem(.fixed(self.edge)),
+            GridItem(.fixed(self.edge))
+        ]
+        self.bottomSpacer = bottomSpacer
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -24,12 +34,20 @@ struct SavedRoutesView: View {
                 .fontWeight(.black)
                 .foregroundColor(.primary)
             ScrollView{
-                LazyVGrid(columns: columns, spacing: 20) {
+                LazyVGrid(columns: columns) {
                     ForEach(0..<10) { _ in
                         Button(action: {}) {
                             VStack{
-                                VStack(alignment: .leading) {
-                                    
+                                VStack(alignment: .center) {
+                                    LazyVGrid(columns: columnsPhotos) {
+                                        ForEach(photos, id: \.self) { photo in
+                                            Image(photo)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                                .clipped()
+                                        }
+                                    }
                                 }
                                 .frame(width: edge, height: edge)
                                 .overlay(
@@ -47,7 +65,6 @@ struct SavedRoutesView: View {
                                     .foregroundColor(.primary)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
-                            .padding(.horizontal)
                         }
                     }
                 }

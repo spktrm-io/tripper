@@ -4,7 +4,7 @@ import MapKit
 struct MapSheetView: View {
     var body: some View {
         VStack {
-            
+            Spacer()
         }
         .padding()
         .presentationDetents([.large])

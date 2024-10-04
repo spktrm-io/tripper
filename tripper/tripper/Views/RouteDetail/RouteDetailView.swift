@@ -11,30 +11,22 @@ struct RouteDetailView: View {
     @Environment(\.presentationMode) var presentationMode // Controla o estado de apresentação
     @Environment(\.colorScheme) var colorScheme
 
-    var body: some View {       
-         let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
-        
-
+    var body: some View {
             VStack {
                 Text("RouteDetailView")
             }
-            .padding(.horizontal).navigationBarBackButtonHidden(true) // Oculta o botão de voltar padrão
-        
+            .padding(.horizontal)
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        presentationMode.wrappedValue.dismiss() // Volta para a tela anterior
+                        presentationMode.wrappedValue.dismiss()
                     }) {
                         HStack {
-                            Image(systemName: "chevron.left") // Ícone personalizado
-                            Text("Back")
-                                .fontWeight(.bold)
+                            Image(systemName: "chevron.backward")
                         }
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.primary)
-                        .foregroundColor(secondaryColor)
-                        .cornerRadius(10)
+                        .frame(width: 40, height: 40)
+                        .modifier(ButtonBlank(cornerRadius: .infinity, padding: 4))
                     }
                 }
             }
@@ -43,6 +35,6 @@ struct RouteDetailView: View {
 }
 
 #Preview{
-    ProfileView(bottomSpacer: 100)
+    RouteDetailView()
 }
 

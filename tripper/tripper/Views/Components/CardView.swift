@@ -15,9 +15,18 @@ struct CardView: View {
     var rating: String? = "0.0"
     let edge: CGFloat = UIScreen.main.bounds.width * 0.90
     let photos: [String] = ["andes", "andes-1", "andes-2", "andes-3"] // Array de nomes das imagens
+    @Namespace() var namespace
     
     var body: some View {
-        NavigationLink(destination: RouteDetailView()) {
+        NavigationLink {
+            RouteDetailView()
+                .navigationTransition(
+                    .zoom(
+                        sourceID: "card",
+                        in: namespace
+                    )
+                )
+        } label: {
             VStack{
                 TabView {
                     ForEach(photos, id: \.self) { photo in
@@ -65,7 +74,11 @@ struct CardView: View {
                 .frame(width: edge, alignment: .leading)
             }
             .padding(.bottom, 30)
+            .matchedTransitionSource(id: "card", in: namespace)
         }
+        
+        
+        
     }
 }
 

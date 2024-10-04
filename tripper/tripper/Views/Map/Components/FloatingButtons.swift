@@ -14,7 +14,8 @@ struct FloatingButtons: View {
                 }) {
                     Image(systemName: "chevron.backward")
                         .frame(width: 40, height: 40)
-                        .foregroundColor(.primary).padding(4)
+                        .foregroundColor(.primary)
+                        .padding(4)
                         .background(.ultraThinMaterial)
                         .cornerRadius(.infinity)
                         .shadow(color: .primary.opacity(0.1), radius: 10)
@@ -32,7 +33,8 @@ struct FloatingButtons: View {
                 }) {
                     Image(systemName: "ellipsis")
                         .frame(width: 40, height: 40)
-                        .foregroundColor(.primary).padding(4)
+                        .foregroundColor(.primary)
+                        .padding(4)
                         .background(.ultraThinMaterial)
                         .cornerRadius(.infinity)
                         .shadow(color: .primary.opacity(0.1), radius: 10)

@@ -20,7 +20,7 @@ struct BottomTabBarView: View {
                 selectedIndex = 0
             }
             Spacer()
-            BottomTabBarButtonView(iconName: "location.north.fill", title: "Trip", isSelected: selectedIndex == 1, primaryColor: primaryColor, secondaryColor: secondaryColor) {
+            BottomTabBarButtonView(iconName: "point.topright.arrow.triangle.backward.to.point.bottomleft.scurvepath.fill", title: "Trip", isSelected: selectedIndex == 1, primaryColor: primaryColor, secondaryColor: secondaryColor) {
                 selectedIndex = 1
             }
             Spacer()

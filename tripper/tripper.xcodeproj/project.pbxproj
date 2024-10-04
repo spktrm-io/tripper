@@ -271,17 +271,9 @@
 			isa = PBXGroup;
 			children = (
 				2C5344DE2C9F481000D06777 /* Components */,
-				2C5344D92C9F47F500D06777 /* Templates */,
 				2C15E7212C97504900E3726A /* SavedRoutes.swift */,
 			);
 			path = Saved;
-			sourceTree = "<group>";
-		};
-		2C5344D92C9F47F500D06777 /* Templates */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Templates;
 			sourceTree = "<group>";
 		};
 		2C5344DA2C9F47F600D06777 /* Templates */ = {

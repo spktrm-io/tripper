@@ -37,7 +37,7 @@ struct TripView: View {
         MapPoint(title: "Point 3", coordinate: CLLocationCoordinate2D(latitude: 43.7128, longitude: -74.0060)),
         MapPoint(title: "Point 3", coordinate: CLLocationCoordinate2D(latitude: 44.7128, longitude: -74.0060))
     ]
-
+    
     var body: some View {
         ZStack{
             VStack{
@@ -85,58 +85,98 @@ struct TripView: View {
                                         dragOffset = 0
                                     }
                             )
-                        
+                        VStack{
+                            Spacer()
+                            HStack {
+                                ForEach(0..<points.count, id: \.self) { index in
+                                    Rectangle()
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: 3)
+                                        .foregroundColor(index <= currentIndex ? Color.primary.opacity(0.5) : Color.primary.opacity(0.2))
+                                }
+                            }
+                            .frame(width: 120)
+                        }
+                        .padding(.bottom, 10)
                     }
                     .frame(height: heightMap)
                     .matchedTransitionSource(id: "map", in: namespace)
                 }
                 
-                HStack {
-                    ForEach(0..<points.count, id: \.self) { index in
-                        Rectangle()
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 3)
-                            .cornerRadius(2.5)
-                            .foregroundColor(index <= currentIndex ? Color.primary : Color.primary.opacity(0.2))
-                    }
-                }
-                .padding(.horizontal)
                 
                 ScrollView(showsIndicators: false){
-                    ForEach(Array(points.enumerated()), id: \.element.id) { index, point in
-                        Button(action: {
-                            currentIndex = index
-                            updateRegion(coordinate: point.coordinate)
-                        }){
-                            HStack {
-                                VStack(alignment: .leading, spacing: 5) {
-                                    Text(point.title) // Nome do ponto
-                                        .font(.headline)
-                                        .foregroundColor(.primary)
-                                    
-                                    // Campos mockados
-                                    Text("Descrição: Lugar interessante para visitar") // Descrição do ponto
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                    
-                                    Text("Horário Estimado: 14:30") // Horário estimado de chegada
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                    
-                                    Text("Duração: 30 minutos") // Duração estimada da parada
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                    
-                                    Text("Notas: Trazer câmera e água.") // Notas adicionais
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                }
-                                Spacer()
-                            }
-                            .frame(height: 150) // Aumentei a altura para acomodar mais informações
-                            .modifier(ButtonBlank())
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Resume")
+                            .font(.title2)
+                            .bold()
+                        
+                        HStack {
+                            Text("Visited points:")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                            Spacer()
+                            Text("5 / 8")
+                                .font(.subheadline)
+                                .bold()
+                        }
+                        
+                        HStack {
+                            Text("Total distance:")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                            Spacer()
+                            Text("100,00 km")
+                                .font(.subheadline)
+                                .bold()
                         }
                     }
+                    .modifier(ButtonBlank())
+                    .padding(.top)
+                    ForEach(Array(points.enumerated()), id: \.element.id) { index, point in
+                        VStack{
+                            Button(action: {
+                                currentIndex = index
+                                updateRegion(coordinate: point.coordinate)
+                            }){
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 5) {
+                                        Text(point.title) // Nome do ponto
+                                            .font(.headline)
+                                            .foregroundColor(.primary)
+                                        
+                                        // Campos mockados
+                                        Text("Descrição: Lugar interessante para visitar") // Descrição do ponto
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                        
+                                        Text("Horário Estimado: 14:30") // Horário estimado de chegada
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                        
+                                        Text("Duração: 30 minutos") // Duração estimada da parada
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                        
+                                        Text("Notas: Trazer câmera e água.") // Notas adicionais
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    }
+                                    Spacer()
+                                }
+                                .frame(height: 150) // Aumentei a altura para acomodar mais informações
+                                .modifier(ButtonBlank())
+                            }
+                        }
+                        .padding(.leading)
+                        .overlay(
+                            Rectangle()
+                                .frame(width: 3)
+                                .foregroundColor(index < 3 ? Color.blue : Color.primary.opacity(0.1))
+                            ,
+                            alignment: .leading
+                        )
+                    }
+                    
                     Spacer()
                         .frame(minHeight: 150)
                         .fixedSize()

@@ -46,13 +46,12 @@ struct SearchTripView : View{
                         .modifier(ButtonBlank())
                         .background(
                             FluidGradient(
-                                blobs: [.blue, .cyan, .purple],
+                                blobs: [.pink, .cyan, .purple],
                                 speed: 1.0,
-                                blur: 0.75)
-                            .background(.quaternary)
+                                blur: 0.8)
+                            .background(.blue)
                             .cornerRadius(10)
                         )
-                        
                     }
                 }
                 .frame(maxWidth: .infinity)

@@ -19,6 +19,7 @@ struct TripView: View {
         center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     ))
+    @Namespace() var namespace
     
     // Lista de pontos no mapa
     @State private var points: [MapPoint] = [
@@ -35,48 +36,66 @@ struct TripView: View {
     
     var body: some View {
         VStack{
-            ZStack {
-                Map (position: $cameraPosition){
-                    ForEach(points) { point in
-                        Marker(coordinate: point.coordinate) {
-                            Image(systemName: "mappin")
-                        }
-                        .tag(point.id)
-                    }
-                }
-                .frame(height: 400)
-                .background(Color.white) // Adiciona um fundo ao mapa
-                .clipShape(RoundedRectangle(cornerRadius: 10)) // Arredonda os cantos
-                .shadow(radius: 10)
-                .padding()
-                
-                Color.clear
-                    .contentShape(Rectangle()) // Permite que toda a área seja tocada
-                    .gesture(
-                        DragGesture()
-                            .onChanged { value in
-                                // Atualiza o deslocamento durante o gesto de arrastar
-                                dragOffset = value.translation.width
+            NavigationLink {
+                MapView()
+                    .navigationTransition(
+                        .zoom(
+                            sourceID: "map",
+                            in: namespace
+                        )
+                    )
+            } label: {
+                ZStack {
+                    Map (position: $cameraPosition){
+                        ForEach(points) { point in
+                            Marker(coordinate: point.coordinate) {
+                                Image(systemName: "mappin")
                             }
-                            .onEnded { value in
-                                // Lógica de troca de pontos
-                                if dragOffset < -100 {
-                                    // Deslizando para a esquerda, próximo ponto
-                                    if currentIndex < points.count - 1 {
-                                        currentIndex += 1
-                                        updateRegion()
-                                    }
-                                } else if dragOffset > 100 {
-                                    // Deslizando para a direita, ponto anterior
-                                    if currentIndex > 0 {
-                                        currentIndex -= 1
-                                        updateRegion()
+                            .tag(point.id)
+                        }
+                    }
+                    .frame(height: 400)
+                    .background(Color.white) // Adiciona um fundo ao mapa
+                    .clipShape(RoundedRectangle(cornerRadius: 10)) // Arredonda os cantos
+                    .shadow(radius: 10)
+                    .padding()
+                    .disabled(true)
+                    
+                    Color.clear
+                        .contentShape(Rectangle()) // Permite que toda a área seja tocada
+                        .gesture(
+                            DragGesture()
+                                .onChanged { value in
+                                    // Atualiza o deslocamento durante o gesto de arrastar
+                                    withAnimation{
+                                        dragOffset = value.translation.width
                                     }
                                 }
-                                // Reseta o deslocamento
-                                dragOffset = 0
-                            }
-                    )
+                                .onEnded { value in
+                                    // Lógica de troca de pontos
+                                    if dragOffset < -100 {
+                                        // Deslizando para a esquerda, próximo ponto
+                                        if currentIndex < points.count - 1 {
+                                            withAnimation{
+                                                currentIndex += 1
+                                                updateRegion()
+                                            }
+                                        }
+                                    } else if dragOffset > 100 {
+                                        // Deslizando para a direita, ponto anterior
+                                        if currentIndex > 0 {
+                                            withAnimation{
+                                                currentIndex -= 1
+                                                updateRegion()
+                                            }
+                                        }
+                                    }
+                                    // Reseta o deslocamento
+                                    dragOffset = 0
+                                }
+                        )
+                }
+                .matchedTransitionSource(id: "map", in: namespace)
             }
             .frame(height: 400)
             HStack{

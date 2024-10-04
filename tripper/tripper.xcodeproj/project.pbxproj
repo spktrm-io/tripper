@@ -21,6 +21,7 @@
 		2C16CE0C2C7D17910079A75B /* tripperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CE0B2C7D17910079A75B /* tripperUITests.swift */; };
 		2C16CE0E2C7D17910079A75B /* tripperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CE0D2C7D17910079A75B /* tripperUITestsLaunchTests.swift */; };
 		2C1B33C82CA3BB85000B8C75 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1B33C72CA3BB84000B8C75 /* RouteDetailView.swift */; };
+		2C37EFA82CAF7E7600C48F88 /* FluidGradient in Frameworks */ = {isa = PBXBuildFile; productRef = 2C37EFA72CAF7E7600C48F88 /* FluidGradient */; };
 		2C5344B82C9E138400D06777 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344B72C9E137A00D06777 /* SplashView.swift */; };
 		2C5344BA2C9F440300D06777 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344B92C9F43FC00D06777 /* SearchBarView.swift */; };
 		2C5344BC2C9F441A00D06777 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344BB2C9F441900D06777 /* TabButtonView.swift */; };
@@ -153,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF00F27828E145DAE363A289 /* Pods_tripper.framework in Frameworks */,
+				2C37EFA82CAF7E7600C48F88 /* FluidGradient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +636,9 @@
 				Base,
 			);
 			mainGroup = 2C16CDDF2C7D17900079A75B;
+			packageReferences = (
+				2C37EFA62CAF7E7600C48F88 /* XCRemoteSwiftPackageReference "FluidGradient" */,
+			);
 			productRefGroup = 2C16CDE92C7D17900079A75B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1162,6 +1167,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2C37EFA62CAF7E7600C48F88 /* XCRemoteSwiftPackageReference "FluidGradient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Cindori/FluidGradient";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2C37EFA72CAF7E7600C48F88 /* FluidGradient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C37EFA62CAF7E7600C48F88 /* XCRemoteSwiftPackageReference "FluidGradient" */;
+			productName = FluidGradient;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2C16CDF62C7D17910079A75B /* tripper.xcdatamodeld */ = {

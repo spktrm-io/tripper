@@ -82,6 +82,7 @@ struct ExploreView: View {
                         .modifier(TextFieldGrayBackgroundColor())
                         .matchedTransitionSource(id: "search", in: namespace)
                     }
+                    
                     Button(action: { isSheetPresented.toggle() }) {
                         Image(systemName: "line.3.horizontal.decrease")
                     }
@@ -137,7 +138,8 @@ struct ExploreView: View {
                             }
                             .padding(.vertical)
                             
-                            Text(String(format: "$%.2f", costValue))                      .font(.footnote)
+                            Text(String(format: "$%.2f", costValue))
+                                .font(.footnote)
                                 .fontWeight(.bold)
                                 .padding(.bottom)
                         }
@@ -240,17 +242,6 @@ struct ExploreView: View {
                         .padding(.vertical)
                     }, title: "Road Conditions")
                     
-                    ToggleContainerView(content:{
-                        VStack{}
-                    }, title: "Route type")
-                    
-                    ToggleContainerView(content:{
-                        VStack{}
-                    }, title: "Points of interest")
-                    
-                    ToggleContainerView(content:{
-                        VStack{}
-                    }, title: "Preferences")
                     Spacer()
                         .fixedSize()
                         .frame(height: 100)

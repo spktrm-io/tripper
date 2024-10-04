@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FluidGradient
 
 struct SearchTripView : View{
     @Environment(\.presentationMode) var presentationMode // Controla o estado de apresentação
@@ -18,7 +19,7 @@ struct SearchTripView : View{
     @State private var durationValue: Double = 0.0
     @State var searchText: String = ""
     @State private var fromText: String = "Loading..."
-
+    
     var body: some View {
         ZStack{
             VStack{
@@ -35,12 +36,22 @@ struct SearchTripView : View{
                     Button(action: {
                     }) {
                         HStack {
-                            Image(systemName: "plus.circle.fill") // Ícone personalizado
+                            Image(systemName: "plus.circle.fill")
+                                .foregroundStyle(.white)
                             Text("Create trip")
                                 .font(.subheadline)
-                                .fontWeight(.bold)
+                                .fontWeight(.black)
+                                .foregroundStyle(.white)
                         }
-                        .modifier(ButtonFill())
+                        .modifier(ButtonBlank())
+                        .background(
+                            FluidGradient(blobs: [.blue, .cyan, .purple],
+                                          speed: 1.0,
+                                          blur: 0.75)
+                            .background(.quaternary)
+                            .cornerRadius(10)
+                        )
+                        
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -89,33 +100,12 @@ struct SearchTripView : View{
                                     .fontWeight(.bold)
                             }
                             .padding(.vertical)
-                            Text("\(Int(distanceValue)) km")                            .font(.footnote)
+                            Text("\(Int(distanceValue)) km")
+                                .font(.footnote)
                                 .fontWeight(.bold)
                                 .padding(.bottom)
                         }
                     }, title: "Distance")
-                    
-                    ToggleContainerView(content:{
-                        VStack{
-                            HStack{
-                                Text("$10,00")
-                                    .font(.caption)
-                                    .fontWeight(.bold)
-                                
-                                Slider(value: $costValue, in: 10.00...100000.00, step: 5.5)
-                                    .frame(maxWidth: .infinity)
-                                
-                                Text("$100.000,00")
-                                    .font(.caption)
-                                    .fontWeight(.bold)
-                            }
-                            .padding(.vertical)
-                            
-                            Text(String(format: "$%.2f", costValue))                      .font(.footnote)
-                                .fontWeight(.bold)
-                                .padding(.bottom)
-                        }
-                    }, title: "Cost Estimation")
                     
                     ToggleContainerView(content:{
                         VStack{
@@ -133,12 +123,13 @@ struct SearchTripView : View{
                             }
                             .padding(.vertical)
                             
-                            Text("\(Int(durationValue)) days")                            .font(.footnote)
+                            Text("\(Int(durationValue)) days")
+                                .font(.footnote)
                                 .fontWeight(.bold)
                                 .padding(.bottom)
                         }
                     }, title: "Duration")
-
+                    
                     Spacer()
                         .fixedSize()
                         .frame(height: 100)
@@ -195,5 +186,5 @@ struct ToggleContainerView<Content: View>: View {
 #Preview {
     SearchTripView()
         .environmentObject(LocationService(completer: .init()))
-
+    
 }

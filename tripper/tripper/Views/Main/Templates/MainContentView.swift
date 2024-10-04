@@ -19,7 +19,7 @@ struct MainContentView: View {
             case 0:
                 ExploreView(bottomSpacer: bottomTabMenuHeight)
             case 1:
-                MapView()
+                TripView()
             case 2:
                 SavedRoutesView(bottomSpacer: bottomTabMenuHeight)
             case 3:

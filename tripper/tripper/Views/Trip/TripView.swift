@@ -195,7 +195,7 @@ struct TripSummaryView: View {
             }
         }
         .padding(.horizontal)
-        .padding(.top, 5)
+        .padding(.vertical, 5)
     }
 }
 
@@ -207,7 +207,6 @@ struct TripPointsListView: View {
     @State var showDeleteButton: Bool = false
     var updateRegion: (CLLocationCoordinate2D) -> Void
     var removePoint: (MapPoint) -> Void
-    @Environment(\.editMode) private var editMode
 
     var body: some View {
         NavigationView {
@@ -308,32 +307,6 @@ struct TripPointsListView: View {
                     .fixedSize()
                     .padding([.horizontal, .bottom])
                     .listRowSeparator(.hidden)
-            }
-            .onTapGesture {return}
-            .toolbar {
-                if showDeleteButton {
-                    Button(action: {
-                        withAnimation {
-                            points.removeAll { point in
-                                multiSelection.contains(point.id)
-                            }
-                            multiSelection.removeAll()
-                        }
-                    }) {
-                        Image(systemName: "trash")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 16)
-                    }
-                }
-                EditButton()
-            }
-            .onChange(of: editMode!.wrappedValue) { _, value in
-              if value.isEditing {
-                  showDeleteButton = true
-              } else {
-                  showDeleteButton = false
-              }
             }
             .listStyle(.plain)
         }

@@ -303,7 +303,8 @@ struct TripPointsListView: View {
                     .modifier(ButtonFill())
                 }
                 .listRowSeparator(.hidden)
-                
+                .listRowBackground(Color.clear)
+
                 Spacer()
                     .frame(minHeight: 84)
                     .fixedSize()

@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ExyteGrid.xcscheme</key>
+		<key>ExytePopupView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ExytePopupView.xcscheme</key>
+		<key>FloatingButton.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

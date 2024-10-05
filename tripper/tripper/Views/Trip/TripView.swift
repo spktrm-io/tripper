@@ -35,7 +35,6 @@ struct TripView: View {
         MapPoint(title: "Point 5", coordinate: CLLocationCoordinate2D(latitude: 43.7128, longitude: -74.0060)),
         MapPoint(title: "Point 6", coordinate: CLLocationCoordinate2D(latitude: 44.7128, longitude: -74.0060))
     ]
-    @State private var showDeleteButton = false
 
     var body: some View {
         ZStack {
@@ -56,7 +55,6 @@ struct TripView: View {
                     currentIndex: $currentIndex,
                     namespace: namespace,
                     multiSelection: $multiSelection,
-                    showDeleteButton: $showDeleteButton,
                     updateRegion: updateRegion,
                     removePoint: removePoint
                 )
@@ -206,11 +204,11 @@ struct TripPointsListView: View {
     @Binding var currentIndex: Int
     var namespace: Namespace.ID
     @Binding var multiSelection: Set<UUID>
-    @Binding var showDeleteButton: Bool
+    @State var showDeleteButton: Bool = false
     var updateRegion: (CLLocationCoordinate2D) -> Void
     var removePoint: (MapPoint) -> Void
     @Environment(\.editMode) private var editMode
-    
+
     var body: some View {
         NavigationView {
             List(selection: $multiSelection) {
@@ -247,7 +245,7 @@ struct TripPointsListView: View {
                                         .padding()
                                 }
                             }
-                            .modifier(ButtonBlank())
+                            .padding()
                             .matchedTransitionSource(id: index, in: namespace)
                         }
                     }
@@ -287,30 +285,31 @@ struct TripPointsListView: View {
                         }
                         .tint(.blue)
                     }
-                    .listRowSeparator(.hidden)
+
                 }
                 
                 Button(action: {
                     // Add point action here
                 }) {
                     HStack {
-                        Image(systemName: "plus.circle.fill")
+                        Image(systemName: "plus")
                             .foregroundStyle(.primary)
                         Text("Add a point")
                             .font(.headline)
                             .fontWeight(.bold)
                     }
                     .frame(maxWidth: .infinity)
-                    .modifier(ButtonFill(cornerRadius: .infinity))
+                    .modifier(ButtonFill())
                 }
                 .listRowSeparator(.hidden)
                 
                 Spacer()
-                    .frame(minHeight: 200)
+                    .frame(minHeight: 84)
                     .fixedSize()
                     .padding([.horizontal, .bottom])
                     .listRowSeparator(.hidden)
             }
+            .onTapGesture {return}
             .toolbar {
                 if showDeleteButton {
                     Button(action: {
@@ -329,10 +328,13 @@ struct TripPointsListView: View {
                 }
                 EditButton()
             }
-            .onChange(of: editMode?.wrappedValue) { _, value in
-                showDeleteButton = value?.isEditing ?? false
+            .onChange(of: editMode!.wrappedValue) { _, value in
+              if value.isEditing {
+                  showDeleteButton = true
+              } else {
+                  showDeleteButton = false
+              }
             }
-            .animation(.default, value: editMode?.wrappedValue)
             .listStyle(.plain)
         }
     }
@@ -359,6 +361,7 @@ struct ContinueTripButton: View {
                     .fontWeight(.black)
                     .foregroundStyle(.white)
             }
+            .frame(maxWidth: .infinity)
             .modifier(ButtonBlank())
             .background(
                 FluidGradient(
@@ -369,7 +372,8 @@ struct ContinueTripButton: View {
                 .background(.blue)
                 .cornerRadius(10)
             )
-            .frame(maxWidth: .infinity, alignment: .trailing)
+            .padding(4)
+            
         }
     }
 }

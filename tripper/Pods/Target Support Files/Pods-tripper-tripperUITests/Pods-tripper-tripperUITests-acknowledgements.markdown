@@ -1,9 +1,9 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## ExyteGrid
+## ExytePopupView
 
-Copyright (c) 2020 Denis Obukhov <denis.obukhov@exyte.com>
+Copyright (c) 2019 exyte <info@exyte.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,9 +24,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-## ExytePopupView
+## FloatingButton
 
-Copyright (c) 2019 exyte <info@exyte.com>
+Copyright (c) 2016 exyte <info@exyte.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

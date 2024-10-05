@@ -9,6 +9,7 @@ target 'tripper' do
   pod 'ScalingHeaderScrollView'
   pod 'ProgressIndicatorView'
   pod 'ExytePopupView'
+  pod 'FloatingButton'
   
   target 'tripperTests' do
     inherit! :search_paths

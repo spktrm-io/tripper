@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C96D8BA33C9030CC5DFE9D388B292B56"
-               BuildableName = "ExyteGrid.framework"
-               BlueprintName = "ExyteGrid"
+               BlueprintIdentifier = "6F7F19FDF367800D08AD335C92FA4ADA"
+               BuildableName = "FloatingButton.framework"
+               BlueprintName = "FloatingButton"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

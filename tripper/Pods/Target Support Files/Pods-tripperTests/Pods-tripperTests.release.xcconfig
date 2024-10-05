@@ -1,8 +1,8 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/ExyteGrid" "${PODS_CONFIGURATION_BUILD_DIR}/ExytePopupView" "${PODS_CONFIGURATION_BUILD_DIR}/ProgressIndicatorView" "${PODS_CONFIGURATION_BUILD_DIR}/ScalingHeaderScrollView" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftUIIntrospect"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/ExytePopupView" "${PODS_CONFIGURATION_BUILD_DIR}/FloatingButton" "${PODS_CONFIGURATION_BUILD_DIR}/ProgressIndicatorView" "${PODS_CONFIGURATION_BUILD_DIR}/ScalingHeaderScrollView" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftUIIntrospect"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/ExyteGrid/ExyteGrid.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/ExytePopupView/ExytePopupView.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/ProgressIndicatorView/ProgressIndicatorView.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/ScalingHeaderScrollView/ScalingHeaderScrollView.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftUIIntrospect/SwiftUIIntrospect.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "ExyteGrid" -framework "ExytePopupView" -framework "ProgressIndicatorView" -framework "ScalingHeaderScrollView" -framework "SwiftUIIntrospect"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/ExytePopupView/ExytePopupView.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/FloatingButton/FloatingButton.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/ProgressIndicatorView/ProgressIndicatorView.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/ScalingHeaderScrollView/ScalingHeaderScrollView.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftUIIntrospect/SwiftUIIntrospect.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "ExytePopupView" -framework "FloatingButton" -framework "ProgressIndicatorView" -framework "ScalingHeaderScrollView" -framework "SwiftUIIntrospect"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

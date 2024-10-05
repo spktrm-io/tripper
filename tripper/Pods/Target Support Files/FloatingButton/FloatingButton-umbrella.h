@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double ExyteGridVersionNumber;
-FOUNDATION_EXPORT const unsigned char ExyteGridVersionString[];
+FOUNDATION_EXPORT double FloatingButtonVersionNumber;
+FOUNDATION_EXPORT const unsigned char FloatingButtonVersionString[];
 

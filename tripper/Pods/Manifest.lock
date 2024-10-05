@@ -1,33 +1,33 @@
 PODS:
-  - ExyteGrid (1.5.0)
   - ExytePopupView (3.1.0):
     - SwiftUIIntrospect
+  - FloatingButton (1.3.0)
   - ProgressIndicatorView (1.0.0)
   - ScalingHeaderScrollView (1.1.4):
     - SwiftUIIntrospect
   - SwiftUIIntrospect (1.3.0)
 
 DEPENDENCIES:
-  - ExyteGrid
   - ExytePopupView
+  - FloatingButton
   - ProgressIndicatorView
   - ScalingHeaderScrollView
 
 SPEC REPOS:
   trunk:
-    - ExyteGrid
     - ExytePopupView
+    - FloatingButton
     - ProgressIndicatorView
     - ScalingHeaderScrollView
     - SwiftUIIntrospect
 
 SPEC CHECKSUMS:
-  ExyteGrid: d2fc883d4fd0a19035201fcf9079ead4581b18ea
   ExytePopupView: dc4bb9d9965c13361265ee318bee0692967735be
+  FloatingButton: 86f862465b950e053279b3c2ccbfee7f823688bf
   ProgressIndicatorView: f37b4bdc70132ab6398da55c674c72d86d757f0e
   ScalingHeaderScrollView: bbff3ab62d3ac7f1d53f02a0b6ae2f61b919e054
   SwiftUIIntrospect: fee9aa07293ee280373a591e1824e8ddc869ba5d
 
-PODFILE CHECKSUM: 9180fa84fbfb1a167b76e4f3807b62072fd9b89d
+PODFILE CHECKSUM: 72f278fd0233db83a003746b1608df50d50f6f35
 
 COCOAPODS: 1.15.2

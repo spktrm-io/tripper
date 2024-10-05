@@ -24,7 +24,7 @@ struct TripView: View {
     ))
     @Namespace private var namespace
     @State private var currentIndex = 3
-    private let heightMap: CGFloat = UIScreen.main.bounds.height * 0.25
+    private let heightMap: CGFloat = UIScreen.main.bounds.height * 0.20
     @State private var multiSelection = Set<UUID>()
     @Environment(\.editMode) private var editMode
     @State private var points: [MapPoint] = [
@@ -244,7 +244,8 @@ struct TripPointsListView: View {
                                         .padding()
                                 }
                             }
-                            .padding()
+                            .padding(.horizontal)
+                            .padding(.vertical, 10)
                             .matchedTransitionSource(id: index, in: namespace)
                         }
                     }

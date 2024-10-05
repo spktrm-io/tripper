@@ -23,7 +23,7 @@ struct TripView: View {
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     ))
     @Namespace() var namespace
-    @State private var currentIndex = 0
+    @State private var currentIndex = 3
     @State private var colorStateBar =  Color.gray
     @State private var dragOffset: CGFloat = 0.0
     private let heightMap: CGFloat = UIScreen.main.bounds.height * 0.25
@@ -33,9 +33,9 @@ struct TripView: View {
         MapPoint(title: "Point 1", coordinate: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)),
         MapPoint(title: "Point 2", coordinate: CLLocationCoordinate2D(latitude: 34.0522, longitude: -118.2437)),
         MapPoint(title: "Point 3", coordinate: CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0060)),
-        MapPoint(title: "Point 3", coordinate: CLLocationCoordinate2D(latitude: 42.7128, longitude: -74.0060)),
-        MapPoint(title: "Point 3", coordinate: CLLocationCoordinate2D(latitude: 43.7128, longitude: -74.0060)),
-        MapPoint(title: "Point 3", coordinate: CLLocationCoordinate2D(latitude: 44.7128, longitude: -74.0060))
+        MapPoint(title: "Point 4", coordinate: CLLocationCoordinate2D(latitude: 42.7128, longitude: -74.0060)),
+        MapPoint(title: "Point 5", coordinate: CLLocationCoordinate2D(latitude: 43.7128, longitude: -74.0060)),
+        MapPoint(title: "Point 6", coordinate: CLLocationCoordinate2D(latitude: 44.7128, longitude: -74.0060))
     ]
     
     var body: some View {
@@ -103,51 +103,58 @@ struct TripView: View {
                     .matchedTransitionSource(id: "map", in: namespace)
                 }
                 
-                
-                ScrollView(showsIndicators: false){
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Resume")
-                            .font(.title2)
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Summary")
+                        .font(.headline)
+                        .bold()
+                    
+                    HStack {
+                        Text("Visited points:")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text("5 / 8")
+                            .font(.footnote)
                             .bold()
-                        
-                        HStack {
-                            Text("Visited points:")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                            Spacer()
-                            Text("5 / 8")
-                                .font(.subheadline)
-                                .bold()
-                        }
-                        
-                        HStack {
-                            Text("Total distance:")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                            Spacer()
-                            Text("100,00 km")
-                                .font(.subheadline)
-                                .bold()
-                        }
                     }
-                    .modifier(ButtonBlank())
-                    .padding(.top)
+                    
+                    HStack {
+                        Text("Total distance:")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text("100,00 km")
+                            .font(.footnote)
+                            .bold()
+                    }
+                }
+                .padding([.horizontal, .bottom])
+                .padding(.top, 5)
+                .overlay(
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor( Color.primary.opacity(0.1)),
+                    alignment: .bottom
+                )
+                
+                ScrollView(.vertical, showsIndicators: false){
+
                     ForEach(Array(points.enumerated()), id: \.element.id) { index, point in
                         VStack{
-                            Button(action: {
-                                currentIndex = index
-                                updateRegion(coordinate: point.coordinate)
-                            }){
+                            NavigationLink {
+                                PointDetailView()
+                                    .navigationTransition(
+                                        .zoom(
+                                            sourceID: index,
+                                            in: namespace
+                                        )
+                                    )
+                            } label: {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 5) {
                                         Text(point.title) // Nome do ponto
                                             .font(.headline)
                                             .foregroundColor(.primary)
-                                        
-                                        // Campos mockados
-                                        Text("Descrição: Lugar interessante para visitar") // Descrição do ponto
-                                            .font(.subheadline)
-                                            .foregroundColor(.secondary)
                                         
                                         Text("Horário Estimado: 14:30") // Horário estimado de chegada
                                             .font(.subheadline)
@@ -156,15 +163,34 @@ struct TripView: View {
                                         Text("Duração: 30 minutos") // Duração estimada da parada
                                             .font(.subheadline)
                                             .foregroundColor(.secondary)
-                                        
-                                        Text("Notas: Trazer câmera e água.") // Notas adicionais
-                                            .font(.subheadline)
-                                            .foregroundColor(.secondary)
                                     }
+                                    
                                     Spacer()
+                                    VStack(alignment: .leading) {
+                                        Button(action: {
+                                            currentIndex = index
+                                            updateRegion(coordinate: point.coordinate)
+                                        }){
+                                            if  currentIndex == index{
+                                                VStack{
+                                                    Image(systemName: "mappin")
+                                                        .frame(width: 5, height: 5)
+                                                }
+                                                .modifier(ButtonFill(cornerRadius: .infinity))
+                                            } else {
+                                                VStack{
+                                                    Image(systemName: "mappin")
+                                                        .frame(width: 5, height: 5)
+                                                }
+                                                .modifier(ButtonBlank(cornerRadius: .infinity))
+                                            }
+                                        }
+                                        Spacer()
+                                    }
                                 }
-                                .frame(height: 150) // Aumentei a altura para acomodar mais informações
                                 .modifier(ButtonBlank())
+                                .matchedTransitionSource(id: index, in: namespace)
+                                
                             }
                         }
                         .padding(.leading)
@@ -177,14 +203,38 @@ struct TripView: View {
                         )
                     }
                     
+                    NavigationLink {
+                        CreatePointView()
+                            .navigationTransition(
+                                .zoom(
+                                    sourceID: "create-point",
+                                    in: namespace
+                                )
+                            )
+                    } label: {
+                        HStack {
+                            Image(systemName: "mappin.circle.fill")
+                                .foregroundStyle(.white)
+                            Text("Add point")
+                                .font(.subheadline)
+                                .fontWeight(.bold)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .modifier(ButtonFill(cornerRadius: .infinity))
+                    }
+                    .matchedTransitionSource(id: "create-point", in: namespace)
+
+                    
                     Spacer()
-                        .frame(minHeight: 150)
+                        .frame(minHeight: 200)
                         .fixedSize()
+                    
                 }
                 .padding([.horizontal, .bottom])
             }
             VStack{
                 Spacer()
+                
                 NavigationLink {
                     MapView()
                         .navigationTransition(
@@ -195,12 +245,13 @@ struct TripView: View {
                         )
                 } label: {
                     HStack {
+                        Image(systemName: "location.north.fill")
+                            .foregroundStyle(.white)
                         Text("Continue trip")
                             .font(.subheadline)
                             .fontWeight(.black)
                             .foregroundStyle(.white)
                     }
-                    .frame(maxWidth: .infinity)
                     .modifier(ButtonBlank())
                     .background(
                         FluidGradient(
@@ -210,9 +261,11 @@ struct TripView: View {
                         .background(.blue)
                         .cornerRadius(10)
                     )
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
+                
                 Spacer()
-                    .frame(minHeight: 90)
+                    .frame(minHeight: 86)
                     .fixedSize()
             }
             
@@ -230,6 +283,60 @@ struct TripView: View {
                 span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
             ))
         }
+    }
+}
+
+struct PointDetailView: View {
+    @Environment(\.presentationMode) var presentationMode // Controla o estado de apresentação
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        VStack {
+            HStack(){
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image(systemName: "xmark")
+                    }
+                    .frame(width: 40, height: 40)
+                    .modifier(ButtonBlank(cornerRadius: .infinity, padding: 4))
+                }
+                Spacer()
+            }
+            .frame(maxWidth: .infinity)
+            
+            Spacer()
+        }
+        .padding(.horizontal)
+        .navigationBarBackButtonHidden(true)
+    }
+}
+
+struct CreatePointView: View {
+    @Environment(\.presentationMode) var presentationMode // Controla o estado de apresentação
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        VStack {
+            HStack(){
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image(systemName: "xmark")
+                    }
+                    .frame(width: 40, height: 40)
+                    .modifier(ButtonBlank(cornerRadius: .infinity, padding: 4))
+                }
+                Spacer()
+            }
+            .frame(maxWidth: .infinity)
+            
+            Spacer()
+        }
+        .padding(.horizontal)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

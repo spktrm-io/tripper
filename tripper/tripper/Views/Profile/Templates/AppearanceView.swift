@@ -15,12 +15,23 @@ struct AppearanceView: View {
     var body: some View {
        
         VStack(spacing: 20) {
+            HStack(){
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                    }
+                    .frame(width: 40, height: 40)
+                    .modifier(ButtonBlank(cornerRadius: .infinity, padding: 4))
+                }
+                Spacer()
+            }
+            
             Text("Appearance")
                 .font(.title)
                 .fontWeight(.black)
                 .foregroundColor(.primary)
-                .padding(.horizontal)
-                .padding(.top, 20)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             // Light theme button
@@ -46,7 +57,6 @@ struct AppearanceView: View {
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             }
-            .padding(.horizontal)
             
             // Dark theme button
             Button(action: {
@@ -71,7 +81,6 @@ struct AppearanceView: View {
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             }
-            .padding(.horizontal)
             
             // System theme button
             Button(action: {
@@ -96,26 +105,11 @@ struct AppearanceView: View {
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             }
-            .padding(.horizontal)
             
             Spacer()
         }
+        .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    HStack {
-                        Image(systemName: "chevron.left")
-                        Text("Back")
-                            .font(.footnote)
-                            .fontWeight(.bold)
-                    }
-                    .modifier(ButtonFill())
-                }
-            }
-        }
     }
     
     // Function to apply the theme based on the selected value

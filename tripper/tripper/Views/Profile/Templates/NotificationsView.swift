@@ -15,37 +15,33 @@ struct NotificationsView: View {
     var body: some View {
         
         VStack {
-            Text("Notifications")
-                .font(.title)
-                .fontWeight(.black)
-                .foregroundColor(.primary)
-                .padding(.horizontal)
-                .padding(.top, 20)
-                .frame(maxWidth: .infinity, alignment: .leading)
-          
-            Toggle("Push", isOn: $isOn)
-                .font(.subheadline)
-                .toggleStyle(SwitchToggleStyle()) // Estilo de switch
-                .padding()
-            
-            Spacer()
-        }
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
+            HStack(){
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     HStack {
                         Image(systemName: "chevron.left")
-                        Text("Back")
-                            .font(.footnote)
-                            .fontWeight(.bold)
                     }
-                    .modifier(ButtonFill())
+                    .frame(width: 40, height: 40)
+                    .modifier(ButtonBlank(cornerRadius: .infinity, padding: 4))
                 }
+                Spacer()
             }
+            Text("Notifications")
+                .font(.title)
+                .fontWeight(.black)
+                .foregroundColor(.primary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+          
+            Toggle("Push", isOn: $isOn)
+                .font(.subheadline)
+                .toggleStyle(SwitchToggleStyle()) // Estilo de switch
+                .padding(.top)
+            
+            Spacer()
         }
+        .padding(.horizontal)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

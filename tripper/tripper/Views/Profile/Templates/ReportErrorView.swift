@@ -13,14 +13,23 @@ struct ReportErrorView: View {
     @State private var largeText: String = ""
     
     var body: some View {
-        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
         VStack {
+            HStack(){
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                    }
+                    .frame(width: 40, height: 40)
+                    .modifier(ButtonBlank(cornerRadius: .infinity, padding: 4))
+                }
+                Spacer()
+            }
             Text("Report a error")
             .font(.title)
             .fontWeight(.black)
             .foregroundColor(.primary)
-            .padding(.horizontal)
-            .padding(.top, 20)
             .frame(maxWidth: .infinity, alignment: .leading)
             
             ZStack(alignment: .top){
@@ -38,7 +47,7 @@ struct ReportErrorView: View {
             .foregroundColor(.primary)
             .frame(height: 200)
             .modifier(TextFieldGrayBackgroundColor(cornerRadius: 10))
-            .padding()
+            .padding(.top)
             
             Button(action: {
                 print("Logout")
@@ -51,29 +60,12 @@ struct ReportErrorView: View {
                 .frame(maxWidth: .infinity)
                 .modifier(ButtonFill())
             }
-            .padding([.horizontal, .top])
+            .padding(.top)
             
             Spacer()
         }
+        .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    HStack {
-                        Image(systemName: "chevron.left")
-                        Text("Back")
-                            .font(.footnote)
-                            .fontWeight(.bold)
-                    }
-                    .padding()
-                    .background(Color.primary)
-                    .foregroundColor(secondaryColor)
-                    .cornerRadius(10)
-                }
-            }
-        }
     }
 }
 

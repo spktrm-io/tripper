@@ -14,11 +14,22 @@ struct AccountInfoView: View {
     
     var body: some View {
         VStack{
+            HStack(){
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                    }
+                    .frame(width: 40, height: 40)
+                    .modifier(ButtonBlank(cornerRadius: .infinity, padding: 4))
+                }
+                Spacer()
+            }
             Text("Account information")
                 .font(.title)
                 .fontWeight(.black)
                 .foregroundColor(.primary)
-                .padding(.top, 20)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             Text("full name")
@@ -69,23 +80,11 @@ struct AccountInfoView: View {
             }
             .padding(.top)
             Spacer()
-        }.padding(.horizontal)
-        .navigationBarBackButtonHidden(true) // Oculta o botão de voltar padrão
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss() // Volta para a tela anterior
-                }) {
-                    HStack {
-                        Image(systemName: "chevron.left") // Ícone personalizado
-                        Text("Back")
-                            .font(.footnote)
-                            .fontWeight(.bold)
-                    }
-                    .modifier(ButtonFill())
-                }
-            }
         }
+        .padding(.horizontal)
+        .frame(maxWidth: .infinity)
+        .navigationBarBackButtonHidden(true) // Oculta o botão de voltar padrão
+       
     }
 }
 

@@ -10,13 +10,14 @@ import SwiftUI
 struct ButtonFill: ViewModifier {
     @Environment(\.colorScheme) var colorScheme
     var buttonColor: Color = Color.primary
-    
+    var cornerRadius: CGFloat = 10
+
     func body(content: Content) -> some View {
         let textColor: Color = colorScheme == .dark ? Color.black : Color.white
         content
             .padding()
             .background(buttonColor)
             .foregroundColor(textColor)
-            .cornerRadius(10)
+            .cornerRadius(cornerRadius)
     }
 }

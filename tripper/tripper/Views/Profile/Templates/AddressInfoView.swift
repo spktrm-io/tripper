@@ -25,11 +25,22 @@ struct AddressInfoView: View {
         
         ScrollView (showsIndicators: false){
             VStack {
+                HStack(){
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        HStack {
+                            Image(systemName: "chevron.left")
+                        }
+                        .frame(width: 40, height: 40)
+                        .modifier(ButtonBlank(cornerRadius: .infinity, padding: 4))
+                    }
+                    Spacer()
+                }
                 Text("Address information")
                 .font(.title)
                 .fontWeight(.black)
                 .foregroundColor(.primary)
-                .padding(.top, 20)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("Zip code")
@@ -117,21 +128,6 @@ struct AddressInfoView: View {
             }
             .padding(.horizontal)
             .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        HStack {
-                            Image(systemName: "chevron.left")
-                            Text("Back")
-                                .font(.footnote)
-                                .fontWeight(.bold)
-                        }
-                        .modifier(ButtonFill())
-                    }
-                }
-            }
         }
     }
 }

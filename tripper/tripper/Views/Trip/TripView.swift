@@ -284,6 +284,7 @@ struct TripPointsListView: View {
                         }
                         .tint(.blue)
                     }
+                    .listRowBackground(Color.clear)
 
                 }
                 

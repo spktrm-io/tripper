@@ -27,6 +27,8 @@ struct TripView: View {
     @State private var colorStateBar =  Color.gray
     @State private var dragOffset: CGFloat = 0.0
     private let heightMap: CGFloat = UIScreen.main.bounds.height * 0.25
+    @State private var multiSelection = Set<UUID>()
+    @Environment(\.editMode) private var editMode
     
     // Lista de pontos no mapa
     @State private var points: [MapPoint] = [
@@ -37,6 +39,7 @@ struct TripView: View {
         MapPoint(title: "Point 5", coordinate: CLLocationCoordinate2D(latitude: 43.7128, longitude: -74.0060)),
         MapPoint(title: "Point 6", coordinate: CLLocationCoordinate2D(latitude: 44.7128, longitude: -74.0060))
     ]
+    @State var showDeleteButton = false
     
     var body: some View {
         ZStack{
@@ -60,6 +63,8 @@ struct TripView: View {
                             }
                         }
                         .disabled(true)
+                        
+                        
                         
                         Color.clear
                             .contentShape(Rectangle())
@@ -85,6 +90,30 @@ struct TripView: View {
                                         dragOffset = 0
                                     }
                             )
+                        
+                        //                        HStack {
+                        //                            Button(action: {
+                        //                                if currentIndex < points.count - 1 {
+                        //                                    currentIndex -= 1
+                        //                                    updateRegion(coordinate: points[currentIndex].coordinate)
+                        //                                }
+                        //                            }){
+                        //                                Image(systemName: "chevron.backward")
+                        //                                    .foregroundStyle(Color.primary.opacity(0.2))
+                        //                            }
+                        //                            Spacer()
+                        //                            Button(action: {
+                        //                                if currentIndex < points.count - 1 {
+                        //                                    currentIndex += 1
+                        //                                    updateRegion(coordinate: points[currentIndex].coordinate)
+                        //                                }
+                        //                            }){
+                        //                                Image(systemName: "chevron.forward")
+                        //                                    .foregroundStyle(Color.primary.opacity(0.2))
+                        //                            }
+                        //                        }
+                        //                        .padding()
+                        //
                         VStack{
                             Spacer()
                             HStack {
@@ -98,6 +127,9 @@ struct TripView: View {
                             .frame(width: 120)
                         }
                         .padding(.bottom, 10)
+                        
+                        
+                        
                     }
                     .frame(height: heightMap)
                     .matchedTransitionSource(id: "map", in: namespace)
@@ -128,110 +160,157 @@ struct TripView: View {
                             .bold()
                     }
                 }
-                .padding([.horizontal, .bottom])
+                .padding(.horizontal)
                 .padding(.top, 5)
-                .overlay(
-                    Rectangle()
-                        .frame(height: 1)
-                        .foregroundColor( Color.primary.opacity(0.1)),
-                    alignment: .bottom
-                )
-                
-                ScrollView(.vertical, showsIndicators: false){
-
-                    ForEach(Array(points.enumerated()), id: \.element.id) { index, point in
+                .swipeActions(edge: .leading) {
+                    Button(action: {
+                    }){
                         VStack{
-                            NavigationLink {
-                                PointDetailView()
-                                    .navigationTransition(
-                                        .zoom(
-                                            sourceID: index,
-                                            in: namespace
-                                        )
-                                    )
-                            } label: {
-                                HStack {
-                                    VStack(alignment: .leading, spacing: 5) {
-                                        Text(point.title) // Nome do ponto
-                                            .font(.headline)
-                                            .foregroundColor(.primary)
-                                        
-                                        Text("Horário Estimado: 14:30") // Horário estimado de chegada
-                                            .font(.subheadline)
-                                            .foregroundColor(.secondary)
-                                        
-                                        Text("Duração: 30 minutos") // Duração estimada da parada
-                                            .font(.subheadline)
-                                            .foregroundColor(.secondary)
-                                    }
-                                    
-                                    Spacer()
-                                    VStack(alignment: .leading) {
-                                        Button(action: {
-                                            currentIndex = index
-                                            updateRegion(coordinate: point.coordinate)
-                                        }){
-                                            if  currentIndex == index{
-                                                VStack{
-                                                    Image(systemName: "mappin")
-                                                        .frame(width: 5, height: 5)
-                                                }
-                                                .modifier(ButtonFill(cornerRadius: .infinity))
-                                            } else {
-                                                VStack{
-                                                    Image(systemName: "mappin")
-                                                        .frame(width: 5, height: 5)
-                                                }
-                                                .modifier(ButtonBlank(cornerRadius: .infinity))
-                                            }
-                                        }
-                                        Spacer()
-                                    }
-                                }
-                                .modifier(ButtonBlank())
-                                .matchedTransitionSource(id: index, in: namespace)
-                                
-                            }
+                            Image(systemName: "mappin")
+                                .frame(width: 5, height: 5)
                         }
-                        .padding(.leading)
-                        .overlay(
-                            Rectangle()
-                                .frame(width: 3)
-                                .foregroundColor(index < 3 ? Color.blue : Color.primary.opacity(0.1))
-                            ,
-                            alignment: .leading
-                        )
-                    }
-                    
-                    NavigationLink {
-                        CreatePointView()
-                            .navigationTransition(
-                                .zoom(
-                                    sourceID: "create-point",
-                                    in: namespace
-                                )
-                            )
-                    } label: {
-                        HStack {
-                            Image(systemName: "mappin.circle.fill")
-                                .foregroundStyle(.white)
-                            Text("Add point")
-                                .font(.subheadline)
-                                .fontWeight(.bold)
-                        }
-                        .frame(maxWidth: .infinity)
                         .modifier(ButtonFill(cornerRadius: .infinity))
                     }
-                    .matchedTransitionSource(id: "create-point", in: namespace)
-
-                    
-                    Spacer()
-                        .frame(minHeight: 200)
-                        .fixedSize()
-                    
                 }
-                .padding([.horizontal, .bottom])
+                
+                NavigationView {
+                    List(selection: $multiSelection){
+                        ForEach(Array(points.enumerated()), id: \.element.id) { index, point in
+                            VStack{
+                                NavigationLink {
+                                    PointDetailView()
+                                        .navigationTransition(
+                                            .zoom(
+                                                sourceID: index,
+                                                in: namespace
+                                            )
+                                        )
+                                } label: {
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 5) {
+                                            Text(point.title) // Nome do ponto
+                                                .font(.headline)
+                                                .foregroundColor(.primary)
+                                            
+                                            Text("Horário Estimado: 14:30") // Horário estimado de chegada
+                                                .font(.subheadline)
+                                                .foregroundColor(.secondary)
+                                            
+                                            Text("Duração: 30 minutos") // Duração estimada da parada
+                                                .font(.subheadline)
+                                                .foregroundColor(.secondary)
+                                        }
+                                        
+                                        Spacer()
+                                        VStack(alignment: .center) {
+                                            if  currentIndex == index{
+                                                Image(systemName: "mappin")
+                                                    .frame(width: 5, height: 5)
+                                                    .padding()
+                                            }
+                                        }
+                                    }
+                                    .modifier(ButtonBlank())
+                                    .matchedTransitionSource(id: index, in: namespace)
+                                    
+                                    
+                                }
+                                
+                            }
+                            .padding(.leading)
+                            .overlay(
+                                Rectangle()
+                                    .frame(width: 3)
+                                    .foregroundColor(index < 3 ? Color.blue : Color.primary.opacity(0.1))
+                                ,
+                                alignment: .leading
+                            )
+                            .swipeActions(edge: .leading) {
+                                Button(action: {
+                                    currentIndex = index
+                                    updateRegion(coordinate: point.coordinate)
+                                }){
+                                    VStack{
+                                        Image(systemName: "mappin")
+                                            .frame(width: 5, height: 5)
+                                    }
+                                    .modifier(ButtonFill(cornerRadius: .infinity))
+                                }
+                            }
+                            .swipeActions(edge: .trailing) {
+                                Button(action: {
+                                    withAnimation {
+                                        removePoint(point: point)
+                                    }
+                                }){
+                                    Image(systemName: "trash.fill")
+                                        .frame(width: 5, height: 5)
+                                }
+                                .tint(.red)
+                                
+                                Button(action: {
+                                }){
+                                    Image(systemName: "pencil")
+                                        .frame(width: 5, height: 5)
+                                }
+                                .tint(.blue)
+                                
+                            }
+                            .listRowSeparator(.hidden)
+                            
+                        }
+                        
+                        Button(action: {}){
+                            HStack{
+                                
+                                Image(systemName: "plus.circle.fill")
+                                    .foregroundStyle(.primary)
+                                Text("Add a point")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .modifier(ButtonFill(cornerRadius: .infinity))
+                            
+                        }
+                        .listRowSeparator(.hidden)
+                        
+                        Spacer()
+                            .frame(minHeight: 200)
+                            .fixedSize()
+                            .padding([.horizontal, .bottom])
+                            .listRowSeparator(.hidden)
+                        
+                    }
+                    .toolbar {
+                        if showDeleteButton {
+                            Button(action: {
+                                withAnimation {
+                                    points.removeAll { point in
+                                        multiSelection.contains(point.id)
+                                    }
+                                    multiSelection.removeAll()
+                                }
+                            }) {
+                                Image(systemName: "trash")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit) 
+                                    .frame(height: 16)
+                            }
+                        }
+                        EditButton()
+                            .simultaneousGesture(TapGesture().onEnded({
+                                showDeleteButton.toggle()
+                            }))
+                    }
+                    .onChange(of: showDeleteButton) { _, isEditing in
+                        editMode?.wrappedValue = isEditing ? .active : .inactive
+                    }
+                    .animation(.default, value: editMode?.wrappedValue)
+                    .listStyle(.plain)
+                }
             }
+            
             VStack{
                 Spacer()
                 
@@ -275,6 +354,17 @@ struct TripView: View {
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
+    
+    func removePoint(point: MapPoint) {
+        if let index = points.firstIndex(where: { $0.id == point.id }) {
+            points.remove(at: index)
+        }
+    }
+    
+    func removePointOnIndex(at offsets: IndexSet) {
+        points.remove(atOffsets: offsets)
+    }
+    
     // Atualizar a região do mapa quando o ponto muda
     private func updateRegion(coordinate: CLLocationCoordinate2D) {
         withAnimation{

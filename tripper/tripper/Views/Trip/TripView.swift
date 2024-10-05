@@ -19,11 +19,12 @@ struct MapPoint: Identifiable {
 
 struct TripView: View {
     @State private var cameraPosition = MapCameraPosition.region(MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
+        center: CLLocationCoordinate2D(latitude: 37.7749 + 0.01, longitude: -122.4194),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     ))
     @Namespace private var namespace
     @State private var currentIndex = 3
+    @State private var isPresented: Bool = false
     private let heightMap: CGFloat = UIScreen.main.bounds.height * 0.20
     @State private var multiSelection = Set<UUID>()
     @Environment(\.editMode) private var editMode
@@ -56,7 +57,8 @@ struct TripView: View {
                     namespace: namespace,
                     multiSelection: $multiSelection,
                     updateRegion: updateRegion,
-                    removePoint: removePoint
+                    removePoint: removePoint,
+                    isPresented: $isPresented
                 )
             }
             
@@ -71,6 +73,41 @@ struct TripView: View {
             }
             .padding()
         }
+        .sheet(isPresented: $isPresented){
+            Rectangle()
+                   .frame(width: 40, height: 5)
+                   .cornerRadius(2.5)
+                   .foregroundColor(.gray)
+                   .padding(.top, 8)
+            VStack{
+                ScrollView{
+                    ToggleContainerView(content:{
+                        VStack{
+                            HStack{
+                                Text("$10,00")
+                                    .font(.caption)
+                                    .fontWeight(.bold)
+                                
+                              
+                                Text("$100.000,00")
+                                    .font(.caption)
+                                    .fontWeight(.bold)
+                            }
+                            .padding(.vertical)
+                            
+                           
+                        }
+                    }, title: "Cost Estimation")
+                 
+                    Spacer()
+                        .fixedSize()
+                        .frame(height: 100)
+                }
+            }
+            .padding(.top)
+            .presentationDetents([.large])
+            .presentationBackgroundInteraction(.enabled(upThrough: .large))
+        }
         .ignoresSafeArea()
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
@@ -79,7 +116,7 @@ struct TripView: View {
     private func updateRegion(coordinate: CLLocationCoordinate2D) {
         withAnimation {
             cameraPosition = MapCameraPosition.region(MKCoordinateRegion(
-                center: coordinate,
+                center: CLLocationCoordinate2D(latitude: coordinate.latitude + 0.01, longitude:  coordinate.longitude),
                 span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
             ))
         }
@@ -207,6 +244,7 @@ struct TripPointsListView: View {
     @State var showDeleteButton: Bool = false
     var updateRegion: (CLLocationCoordinate2D) -> Void
     var removePoint: (MapPoint) -> Void
+    @Binding var isPresented: Bool
 
     var body: some View {
         NavigationView {
@@ -290,7 +328,7 @@ struct TripPointsListView: View {
                 }
                 
                 Button(action: {
-                    // Add point action here
+                    isPresented.toggle()
                 }) {
                     HStack {
                         Image(systemName: "plus")

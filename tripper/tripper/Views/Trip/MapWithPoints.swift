@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import FluidGradient
 
 struct MapWithPointsView: View {
     @StateObject private var locationService = LocationService(completer: MKLocalSearchCompleter())
@@ -139,10 +140,45 @@ struct MapWithPointsView: View {
                         }
                     }
                     .scrollTargetLayout()
-                    .padding()
                 }
                 .scrollTargetBehavior(.viewAligned)
-                .safeAreaPadding(.horizontal, 10)
+                .safeAreaPadding(.horizontal, 16)
+                
+                NavigationLink {
+                    MapView(position: $position)
+                        .navigationTransition(
+                            .zoom(
+                                sourceID: "map",
+                                in: namespace
+                            )
+                        )
+                } label: {
+                    HStack {
+                        Image(systemName: "location.north.fill")
+                            .foregroundStyle(.white)
+                        Text("Continue trip")
+                            .font(.subheadline)
+                            .fontWeight(.black)
+                            .foregroundStyle(.white)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .modifier(ButtonBlank())
+                    .background(
+                        FluidGradient(
+                            blobs: [.pink, .cyan, .purple],
+                            speed: 1.0,
+                            blur: 0.8
+                        )
+                        .background(.blue)
+                        .cornerRadius(10)
+                    )
+                    .padding(.horizontal)
+                }
+                
+                Spacer()
+                    .fixedSize()
+                    .frame(height: 20)
+
             }
         }
         .navigationBarHidden(true) // Oculta a barra de navegação

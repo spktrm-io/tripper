@@ -142,7 +142,7 @@ struct MapWithPointsView: View {
                     .padding()
                 }
                 .scrollTargetBehavior(.viewAligned)
-
+                .safeAreaPadding(.horizontal, 10)
             }
         }
         .navigationBarHidden(true) // Oculta a barra de navegação

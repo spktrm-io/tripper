@@ -21,6 +21,8 @@ struct MapWithPointsView: View {
     @Binding var points: [MapPoint]
     @Namespace private var namespace
     @Binding var currentIndex: Int
+    var updateRegion: (CLLocationCoordinate2D) -> Void
+
     
     var body: some View {
         ZStack {
@@ -103,6 +105,7 @@ struct MapWithPointsView: View {
                                     VStack{
                                         Button(action: {
                                             currentIndex = index
+                                            updateRegion(point.coordinate)
                                         }){
                                             if currentIndex == index {
                                                 Image(systemName: "mappin")
@@ -124,19 +127,22 @@ struct MapWithPointsView: View {
                                         .foregroundColor(index < 3 ? Color.blue : Color.primary.opacity(0.1)),
                                     alignment: .leading
                                 )
-                                .cornerRadius(10)
                                 .frame(width: UIScreen.main.bounds.width * 0.85)
                                 .background(.ultraThinMaterial)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.primary.opacity(0.1), lineWidth: 1)
                                 )
+                                .cornerRadius(10)
                                 .matchedTransitionSource(id: index, in: namespace)
                             }
                         }
                     }
+                    .scrollTargetLayout()
                     .padding()
                 }
+                .scrollTargetBehavior(.viewAligned)
+
             }
         }
         .navigationBarHidden(true) // Oculta a barra de navegação
@@ -154,6 +160,9 @@ struct MapWithPointsView: View {
             MapPoint(title: "Point 1", coordinate: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)),
             MapPoint(title: "Point 2", coordinate: CLLocationCoordinate2D(latitude: 37.7849, longitude: -122.4294))
         ]),
-        currentIndex: .constant(0)
+        currentIndex: .constant(0),
+        updateRegion: { newCoordinate in
+                   print("Updated region to: \(newCoordinate.latitude), \(newCoordinate.longitude)")
+               }
     )
 }

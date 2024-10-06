@@ -152,7 +152,7 @@ struct MapAreaView: View {
     
     var body: some View {
         NavigationLink {
-            MapWithPointsView(position: $cameraPosition, points: $points, currentIndex: $currentIndex)
+            MapWithPointsView(position: $cameraPosition, points: $points, currentIndex: $currentIndex, updateRegion: updateRegion)
                 .navigationTransition(
                     .zoom(
                         sourceID: "map",

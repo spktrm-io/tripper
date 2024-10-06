@@ -219,10 +219,6 @@ struct MapAreaView: View {
 struct TripSummaryView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("Summary")
-                .font(.headline)
-                .bold()
-            
             HStack {
                 Text("Visited points:")
                     .font(.subheadline)
@@ -244,7 +240,7 @@ struct TripSummaryView: View {
             }
         }
         .padding(.horizontal)
-        .padding(.vertical, 5)
+        .padding(.vertical, 10)
     }
 }
 
@@ -340,7 +336,7 @@ struct TripPointsListView: View {
                 }
                 
                 Spacer()
-                    .frame(minHeight: 90)
+                    .frame(minHeight: 100)
                     .fixedSize()
                     .padding([.horizontal, .bottom])
                     .listRowSeparator(.hidden)

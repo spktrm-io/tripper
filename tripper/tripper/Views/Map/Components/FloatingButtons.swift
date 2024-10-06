@@ -52,6 +52,3 @@ struct FloatingButtons: View {
     }
 }
 
-#Preview {
-    MapView()
-}

@@ -3,13 +3,13 @@ import MapKit
 
 struct MapView: View {
     @StateObject private var locationService = LocationService(completer: MKLocalSearchCompleter())
-    @State private var position = MapCameraPosition.automatic
     @State private var searchResults = [SearchResult]()
     @State private var selectedLocation: SearchResult?
     @State private var isSheetPresented: Bool = false
     @State private var scene: MKLookAroundScene?
     @State private var route: MKRoute?
     @State private var fetchTask: Task<Void, Never>?
+    @Binding var position: MapCameraPosition
     @Environment(\.presentationMode) var presentationMode // Controla o estado de apresentação
 
     var body: some View {
@@ -132,6 +132,3 @@ struct MapView: View {
     }
 }
 
-#Preview {
-    MapView()
-}

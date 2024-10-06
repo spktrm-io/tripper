@@ -64,9 +64,21 @@ struct TripView: View {
             
             VStack {
                 Spacer()
-                
-                ContinueTripButton(namespace: namespace)
-                
+                HStack{
+                    Button(action: {
+                    }) {
+                        HStack {
+                            Image(systemName: "plus")
+                                .foregroundStyle(.primary)
+                            Text("Add a point")
+                                .font(.headline)
+                                .fontWeight(.bold)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .modifier(ButtonFill())
+                    }
+                    ContinueTripButton(namespace: namespace, position: $cameraPosition)
+                }
                 Spacer()
                     .frame(minHeight: 86)
                     .fixedSize()
@@ -140,7 +152,7 @@ struct MapAreaView: View {
     
     var body: some View {
         NavigationLink {
-            MapView()
+            MapView(position: $cameraPosition)
                 .navigationTransition(
                     .zoom(
                         sourceID: "map",
@@ -316,7 +328,7 @@ struct TripPointsListView: View {
                         .tint(.red)
                         
                         Button(action: {
-                            // Edit action here
+                            isPresented.toggle()
                         }) {
                             Image(systemName: "pencil")
                                 .frame(width: 5, height: 5)
@@ -327,24 +339,8 @@ struct TripPointsListView: View {
 
                 }
                 
-                Button(action: {
-                    isPresented.toggle()
-                }) {
-                    HStack {
-                        Image(systemName: "plus")
-                            .foregroundStyle(.primary)
-                        Text("Add a point")
-                            .font(.headline)
-                            .fontWeight(.bold)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .modifier(ButtonFill())
-                }
-                .listRowSeparator(.hidden)
-                .listRowBackground(Color.clear)
-
                 Spacer()
-                    .frame(minHeight: 84)
+                    .frame(minHeight: 90)
                     .fixedSize()
                     .padding([.horizontal, .bottom])
                     .listRowSeparator(.hidden)
@@ -356,10 +352,11 @@ struct TripPointsListView: View {
 
 struct ContinueTripButton: View {
     var namespace: Namespace.ID
+    @Binding var position: MapCameraPosition
     
     var body: some View {
         NavigationLink {
-            MapView()
+            MapView(position: $position)
                 .navigationTransition(
                     .zoom(
                         sourceID: "map",

@@ -12,7 +12,3 @@ struct MapSheetView: View {
         .presentationBackgroundInteraction(.enabled(upThrough: .large))
     }
 }
-
-#Preview {
-    MapView()
-}

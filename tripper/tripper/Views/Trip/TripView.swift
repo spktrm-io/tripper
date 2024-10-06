@@ -44,7 +44,7 @@ struct TripView: View {
                     cameraPosition: $cameraPosition,
                     namespace: namespace,
                     currentIndex: $currentIndex,
-                    points: points,
+                    points: $points,
                     heightMap: heightMap,
                     updateRegion: updateRegion
                 )
@@ -145,14 +145,14 @@ struct MapAreaView: View {
     @Binding var cameraPosition: MapCameraPosition
     var namespace: Namespace.ID
     @Binding var currentIndex: Int
-    var points: [MapPoint]
+    @Binding var points: [MapPoint]
     let heightMap: CGFloat
     var updateRegion: (CLLocationCoordinate2D) -> Void
     @State private var dragOffset: CGFloat = 0.0
     
     var body: some View {
         NavigationLink {
-            MapView(position: $cameraPosition)
+            MapWithPointsView(position: $cameraPosition, points: $points, currentIndex: $currentIndex)
                 .navigationTransition(
                     .zoom(
                         sourceID: "map",

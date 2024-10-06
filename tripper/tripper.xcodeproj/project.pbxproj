@@ -54,6 +54,7 @@
 		2C78CB332CAB7FE2007A572E /* ButtonToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78CB322CAB7FD7007A572E /* ButtonToggle.swift */; };
 		2CB0C2792C8FD610007C077A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB0C26B2C8FD60F007C077A /* Assets.xcassets */; };
 		2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */; };
+		2CBEF6C02CB24816002B2C87 /* MapWithPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEF6BF2CB24806002B2C87 /* MapWithPoints.swift */; };
 		2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5D7282C933D490069EBB2 /* LocationService.swift */; };
 		2CDB4A262CAE28AC00D0492C /* SearchTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB4A252CAE289F00D0492C /* SearchTripView.swift */; };
 		2CDB4A292CAF2D2200D0492C /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDB4A282CAF2D1F00D0492C /* TripView.swift */; };
@@ -133,6 +134,7 @@
 		2C78CB322CAB7FD7007A572E /* ButtonToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonToggle.swift; sourceTree = "<group>"; };
 		2CB0C26B2C8FD60F007C077A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtons.swift; sourceTree = "<group>"; };
+		2CBEF6BF2CB24806002B2C87 /* MapWithPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWithPoints.swift; sourceTree = "<group>"; };
 		2CD5D7282C933D490069EBB2 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationService.swift; path = tripper/Services/LocationService.swift; sourceTree = SOURCE_ROOT; };
 		2CDB4A252CAE289F00D0492C /* SearchTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTripView.swift; sourceTree = "<group>"; };
 		2CDB4A282CAF2D1F00D0492C /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 		2CDB4A272CAF2D1800D0492C /* Trip */ = {
 			isa = PBXGroup;
 			children = (
+				2CBEF6BF2CB24806002B2C87 /* MapWithPoints.swift */,
 				2CDB4A282CAF2D1F00D0492C /* TripView.swift */,
 			);
 			path = Trip;
@@ -795,6 +798,7 @@
 				2C5344CC2C9F46A700D06777 /* ProfileSectionView.swift in Sources */,
 				2C15E71E2C9737AD00E3726A /* HomeView.swift in Sources */,
 				2C5344C42C9F448D00D06777 /* LocationButtonView.swift in Sources */,
+				2CBEF6C02CB24816002B2C87 /* MapWithPoints.swift in Sources */,
 				2CDB4A292CAF2D2200D0492C /* TripView.swift in Sources */,
 				2C78CB312CAB7CB6007A572E /* TextFieldGrayBackgroundColor.swift in Sources */,
 				2CFDDB0A2C93B221004B2E53 /* MapView.swift in Sources */,

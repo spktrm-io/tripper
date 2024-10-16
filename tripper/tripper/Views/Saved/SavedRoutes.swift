@@ -11,11 +11,8 @@ struct SavedRoutesView: View {
     let bottomSpacer: CGFloat?
     private let edge: CGFloat
     private let columns: [GridItem]
-    private let columnsPhotos = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    let photos: [String] = ["andes", "andes-1", "andes-2", "andes-3"] // Array de nomes das imagens
+    let spacing: CGFloat = 4
+    let photos: [String] = ["andes", "andes-1", "andes-2", "andes-3"]
     
     init(bottomSpacer: CGFloat) {
         self.edge = UIScreen.main.bounds.width * 0.40
@@ -27,6 +24,11 @@ struct SavedRoutesView: View {
     }
     
     var body: some View {
+        let columnsPhotos = [
+            GridItem(.flexible(), spacing: spacing), // Espaçamento entre colunas
+            GridItem(.flexible(), spacing: spacing)
+        ]
+        
         VStack(alignment: .leading) {
             Text("Saved routes")
                 .font(.title)
@@ -37,18 +39,17 @@ struct SavedRoutesView: View {
                     ForEach(0..<10) { _ in
                         Button(action: {}) {
                             VStack{
-                                VStack(alignment: .center) {
-                                    LazyVGrid(columns: columnsPhotos) {
-                                        ForEach(photos, id: \.self) { photo in
-                                            Image(photo)
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                                .clipped()
-                                        }
+                                LazyVGrid(columns: columnsPhotos, spacing: 2) {
+                                    ForEach(photos, id: \.self) { photo in
+                                        Image(photo)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: edge / 2, height: edge / 2)
+                                            .clipped()
                                     }
                                 }
                                 .frame(width: edge, height: edge)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.primary.opacity(0.1), lineWidth: 1)

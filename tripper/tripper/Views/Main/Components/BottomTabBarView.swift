@@ -45,5 +45,6 @@ struct BottomTabBarView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
             .environmentObject(LocationService(completer: .init()))
+            .environmentObject(ColorSchemeManager())
     }
 }

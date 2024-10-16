@@ -7,16 +7,15 @@
 
 import SwiftUI
 
-struct ButtonBlank: ViewModifier {
-    @Environment(\.colorScheme) var colorScheme
+struct BoxBlankStyle: ViewModifier {
+    @EnvironmentObject private var colorSchemeManager: ColorSchemeManager
     var cornerRadius: CGFloat = 10
     var padding: CGFloat = 16
     
     func body(content: Content) -> some View {
-        let buttonContentColor: Color = colorScheme == .dark ? Color.white : Color.black
         content
             .padding(padding)
-            .foregroundColor(buttonContentColor)
+            .foregroundColor(colorSchemeManager.primaryColor)
             .fontWeight(.bold)
             .cornerRadius(cornerRadius)
             .overlay(

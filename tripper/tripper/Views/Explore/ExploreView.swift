@@ -8,43 +8,31 @@ import SwiftUI
 import ScalingHeaderScrollView
 
 struct ExploreView: View {
+    let bottomSpacer: CGFloat?
+    @Namespace() var namespace
     @State private var searchText: String = ""
     @State private var isSheetPresented: Bool = false
-    let bottomSpacer: CGFloat?
-    @Environment(\.colorScheme) var colorScheme
     @State private var collapseProgress: CGFloat = 0.0
-    @Namespace() var namespace
     @State private var distanceValue: Double = 10.0
     @State private var costValue: Double = 10.0
     @State private var durationValue: Double = 0.0
-    // Tipo de Rota (Route Type)
-    @State private var routeType: String = "Scenic" // Valor padrão
-
-    // Pontuação de Avaliações (Ratings)
-    @State private var ratingValue: Double = 1.0 // Valor inicial (de 1 a 5)
-
-    // Paradas (Stops)
+    @State private var routeType: String = "Scenic"
+    @State private var ratingValue: Double = 1.0
     @State private var includeRestaurants: Bool = false
     @State private var includeTouristAttractions: Bool = false
     @State private var includeHotels: Bool = false
     @State private var includeGasStations: Bool = false
-
-    // Preferências de Viagem (Travel Preferences)
     @State private var isPetFriendly: Bool = false
     @State private var isKidFriendly: Bool = false
     @State private var isBudgetFriendly: Bool = false
-
-    // Condições de Estrada (Road Conditions)
     @State private var includeHighways: Bool = false
     @State private var includeScenicRoads: Bool = false
     @State private var includeAlternativePaths: Bool = false
-    
+    @EnvironmentObject var colorSchemeManager: ColorSchemeManager
+    @Environment(\.colorScheme) var colorScheme // Access the current color scheme
+
     var body: some View {
-        
         let logoName: String = colorScheme == .dark ? "tripper-logo-light" : "tripper-logo-dark"
-        let buttonContentColor: Color = colorScheme == .dark ? Color.white : Color.black
-        let secondarColor: Color = colorScheme == .dark ? Color.black : Color.white
-        
         ScalingHeaderScrollView {
             VStack {
                 HStack {
@@ -53,7 +41,7 @@ struct ExploreView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 50)
                     Spacer()
-                    LocationButtonView(isSheetPresented: $isSheetPresented, buttonContentColor: buttonContentColor)
+                    LocationButtonView(isSheetPresented: $isSheetPresented, buttonContentColor: colorSchemeManager.primaryColor)
                 }
                 .padding(.horizontal)
                 .opacity(1.0 - collapseProgress * 2.0)
@@ -82,7 +70,7 @@ struct ExploreView: View {
                     Button(action: { isSheetPresented.toggle() }) {
                         Image(systemName: "line.3.horizontal.decrease")
                     }
-                    .modifier(ButtonBlank(cornerRadius: .infinity))
+                    .modifier(BoxBlankStyle(cornerRadius: .infinity))
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 4)
@@ -90,7 +78,7 @@ struct ExploreView: View {
                 ToggleButtonsView()
                     .padding(.bottom)
             }
-            .background(secondarColor)
+            .background(colorSchemeManager.secondaryColor)
             .overlay(
                 Rectangle()
                     .frame(height: 1)
@@ -253,4 +241,5 @@ struct ExploreView: View {
 #Preview {
     ExploreView(bottomSpacer: 100)
         .environmentObject(LocationService(completer: .init()))
+        .environmentObject(ColorSchemeManager())
 }

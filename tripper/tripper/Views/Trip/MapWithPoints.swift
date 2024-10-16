@@ -111,11 +111,11 @@ struct MapWithPointsView: View {
                                             if currentIndex == index {
                                                 Image(systemName: "mappin")
                                                     .frame(width: 10, height: 10)
-                                                    .modifier(ButtonFill(cornerRadius: .infinity))
+                                                    .modifier(BoxFillStyle(cornerRadius: .infinity))
                                             }else{
                                                 Image(systemName: "mappin")
                                                     .frame(width: 10, height: 10)
-                                                    .modifier(ButtonBlank(cornerRadius: .infinity))
+                                                    .modifier(BoxBlankStyle(cornerRadius: .infinity))
                                             }
                                         }
                                             
@@ -162,7 +162,7 @@ struct MapWithPointsView: View {
                             .foregroundStyle(.white)
                     }
                     .frame(maxWidth: .infinity)
-                    .modifier(ButtonBlank())
+                    .modifier(BoxBlankStyle())
                     .background(
                         FluidGradient(
                             blobs: [.pink, .cyan, .purple],
@@ -201,4 +201,5 @@ struct MapWithPointsView: View {
                    print("Updated region to: \(newCoordinate.latitude), \(newCoordinate.longitude)")
                }
     )
+    .environmentObject(ColorSchemeManager())
 }

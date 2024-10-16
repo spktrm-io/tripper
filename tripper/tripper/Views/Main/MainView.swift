@@ -2,11 +2,9 @@ import SwiftUI
 
 struct MainView: View {
     @State private var selectedIndex: Int = 0
-    @Environment(\.colorScheme) var colorScheme
-    
+    @EnvironmentObject private var colorSchemeManager: ColorSchemeManager
+
     var body: some View {
-        let primaryColor: Color = colorScheme == .dark ? Color.white : Color.black
-        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
         let bottomTabMenuHeight: CGFloat = 95
         NavigationStack{
             ZStack {
@@ -15,8 +13,8 @@ struct MainView: View {
                     Spacer()
                     BottomTabBarView(
                         selectedIndex: $selectedIndex,
-                        primaryColor: primaryColor,
-                        secondaryColor: secondaryColor,
+                        primaryColor: colorSchemeManager.primaryColor,
+                        secondaryColor: colorSchemeManager.secondaryColor,
                         bottomTabMenuHeight: bottomTabMenuHeight
                     )
                 }
@@ -30,5 +28,7 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
             .environmentObject(LocationService(completer: .init()))
+            .environmentObject(ColorSchemeManager())
+
     }
 }

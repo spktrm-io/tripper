@@ -85,4 +85,5 @@ struct CardView: View {
 #Preview {
     ExploreView(bottomSpacer: 100)
         .environmentObject(LocationService(completer: .init()))
+        .environmentObject(ColorSchemeManager())
 }

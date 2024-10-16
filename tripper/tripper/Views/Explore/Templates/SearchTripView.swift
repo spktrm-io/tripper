@@ -10,10 +10,7 @@ import FluidGradient
 
 struct SearchTripView : View{
     @Environment(\.presentationMode) var presentationMode // Controla o estado de apresentação
-    @Environment(\.colorScheme) var colorScheme
-    
     @EnvironmentObject var locationService: LocationService
-    
     @State private var distanceValue: Double = 10.0
     @State private var costValue: Double = 10.0
     @State private var durationValue: Double = 0.0
@@ -30,7 +27,7 @@ struct SearchTripView : View{
                         HStack {
                             Image(systemName: "xmark") // Ícone personalizado
                         }
-                        .modifier(ButtonBlank(cornerRadius: .infinity))
+                        .modifier(BoxBlankStyle(cornerRadius: .infinity))
                     }
                     Spacer()
                     Button(action: {
@@ -43,7 +40,7 @@ struct SearchTripView : View{
                                 .fontWeight(.black)
                                 .foregroundStyle(.white)
                         }
-                        .modifier(ButtonBlank())
+                        .modifier(BoxBlankStyle())
                         .background(
                             FluidGradient(
                                 blobs: [.pink, .cyan, .purple],
@@ -145,7 +142,7 @@ struct SearchTripView : View{
                             .fontWeight(.bold)
                     }
                     .frame(maxWidth: .infinity)
-                    .modifier(ButtonFill(buttonColor: Color.blue))
+                    .modifier(BoxFillStyle(buttonColor: Color.blue))
                 }
             }
             .padding()
@@ -186,5 +183,6 @@ struct ToggleContainerView<Content: View>: View {
 #Preview {
     SearchTripView()
         .environmentObject(LocationService(completer: .init()))
+        .environmentObject(ColorSchemeManager())
     
 }

@@ -3,7 +3,6 @@ import SwiftUI
 struct FloatingButtons: View {
     var leftAction: () -> Void
     var rightAction: () -> Void
-    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack {

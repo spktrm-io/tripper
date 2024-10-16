@@ -75,7 +75,7 @@ struct TripView: View {
                                 .fontWeight(.bold)
                         }
                         .frame(maxWidth: .infinity)
-                        .modifier(ButtonFill())
+                        .modifier(BoxFillStyle())
                     }
                     ContinueTripButton(namespace: namespace, position: $cameraPosition)
                 }
@@ -309,7 +309,7 @@ struct TripPointsListView: View {
                         }) {
                             Image(systemName: "mappin")
                                 .frame(width: 5, height: 5)
-                                .modifier(ButtonFill(cornerRadius: .infinity))
+                                .modifier(BoxFillStyle(cornerRadius: .infinity))
                         }
                     }
                     .swipeActions(edge: .trailing) {
@@ -369,7 +369,7 @@ struct ContinueTripButton: View {
                     .foregroundStyle(.white)
             }
             .frame(maxWidth: .infinity)
-            .modifier(ButtonBlank())
+            .modifier(BoxBlankStyle())
             .background(
                 FluidGradient(
                     blobs: [.pink, .cyan, .purple],
@@ -387,7 +387,6 @@ struct ContinueTripButton: View {
 
 struct PointDetailView: View {
     @Environment(\.presentationMode) var presentationMode
-    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack {
@@ -397,7 +396,7 @@ struct PointDetailView: View {
                 }) {
                     Image(systemName: "xmark")
                         .frame(width: 40, height: 40)
-                        .modifier(ButtonBlank(cornerRadius: .infinity, padding: 4))
+                        .modifier(BoxBlankStyle(cornerRadius: .infinity, padding: 4))
                 }
                 Spacer()
             }
@@ -412,7 +411,6 @@ struct PointDetailView: View {
 
 struct CreatePointView: View {
     @Environment(\.presentationMode) var presentationMode
-    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack {
@@ -422,7 +420,7 @@ struct CreatePointView: View {
                 }) {
                     Image(systemName: "xmark")
                         .frame(width: 40, height: 40)
-                        .modifier(ButtonBlank(cornerRadius: .infinity, padding: 4))
+                        .modifier(BoxBlankStyle(cornerRadius: .infinity, padding: 4))
                 }
                 Spacer()
             }
@@ -438,4 +436,5 @@ struct CreatePointView: View {
 #Preview {
     MainView()
         .environmentObject(LocationService(completer: .init()))
+        .environmentObject(ColorSchemeManager())
 }

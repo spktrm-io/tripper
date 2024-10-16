@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RouteDetailView: View {
     @Environment(\.presentationMode) var presentationMode // Controla o estado de apresentação
-    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack {
@@ -21,7 +20,7 @@ struct RouteDetailView: View {
                         Image(systemName: "chevron.backward")
                     }
                     .frame(width: 40, height: 40)
-                    .modifier(ButtonBlank(cornerRadius: .infinity, padding: 4))
+                    .modifier(BoxBlankStyle(cornerRadius: .infinity, padding: 4))
                 }
                 Spacer()
             }
@@ -37,5 +36,6 @@ struct RouteDetailView: View {
 
 #Preview{
     RouteDetailView()
+        .environmentObject(ColorSchemeManager())
 }
 

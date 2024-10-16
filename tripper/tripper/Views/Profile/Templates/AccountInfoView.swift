@@ -22,7 +22,7 @@ struct AccountInfoView: View {
                         Image(systemName: "chevron.left")
                     }
                     .frame(width: 40, height: 40)
-                    .modifier(ButtonBlank(cornerRadius: .infinity, padding: 4))
+                    .modifier(BoxBlankStyle(cornerRadius: .infinity, padding: 4))
                 }
                 Spacer()
             }
@@ -76,7 +76,7 @@ struct AccountInfoView: View {
                         .fontWeight(.bold)
                 }
                 .frame(maxWidth: .infinity)
-                .modifier(ButtonFill())
+                .modifier(BoxFillStyle())
             }
             .padding(.top)
             Spacer()

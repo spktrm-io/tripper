@@ -21,7 +21,7 @@ struct TabButtonView: View {
                     .font(.subheadline)
                     .fontWeight(.bold)
             }
-            .modifier(ButtonToggle(isSelected: isSelected))
+            .modifier(ToggleColorBoxStyle(isSelected: isSelected))
         }
     }
 }

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SavedRoutesView: View {
     let bottomSpacer: CGFloat?
-    @Environment(\.colorScheme) var colorScheme // Access the current color scheme
     private let edge: CGFloat
     private let columns: [GridItem]
     private let columnsPhotos = [
@@ -17,7 +16,7 @@ struct SavedRoutesView: View {
         GridItem(.flexible())
     ]
     let photos: [String] = ["andes", "andes-1", "andes-2", "andes-3"] // Array de nomes das imagens
-
+    
     init(bottomSpacer: CGFloat) {
         self.edge = UIScreen.main.bounds.width * 0.40
         self.columns = [
@@ -77,8 +76,6 @@ struct SavedRoutesView: View {
     }
 }
 
-struct SavedRoutesView_Previews: PreviewProvider {
-    static var previews: some View {
-        SavedRoutesView(bottomSpacer: 100)
-    }
+#Preview{
+    SavedRoutesView(bottomSpacer: 100)
 }

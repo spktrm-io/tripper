@@ -38,7 +38,7 @@ struct MainContentView: View {
                     }
                 }
             default:
-                HomeView(bottomSpacer: bottomTabMenuHeight)
+                ExploreView(bottomSpacer: bottomTabMenuHeight)
             }
         }
     }
@@ -47,4 +47,6 @@ struct MainContentView: View {
 #Preview {
     MainContentView(selectedIndex: .constant(1), bottomTabMenuHeight: 100)
         .environmentObject(LocationService(completer: .init()))
+        .environmentObject(ColorSchemeManager())
+
 }

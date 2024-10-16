@@ -7,19 +7,16 @@
 
 import SwiftUI
 
-struct ButtonToggle: ViewModifier {
-    @Environment(\.colorScheme) var colorScheme
+struct ToggleColorBoxStyle: ViewModifier {
+    @EnvironmentObject var colorSchemeManager: ColorSchemeManager
     var isSelected: Bool
     
     func body(content: Content) -> some View {
-        let primaryColor: Color = colorScheme == .dark ? Color.white : Color.black
-        let secondaryColor: Color = colorScheme == .dark ? Color.black : Color.white
-        
         content
             .padding()
             .frame(maxWidth: .infinity)
-            .background(isSelected ? primaryColor : Color.clear)
-            .foregroundColor(isSelected ? secondaryColor : primaryColor)
+            .background(isSelected ? colorSchemeManager.primaryColor : Color.clear)
+            .foregroundColor(isSelected ? colorSchemeManager.secondaryColor : colorSchemeManager.primaryColor)
             .cornerRadius(10)
             .overlay(
                 RoundedRectangle(cornerRadius: 10)

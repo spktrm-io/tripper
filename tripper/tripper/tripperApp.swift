@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct tripperApp: App {
     @StateObject private var locationService = LocationService(completer: .init())
+    @StateObject private var colorSchemeManager = ColorSchemeManager()
     @AppStorage("selectedTheme") private var selectedTheme = 2
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
 
@@ -17,6 +18,7 @@ struct tripperApp: App {
         WindowGroup {
             SplashView()
                 .environmentObject(locationService)
+                .environmentObject(colorSchemeManager)
                 .onAppear {
                     applyTheme()
                 }

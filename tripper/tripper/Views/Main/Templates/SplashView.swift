@@ -15,6 +15,7 @@ struct SplashView: View {
         ZStack {
             if self.isActive {
                 MainView()
+                    .observeColorScheme()
             } else {
                 VStack(alignment: .leading) {
                     Text("developed by")
@@ -46,6 +47,8 @@ struct SplashView_Previews: PreviewProvider {
     static var previews: some View {
         SplashView()
             .environmentObject(LocationService(completer: .init()))
+            .environmentObject(ColorSchemeManager())
+
 
     }
 }

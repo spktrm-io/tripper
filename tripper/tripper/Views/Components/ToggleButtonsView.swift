@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ToggleButtonsView: View {
     @State private var selectedIndex: Int? = 0 // Índice do botão selecionado (inicia como nil)
-    @Environment(\.colorScheme) var colorScheme // Access the current color scheme
+    @EnvironmentObject private var colorSchemeManager: ColorSchemeManager
+
     let typeOfTrips = [
         [
             "type": "Scenic",
@@ -70,8 +71,6 @@ struct ToggleButtonsView: View {
                         // Define o botão selecionado. Se for o mesmo, deseleciona.
                         selectedIndex = index
                     }) {
-                        let textColor: Color = colorScheme == .dark ? Color.black : Color.white
-                        
                         HStack (spacing: 4) {
                             Image(systemName: imageName)
                             Text(type)
@@ -81,7 +80,7 @@ struct ToggleButtonsView: View {
                         .padding(.vertical, 10)
                         .padding(.horizontal, 20)
                         .background(selectedIndex == index ? Color.primary : Color.clear)
-                        .foregroundColor(selectedIndex == index ? textColor : Color.primary)
+                        .foregroundColor(selectedIndex == index ? colorSchemeManager.secondaryColor : Color.primary)
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
@@ -98,4 +97,6 @@ struct ToggleButtonsView: View {
 #Preview {
     ExploreView(bottomSpacer: 100)
         .environmentObject(LocationService(completer: .init()))
+        .environmentObject(ColorSchemeManager())
+
 }

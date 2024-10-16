@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C15E71E2C9737AD00E3726A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15E71D2C9737AD00E3726A /* HomeView.swift */; };
 		2C15E7202C973C4800E3726A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15E71F2C973C4800E3726A /* MainView.swift */; };
 		2C15E7222C97504900E3726A /* SavedRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15E7212C97504900E3726A /* SavedRoutes.swift */; };
 		2C15E7242C9750C200E3726A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15E7232C9750C200E3726A /* ProfileView.swift */; };
 		2C15E72B2C97B53B00E3726A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15E72A2C97B53B00E3726A /* CardView.swift */; };
 		2C15E72D2C97B56C00E3726A /* ToggleButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15E72C2C97B56C00E3726A /* ToggleButtonsView.swift */; };
-		2C15E7312C97C08300E3726A /* SheetSearchCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15E7302C97C08300E3726A /* SheetSearchCityView.swift */; };
 		2C16CDEC2C7D17900079A75B /* tripperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CDEB2C7D17900079A75B /* tripperApp.swift */; };
 		2C16CDF32C7D17910079A75B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C16CDF22C7D17910079A75B /* Preview Assets.xcassets */; };
 		2C16CDF82C7D17910079A75B /* tripper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CDF62C7D17910079A75B /* tripper.xcdatamodeld */; };
@@ -21,14 +19,13 @@
 		2C16CE0C2C7D17910079A75B /* tripperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CE0B2C7D17910079A75B /* tripperUITests.swift */; };
 		2C16CE0E2C7D17910079A75B /* tripperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16CE0D2C7D17910079A75B /* tripperUITestsLaunchTests.swift */; };
 		2C1B33C82CA3BB85000B8C75 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1B33C72CA3BB84000B8C75 /* RouteDetailView.swift */; };
+		2C37BD162CBF4B2900E51089 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C37BD142CBF4B2900E51089 /* LocationManager.swift */; };
+		2C37BD182CBF4B4200E51089 /* ColorSchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C37BD172CBF4B3100E51089 /* ColorSchemeManager.swift */; };
 		2C37EFA82CAF7E7600C48F88 /* FluidGradient in Frameworks */ = {isa = PBXBuildFile; productRef = 2C37EFA72CAF7E7600C48F88 /* FluidGradient */; };
 		2C5344B82C9E138400D06777 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344B72C9E137A00D06777 /* SplashView.swift */; };
 		2C5344BA2C9F440300D06777 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344B92C9F43FC00D06777 /* SearchBarView.swift */; };
 		2C5344BC2C9F441A00D06777 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344BB2C9F441900D06777 /* TabButtonView.swift */; };
-		2C5344BE2C9F443100D06777 /* HorizontalCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344BD2C9F442F00D06777 /* HorizontalCardListView.swift */; };
-		2C5344C02C9F445B00D06777 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344BF2C9F445400D06777 /* DiscoverView.swift */; };
 		2C5344C22C9F446F00D06777 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344C12C9F446F00D06777 /* ExploreView.swift */; };
-		2C5344C42C9F448D00D06777 /* LocationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344C32C9F448700D06777 /* LocationButtonView.swift */; };
 		2C5344C62C9F453400D06777 /* BottomTabBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344C52C9F452900D06777 /* BottomTabBarButtonView.swift */; };
 		2C5344C82C9F455A00D06777 /* BottomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344C72C9F454900D06777 /* BottomTabBarView.swift */; };
 		2C5344CA2C9F457500D06777 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5344C92C9F456D00D06777 /* MainContentView.swift */; };
@@ -48,10 +45,11 @@
 		2C5345072C9FC49200D06777 /* AddressInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5345062C9FC48100D06777 /* AddressInfoView.swift */; };
 		2C5345092C9FC4DB00D06777 /* PasswordInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5345082C9FC4B100D06777 /* PasswordInfoView.swift */; };
 		2C53450B2C9FC4FA00D06777 /* AccountInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53450A2C9FC4F500D06777 /* AccountInfoView.swift */; };
-		2C78CB2D2CAB7BB3007A572E /* ButtonBlank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78CB2C2CAB7BA7007A572E /* ButtonBlank.swift */; };
-		2C78CB2F2CAB7BBB007A572E /* ButtonFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78CB2E2CAB7BB7007A572E /* ButtonFill.swift */; };
+		2C78CB2D2CAB7BB3007A572E /* BoxBlankStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78CB2C2CAB7BA7007A572E /* BoxBlankStyle.swift */; };
+		2C78CB2F2CAB7BBB007A572E /* BoxFillStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78CB2E2CAB7BB7007A572E /* BoxFillStyle.swift */; };
 		2C78CB312CAB7CB6007A572E /* TextFieldGrayBackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78CB302CAB7CB5007A572E /* TextFieldGrayBackgroundColor.swift */; };
-		2C78CB332CAB7FE2007A572E /* ButtonToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78CB322CAB7FD7007A572E /* ButtonToggle.swift */; };
+		2C78CB332CAB7FE2007A572E /* ToggleColorBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78CB322CAB7FD7007A572E /* ToggleColorBoxStyle.swift */; };
+		2CA8F97E2CC05DB8000D1A04 /* LocationButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA8F97D2CC05DB5000D1A04 /* LocationButtonView.swift */; };
 		2CB0C2792C8FD610007C077A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB0C26B2C8FD60F007C077A /* Assets.xcassets */; };
 		2CB2B30D2C8FE20600466E54 /* FloatingButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */; };
 		2CBEF6C02CB24816002B2C87 /* MapWithPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBEF6BF2CB24806002B2C87 /* MapWithPoints.swift */; };
@@ -84,13 +82,11 @@
 
 /* Begin PBXFileReference section */
 		1C38F64F4BDDA1CBC6B97FF6 /* Pods-tripperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripperTests.debug.xcconfig"; path = "Target Support Files/Pods-tripperTests/Pods-tripperTests.debug.xcconfig"; sourceTree = "<group>"; };
-		2C15E71D2C9737AD00E3726A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2C15E71F2C973C4800E3726A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2C15E7212C97504900E3726A /* SavedRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRoutes.swift; sourceTree = "<group>"; };
 		2C15E7232C9750C200E3726A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		2C15E72A2C97B53B00E3726A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		2C15E72C2C97B56C00E3726A /* ToggleButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButtonsView.swift; sourceTree = "<group>"; };
-		2C15E7302C97C08300E3726A /* SheetSearchCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetSearchCityView.swift; sourceTree = "<group>"; };
 		2C16CDE82C7D17900079A75B /* tripper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tripper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C16CDEB2C7D17900079A75B /* tripperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripperApp.swift; sourceTree = "<group>"; };
 		2C16CDF22C7D17910079A75B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -101,14 +97,13 @@
 		2C16CE0B2C7D17910079A75B /* tripperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripperUITests.swift; sourceTree = "<group>"; };
 		2C16CE0D2C7D17910079A75B /* tripperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tripperUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2C1B33C72CA3BB84000B8C75 /* RouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailView.swift; sourceTree = "<group>"; };
+		2C37BD142CBF4B2900E51089 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		2C37BD172CBF4B3100E51089 /* ColorSchemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeManager.swift; sourceTree = "<group>"; };
 		2C5344B42C9E037900D06777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2C5344B72C9E137A00D06777 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		2C5344B92C9F43FC00D06777 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		2C5344BB2C9F441900D06777 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
-		2C5344BD2C9F442F00D06777 /* HorizontalCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCardListView.swift; sourceTree = "<group>"; };
-		2C5344BF2C9F445400D06777 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		2C5344C12C9F446F00D06777 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
-		2C5344C32C9F448700D06777 /* LocationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButtonView.swift; sourceTree = "<group>"; };
 		2C5344C52C9F452900D06777 /* BottomTabBarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBarButtonView.swift; sourceTree = "<group>"; };
 		2C5344C72C9F454900D06777 /* BottomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBarView.swift; sourceTree = "<group>"; };
 		2C5344C92C9F456D00D06777 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
@@ -128,10 +123,11 @@
 		2C5345062C9FC48100D06777 /* AddressInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInfoView.swift; sourceTree = "<group>"; };
 		2C5345082C9FC4B100D06777 /* PasswordInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInfoView.swift; sourceTree = "<group>"; };
 		2C53450A2C9FC4F500D06777 /* AccountInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoView.swift; sourceTree = "<group>"; };
-		2C78CB2C2CAB7BA7007A572E /* ButtonBlank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBlank.swift; sourceTree = "<group>"; };
-		2C78CB2E2CAB7BB7007A572E /* ButtonFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFill.swift; sourceTree = "<group>"; };
+		2C78CB2C2CAB7BA7007A572E /* BoxBlankStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxBlankStyle.swift; sourceTree = "<group>"; };
+		2C78CB2E2CAB7BB7007A572E /* BoxFillStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxFillStyle.swift; sourceTree = "<group>"; };
 		2C78CB302CAB7CB5007A572E /* TextFieldGrayBackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldGrayBackgroundColor.swift; sourceTree = "<group>"; };
-		2C78CB322CAB7FD7007A572E /* ButtonToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonToggle.swift; sourceTree = "<group>"; };
+		2C78CB322CAB7FD7007A572E /* ToggleColorBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleColorBoxStyle.swift; sourceTree = "<group>"; };
+		2CA8F97D2CC05DB5000D1A04 /* LocationButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButtonView.swift; sourceTree = "<group>"; };
 		2CB0C26B2C8FD60F007C077A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CB2B30C2C8FE20600466E54 /* FloatingButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtons.swift; sourceTree = "<group>"; };
 		2CBEF6BF2CB24806002B2C87 /* MapWithPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWithPoints.swift; sourceTree = "<group>"; };
@@ -204,6 +200,7 @@
 		2C16CDEA2C7D17900079A75B /* tripper */ = {
 			isa = PBXGroup;
 			children = (
+				2C37BD152CBF4B2900E51089 /* Utils */,
 				2C78CB282CAB7B3C007A572E /* Styles */,
 				2C5344B42C9E037900D06777 /* Info.plist */,
 				2CFDDB082C93B172004B2E53 /* Assets */,
@@ -249,6 +246,15 @@
 			path = RouteDetail;
 			sourceTree = "<group>";
 		};
+		2C37BD152CBF4B2900E51089 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2C37BD172CBF4B3100E51089 /* ColorSchemeManager.swift */,
+				2C37BD142CBF4B2900E51089 /* LocationManager.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		2C5344D42C9F479800D06777 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,16 +265,6 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		2C5344D52C9F479F00D06777 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				2C5344DD2C9F480F00D06777 /* Components */,
-				2C5344DA2C9F47F600D06777 /* Templates */,
-				2C15E71D2C9737AD00E3726A /* HomeView.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
 		2C5344D62C9F47A700D06777 /* Saved */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,14 +272,6 @@
 				2C15E7212C97504900E3726A /* SavedRoutes.swift */,
 			);
 			path = Saved;
-			sourceTree = "<group>";
-		};
-		2C5344DA2C9F47F600D06777 /* Templates */ = {
-			isa = PBXGroup;
-			children = (
-				2C5344BF2C9F445400D06777 /* DiscoverView.swift */,
-			);
-			path = Templates;
 			sourceTree = "<group>";
 		};
 		2C5344DB2C9F47F600D06777 /* Templates */ = {
@@ -306,16 +294,6 @@
 			children = (
 				2C5344CF2C9F46CF00D06777 /* MedalsView.swift */,
 				2C5344CD2C9F46B800D06777 /* StatisticsGridView.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		2C5344DD2C9F480F00D06777 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				2C15E7302C97C08300E3726A /* SheetSearchCityView.swift */,
-				2C5344BD2C9F442F00D06777 /* HorizontalCardListView.swift */,
-				2C5344C32C9F448700D06777 /* LocationButtonView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -431,6 +409,7 @@
 		2C78CB252CAB7908007A572E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2CA8F97D2CC05DB5000D1A04 /* LocationButtonView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -438,10 +417,10 @@
 		2C78CB282CAB7B3C007A572E /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				2C78CB322CAB7FD7007A572E /* ButtonToggle.swift */,
+				2C78CB322CAB7FD7007A572E /* ToggleColorBoxStyle.swift */,
 				2C78CB302CAB7CB5007A572E /* TextFieldGrayBackgroundColor.swift */,
-				2C78CB2E2CAB7BB7007A572E /* ButtonFill.swift */,
-				2C78CB2C2CAB7BA7007A572E /* ButtonBlank.swift */,
+				2C78CB2E2CAB7BB7007A572E /* BoxFillStyle.swift */,
+				2C78CB2C2CAB7BA7007A572E /* BoxBlankStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -466,7 +445,6 @@
 				2C5344E12C9F489F00D06777 /* Map */,
 				2C5344E02C9F488400D06777 /* Main */,
 				2C5344D62C9F47A700D06777 /* Saved */,
-				2C5344D52C9F479F00D06777 /* Home */,
 				2C5344D42C9F479800D06777 /* Profile */,
 				2CB0C2682C8FD60F007C077A /* Components */,
 				2C5344E92C9F4A3800D06777 /* Credential */,
@@ -783,8 +761,8 @@
 				2CFDDB0C2C93B360004B2E53 /* MapSheetView.swift in Sources */,
 				2C53450B2C9FC4FA00D06777 /* AccountInfoView.swift in Sources */,
 				2C5344B82C9E138400D06777 /* SplashView.swift in Sources */,
-				2C78CB2D2CAB7BB3007A572E /* ButtonBlank.swift in Sources */,
-				2C78CB2F2CAB7BBB007A572E /* ButtonFill.swift in Sources */,
+				2C78CB2D2CAB7BB3007A572E /* BoxBlankStyle.swift in Sources */,
+				2C78CB2F2CAB7BBB007A572E /* BoxFillStyle.swift in Sources */,
 				2CDB4A262CAE28AC00D0492C /* SearchTripView.swift in Sources */,
 				2C5344C62C9F453400D06777 /* BottomTabBarButtonView.swift in Sources */,
 				2C15E7202C973C4800E3726A /* MainView.swift in Sources */,
@@ -796,21 +774,19 @@
 				2C15E7242C9750C200E3726A /* ProfileView.swift in Sources */,
 				2C5344C22C9F446F00D06777 /* ExploreView.swift in Sources */,
 				2C5344CC2C9F46A700D06777 /* ProfileSectionView.swift in Sources */,
-				2C15E71E2C9737AD00E3726A /* HomeView.swift in Sources */,
-				2C5344C42C9F448D00D06777 /* LocationButtonView.swift in Sources */,
 				2CBEF6C02CB24816002B2C87 /* MapWithPoints.swift in Sources */,
+				2C37BD162CBF4B2900E51089 /* LocationManager.swift in Sources */,
 				2CDB4A292CAF2D2200D0492C /* TripView.swift in Sources */,
 				2C78CB312CAB7CB6007A572E /* TextFieldGrayBackgroundColor.swift in Sources */,
+				2CA8F97E2CC05DB8000D1A04 /* LocationButtonView.swift in Sources */,
 				2CFDDB0A2C93B221004B2E53 /* MapView.swift in Sources */,
 				2C5344D02C9F46DA00D06777 /* MedalsView.swift in Sources */,
 				2C5344D22C9F46FD00D06777 /* SettingsSectionView.swift in Sources */,
 				2C5344CA2C9F457500D06777 /* MainContentView.swift in Sources */,
 				2C5345092C9FC4DB00D06777 /* PasswordInfoView.swift in Sources */,
 				2C5344CE2C9F46BA00D06777 /* StatisticsGridView.swift in Sources */,
-				2C5344C02C9F445B00D06777 /* DiscoverView.swift in Sources */,
 				2C5344EF2C9F4A6300D06777 /* LoginView.swift in Sources */,
 				2C16CDF82C7D17910079A75B /* tripper.xcdatamodeld in Sources */,
-				2C5344BE2C9F443100D06777 /* HorizontalCardListView.swift in Sources */,
 				2C5344FF2C9FC3E700D06777 /* AppearanceView.swift in Sources */,
 				2C15E72B2C97B53B00E3726A /* CardView.swift in Sources */,
 				2C5344BC2C9F441A00D06777 /* TabButtonView.swift in Sources */,
@@ -820,12 +796,12 @@
 				2C5344F52C9F534400D06777 /* FullNameStepView.swift in Sources */,
 				2C5345012C9FC3EC00D06777 /* NotificationsView.swift in Sources */,
 				2CD5D7292C933D490069EBB2 /* LocationService.swift in Sources */,
+				2C37BD182CBF4B4200E51089 /* ColorSchemeManager.swift in Sources */,
 				2C16CDEC2C7D17900079A75B /* tripperApp.swift in Sources */,
-				2C78CB332CAB7FE2007A572E /* ButtonToggle.swift in Sources */,
+				2C78CB332CAB7FE2007A572E /* ToggleColorBoxStyle.swift in Sources */,
 				2C15E7222C97504900E3726A /* SavedRoutes.swift in Sources */,
 				2C5344C82C9F455A00D06777 /* BottomTabBarView.swift in Sources */,
 				2C5345072C9FC49200D06777 /* AddressInfoView.swift in Sources */,
-				2C15E7312C97C08300E3726A /* SheetSearchCityView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
